@@ -1,0 +1,61 @@
+name: Orchestrator
+
+on:
+  workflow_dispatch:
+    inputs:
+      workspace_id:
+        description: Optional workspace slug to run
+        required: false
+        type: string
+      workflow_id:
+        description: Optional workflow instance or template id
+        required: false
+        type: string
+  schedule:
+    - cron: "0 6 * * 1-5"
+
+permissions:
+  contents: write
+
+jobs:
+  run-orchestrator:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Run verification
+        run: node --test --test-isolation=none
+
+      - name: Run orchestrator
+        shell: bash
+        run: |
+          ARGS="--trigger=${{ github.event_name }}"
+          if [ -n "${{ inputs.workspace_id }}" ]; then
+            ARGS="$ARGS --workspace=${{ inputs.workspace_id }}"
+          fi
+          if [ -n "${{ inputs.workflow_id }}" ]; then
+            ARGS="$ARGS --workflow=${{ inputs.workflow_id }}"
+          fi
+          node orchestrator/run.mjs $ARGS
+
+      - name: Commit refreshed dashboard state
+        shell: bash
+        run: |
+          if git diff --quiet -- dashboard/data/state.js; then
+            echo "No dashboard state changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dashboard/data/state.js
+          git commit -m "chore: refresh orchestrator state"
+          git push

@@ -1,0 +1,55 @@
+{
+  "id": "vbj-services",
+  "name": "VBJ Services",
+  "plan": "operator",
+  "timezone": "Europe/Amsterdam",
+  "vertical": "AI automation consultancy",
+  "idealCustomerProfile": "Agency owners and lean service businesses",
+  "painPoints": [
+    "Leads arrive through DMs with no qualification",
+    "Content production is inconsistent",
+    "Manual follow-up burns founder time"
+  ],
+  "goals": [
+    "Create a reliable content pipeline",
+    "Pre-qualify inbound leads before sales time is spent",
+    "Keep operators visible without founder bottlenecks"
+  ],
+  "competitors": [
+    "Done-for-you automation agencies",
+    "DIY GTM tool stacks",
+    "Generic AI marketing assistants"
+  ],
+  "workflowInstances": [
+    {
+      "id": "vbj-content-daily",
+      "name": "Daily Content Sprint",
+      "template": "content-pipeline",
+      "enabled": true,
+      "triggerMode": "manual_or_schedule",
+      "schedule": "0 8 * * 1-5",
+      "params": {
+        "campaignTheme": "AI orchestration for lean operators",
+        "callToAction": "Book a workflow teardown"
+      }
+    },
+    {
+      "id": "vbj-lead-triage",
+      "name": "Inbound Lead Triage",
+      "template": "lead-qualification",
+      "enabled": true,
+      "triggerMode": "manual_or_webhook",
+      "schedule": null,
+      "params": {
+        "qualificationThreshold": 72,
+        "sampleLead": {
+          "company": "Northflow Studio",
+          "teamSize": 9,
+          "monthlyRevenueBand": "50k-100k",
+          "painLevel": "high",
+          "source": "Instagram DM"
+        }
+      }
+    }
+  ]
+}

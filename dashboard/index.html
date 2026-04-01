@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agent Orchestrator Dashboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="hero">
+        <div class="hero__copy">
+          <p class="eyebrow">Control Plane</p>
+          <h1>Agent orchestration that shows its work.</h1>
+          <p class="hero__lede">
+            This dashboard is the control plane. Execution lives in workflows and workers. If the
+            run trace is missing, the platform is lying.
+          </p>
+        </div>
+        <div class="hero__panel">
+          <p class="hero__label">Current mode</p>
+          <p class="hero__value" id="mode-badge">file-backed-v1</p>
+          <p class="hero__label">Last refresh</p>
+          <p class="hero__value" id="generated-at">waiting for state</p>
+        </div>
+      </header>
+
+      <main class="dashboard">
+        <section class="panel panel--workspace">
+          <div class="panel__heading">
+            <div>
+              <p class="eyebrow">Tenant Scope</p>
+              <h2>Workspace filter</h2>
+            </div>
+          </div>
+          <div class="workspace-switcher" id="workspace-switcher"></div>
+        </section>
+
+        <section class="metrics" id="metrics"></section>
+
+        <section class="panel">
+          <div class="panel__heading">
+            <div>
+              <p class="eyebrow">Workflow Surface</p>
+              <h2>Active workflow instances</h2>
+            </div>
+          </div>
+          <div class="workflow-grid" id="workflow-grid"></div>
+        </section>
+
+        <section class="ledger">
+          <div class="panel panel--list">
+            <div class="panel__heading">
+              <div>
+                <p class="eyebrow">Execution Ledger</p>
+                <h2>Run history</h2>
+              </div>
+            </div>
+            <div class="run-list" id="run-list"></div>
+          </div>
+
+          <div class="panel panel--detail">
+            <div class="panel__heading">
+              <div>
+                <p class="eyebrow">Trace</p>
+                <h2>Run detail</h2>
+              </div>
+            </div>
+            <div id="run-detail"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./data/state.js"></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

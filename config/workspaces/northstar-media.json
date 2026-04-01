@@ -1,0 +1,55 @@
+{
+  "id": "northstar-media",
+  "name": "Northstar Media",
+  "plan": "studio",
+  "timezone": "America/New_York",
+  "vertical": "Short-form content studio",
+  "idealCustomerProfile": "Founder-led B2B brands that need repeatable content output",
+  "painPoints": [
+    "Audience research is ad hoc",
+    "Hooks are repetitive",
+    "Sales follow-up is reactive instead of systematic"
+  ],
+  "goals": [
+    "Standardize research and scripting",
+    "Turn inbound conversations into qualified opportunities",
+    "Track workflow quality per client workspace"
+  ],
+  "competitors": [
+    "In-house content teams",
+    "Freelance creator collectives",
+    "One-person AI content operations"
+  ],
+  "workflowInstances": [
+    {
+      "id": "northstar-content-daily",
+      "name": "Client Content Assembly",
+      "template": "content-pipeline",
+      "enabled": true,
+      "triggerMode": "manual_or_schedule",
+      "schedule": "0 13 * * 1-5",
+      "params": {
+        "campaignTheme": "Content ops for founder-led brands",
+        "callToAction": "Request a 30-minute audit"
+      }
+    },
+    {
+      "id": "northstar-lead-triage",
+      "name": "Client Lead Intake",
+      "template": "lead-qualification",
+      "enabled": true,
+      "triggerMode": "manual_or_webhook",
+      "schedule": null,
+      "params": {
+        "qualificationThreshold": 76,
+        "sampleLead": {
+          "company": "Operator Atlas",
+          "teamSize": 4,
+          "monthlyRevenueBand": "10k-50k",
+          "painLevel": "medium",
+          "source": "LinkedIn DM"
+        }
+      }
+    }
+  ]
+}
