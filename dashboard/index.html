@@ -8,6 +8,19 @@
   </head>
   <body>
     <div class="shell">
+      <div class="dashboard-loader" id="dashboard-loader" role="status" aria-live="polite">
+        <div class="pulse-bars-loader">
+          <div class="pulse-bars-loader__bars" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <p class="pulse-bars-loader__text" id="dashboard-loader-message">
+            Syncing orchestrator state
+          </p>
+        </div>
+      </div>
+
       <header class="hero">
         <div class="hero__copy">
           <p class="eyebrow">Control Plane</p>

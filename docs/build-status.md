@@ -30,6 +30,7 @@ The active build focus is not:
 
 - Static dashboard in `dashboard/`
 - Dark cyber control-room visual theme
+- Pulse bar loading overlay for dashboard boot state
 - Workspace filtering
 - Workflow instance overview
 - Run history ledger

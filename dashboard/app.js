@@ -28,6 +28,23 @@ const runList = document.querySelector("#run-list");
 const runDetail = document.querySelector("#run-detail");
 const modeBadge = document.querySelector("#mode-badge");
 const generatedAt = document.querySelector("#generated-at");
+const dashboardLoader = document.querySelector("#dashboard-loader");
+const dashboardLoaderMessage = document.querySelector("#dashboard-loader-message");
+
+function setLoading(message = "Syncing orchestrator state") {
+  dashboardLoaderMessage.textContent = message;
+  dashboardLoader.classList.remove("is-hidden");
+}
+
+function clearLoading() {
+  dashboardLoader.classList.add("is-hidden");
+}
+
+function wait(durationMs) {
+  return new Promise((resolve) => {
+    window.setTimeout(resolve, durationMs);
+  });
+}
 
 function currency(value) {
   return new Intl.NumberFormat("en-US", {
@@ -259,4 +276,16 @@ function render() {
   renderRunDetail();
 }
 
-render();
+async function bootstrap() {
+  try {
+    setLoading(state.generatedAt ? "Loading run telemetry" : "Waiting for orchestrator state");
+    await wait(320);
+    render();
+    clearLoading();
+  } catch (error) {
+    console.error(error);
+    setLoading("Dashboard boot failed");
+  }
+}
+
+bootstrap();
