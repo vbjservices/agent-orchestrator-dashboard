@@ -24,44 +24,53 @@
         <main class="dashboard">
           <section class="view-stack">
             <section class="view" id="view-dashboard" data-view="dashboard">
-              <header class="hero">
-                <div class="hero__copy">
-                  <p class="eyebrow">Control Plane</p>
-                  <h1>Agent orchestration that shows its work.</h1>
-                  <p class="hero__lede">
-                    This dashboard is the control plane. Execution lives in workflows and workers. If the
-                    run trace is missing, the platform is lying.
-                  </p>
-                </div>
-                <div class="hero__panel">
-                  <p class="hero__label">Current mode</p>
-                  <p class="hero__value" id="mode-badge">file-backed-v1</p>
-                  <p class="hero__label">Last refresh</p>
-                  <p class="hero__value" id="generated-at">waiting for state</p>
-                </div>
-              </header>
+              <section class="panel panel--dashboard-overview">
+                <div class="dashboard-overview">
+                  <div class="dashboard-overview__top">
+                    <div class="hero__copy">
+                      <p class="eyebrow">Control Plane</p>
+                      <h1>Agent orchestration that shows its work.</h1>
+                      <p class="hero__lede">
+                        This dashboard is the control plane. Execution lives in workflows and workers. If the
+                        run trace is missing, the platform is lying.
+                      </p>
+                    </div>
 
-              <section class="panel panel--control-rack">
-                <div class="control-rack">
-                  <section class="control-rack__block control-rack__block--filters">
-                    <div class="panel__heading control-rack__heading">
-                      <div>
-                        <p class="eyebrow">Operator Controls</p>
-                        <h2>Search and status filters</h2>
+                    <div class="hero__panel">
+                      <div class="hero__meta">
+                        <div>
+                          <p class="hero__label">Current mode</p>
+                          <p class="hero__value" id="mode-badge">file-backed-v1</p>
+                        </div>
+                        <div>
+                          <p class="hero__label">Last refresh</p>
+                          <p class="hero__value" id="generated-at">waiting for state</p>
+                        </div>
                       </div>
                     </div>
-                    <div id="control-bar"></div>
-                  </section>
+                  </div>
 
-                  <section class="control-rack__block control-rack__block--workspace">
-                    <div class="panel__heading control-rack__heading">
-                      <div>
-                        <p class="eyebrow">Tenant Scope</p>
-                        <h2>Workspace filter</h2>
+                  <div class="dashboard-overview__bottom">
+                    <section class="control-rack__block control-rack__block--filters">
+                      <div class="panel__heading control-rack__heading">
+                        <div>
+                          <p class="eyebrow">Operator Controls</p>
+                          <h2>Search and status filters</h2>
+                        </div>
                       </div>
-                    </div>
-                    <div class="workspace-switcher" id="workspace-switcher"></div>
-                  </section>
+                      <div id="control-bar"></div>
+                    </section>
+
+                    <section class="control-rack__block control-rack__block--workspace">
+                      <div class="panel__heading control-rack__heading">
+                        <div>
+                          <p class="eyebrow">Tenant Scope</p>
+                          <h2>Workspace filter</h2>
+                        </div>
+                      </div>
+                      <div class="workspace-switcher" id="workspace-switcher"></div>
+                    </section>
+                  </div>
                 </div>
               </section>
 

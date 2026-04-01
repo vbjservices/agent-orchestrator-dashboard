@@ -282,14 +282,6 @@ body::after {
   background: linear-gradient(180deg, rgba(13, 22, 37, 0.88), rgba(9, 16, 28, 0.84));
 }
 
-.hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.85fr) minmax(280px, 0.95fr);
-  gap: clamp(14px, 2vw, 20px);
-  margin-bottom: clamp(16px, 2vw, 22px);
-  animation: rise-in 520ms ease-out both;
-}
-
 .hero__copy,
 .hero__panel,
 .panel,
@@ -381,6 +373,11 @@ body::after {
     linear-gradient(180deg, rgba(15, 26, 43, 0.96), rgba(10, 18, 31, 0.98));
 }
 
+.hero__meta {
+  display: grid;
+  gap: 18px;
+}
+
 .hero__label,
 .eyebrow,
 .workflow-card__tenant,
@@ -419,14 +416,27 @@ body::after {
   min-width: 0;
 }
 
-.panel--control-rack {
-  padding-block: clamp(18px, 2.4vw, 24px);
+.panel--dashboard-overview {
+  padding: clamp(18px, 2.5vw, 24px);
 }
 
-.control-rack {
+.dashboard-overview {
+  display: grid;
+  gap: clamp(18px, 2.5vw, 24px);
+}
+
+.dashboard-overview__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.85fr) minmax(280px, 0.95fr);
+  gap: clamp(14px, 2vw, 20px);
+}
+
+.dashboard-overview__bottom {
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
   gap: clamp(18px, 2.4vw, 28px);
+  padding-top: clamp(18px, 2.4vw, 24px);
+  border-top: 1px solid rgba(146, 164, 185, 0.1);
 }
 
 .control-rack__block {
@@ -443,6 +453,11 @@ body::after {
 
 .control-rack__heading {
   margin-bottom: 18px;
+}
+
+.panel--dashboard-overview .hero__copy,
+.panel--dashboard-overview .hero__panel {
+  box-shadow: none;
 }
 
 .view-stack {
@@ -1712,7 +1727,8 @@ body::after {
     margin: 0;
   }
 
-  .control-rack {
+  .dashboard-overview__top,
+  .dashboard-overview__bottom {
     grid-template-columns: 1fr;
   }
 
@@ -1725,7 +1741,6 @@ body::after {
 }
 
 @media (max-width: 980px) {
-  .hero,
   .ledger {
     grid-template-columns: 1fr;
   }

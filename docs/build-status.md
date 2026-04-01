@@ -40,7 +40,7 @@ The active build focus is not:
 - Mobile drawer now has explicit open, close, backdrop-close, and escape-close behavior, with a utility-style close control that is visually separate from the tabs
 - Broad search and workspace controls now live on the dashboard view instead of repeating as large global panels
 - Hero and runtime context panels now live on the dashboard view instead of leaking into every tab
-- Dashboard search/status controls and workspace filtering now share one split control section instead of two separate cards
+- Dashboard intro, runtime context, search/status controls, and workspace filtering now share one unified top command surface
 - Workflow, agent, and orchestrator tabs now use lighter scope summaries instead of reusing dashboard-heavy context blocks
 - Workflow cards keep a consistent width instead of stretching based on how many cards are visible
 - Pulse bar loaders for independently staged dashboard sections
