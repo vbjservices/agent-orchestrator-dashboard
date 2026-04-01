@@ -43,7 +43,7 @@ Persistence:
 - GitHub Actions can commit refreshed state back into the repo
 
 Visualization:
-- dashboard renders workspace, workflow, run, step, and log state
+- dashboard renders KPI, workflow, agent, orchestrator, run, step, and log state across dedicated operator views
 
 ## What This Repo Proves
 
@@ -64,7 +64,7 @@ Visualization:
 ## Hard Next Steps
 
 1. Replace simulated executor handlers with real server-side model adapters.
-2. Split the dashboard into task-specific operator surfaces instead of one long page.
+2. Turn the template and instance surfaces into real configuration flows with a backend save contract.
 3. Introduce retries, dead-letter handling, and run cancellation.
 4. Add auth and workspace membership checks at the dashboard/backend boundary.
 5. Wire the database only after the runtime contract and UI surface stop thrashing.

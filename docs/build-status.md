@@ -32,10 +32,23 @@ The active build focus is not:
 - Root `index.html` redirects branch-based static hosting to `dashboard/`
 - Dashboard source split into smaller modules for state, activity rules, loaders, and renderers
 - Dark cyber control-room visual theme
+- Visual system tightened toward a more restrained professional operator-console look
 - Hero title scaled down so the interface reads like an operator console instead of a landing page
 - Layout grids, modal surfaces, and action rows now scale more cleanly across desktop, tablet, and phone sizes
+- Dashboard split into dedicated navigation surfaces for `Dashboard`, `Workflows`, `Agents`, and `Orchestrators`
+- Desktop top navigation bar now reduced to tabs only, plus mobile drawer navigation
+- Mobile drawer now has explicit open, close, backdrop-close, and escape-close behavior, with a utility-style close control that is visually separate from the tabs
+- Broad search and workspace controls now live on the dashboard view instead of repeating as large global panels
+- Hero and runtime context panels now live on the dashboard view instead of leaking into every tab
+- Dashboard search/status controls and workspace filtering now share one split control section instead of two separate cards
+- Workflow, agent, and orchestrator tabs now use lighter scope summaries instead of reusing dashboard-heavy context blocks
+- Workflow cards keep a consistent width instead of stretching based on how many cards are visible
 - Pulse bar loaders for independently staged dashboard sections
 - Minimal clickable workflow cards with full workflow detail moved into a popup
+- Workflow popup leads with its attached agent chain so the execution surface shows before metadata
+- Separate workflow template and workflow instance surfaces
+- Separate agent template and agent instance surfaces
+- Orchestrator surface showing trigger/runtime routes plus a read-only setup model
 - Shared SVG avatar icon for displayed agents across launch and trace surfaces
 - Clickable agent chain inside the workflow popup plus popup-only agent detail instead of a fixed side rail
 - Color-coded workflow and agent activity states using `running`, `stopped`, and `error`
@@ -103,6 +116,6 @@ This is the current structure we are keeping clean:
 ## Immediate Next Build Steps
 
 1. Replace the fake executor contract with a real provider adapter boundary.
-2. Split the dashboard into dedicated views for KPI overview, workflows, agents, and orchestrators.
-3. Add real configuration surfaces for workflow and agent instances instead of popup-only inspection.
+2. Turn the read-only template and instance surfaces into structured configuration forms.
+3. Add a real backend contract for manual runs and saved instance configuration.
 4. Keep the runtime file-backed until the workflow and UI surfaces stop changing aggressively.

@@ -185,6 +185,10 @@ export function renderWorkflowModal({ renderRunList, renderRunDetail }) {
           <span>${workflowActivity.label}</span>
         </span>
       </div>
+      <div class="workflow-modal__artifact">
+        <p class="eyebrow">Agent chain</p>
+        <div class="workflow-modal__chain">${agentChain}</div>
+      </div>
       <p class="workflow-modal__body">${workflow.description}</p>
       <p class="workflow-modal__summary">${workflowActivity.detail}</p>
       <dl class="workflow-modal__meta">
@@ -235,10 +239,6 @@ export function renderWorkflowModal({ renderRunList, renderRunDetail }) {
         >
           Open latest
         </button>
-      </div>
-      <div class="workflow-modal__artifact">
-        <p class="eyebrow">Agent chain</p>
-        <div class="workflow-modal__chain">${agentChain}</div>
       </div>
       <div class="workflow-modal__artifact">
         <p class="eyebrow">Latest run summary</p>

@@ -14,7 +14,8 @@ The important boundary is simple: this repo does not pretend Codex is the platfo
 - code-first workflow definitions
 - multi-tenant workspace configs
 - file-backed orchestration state for fast iteration
-- static dashboard for visibility and manual review
+- static dashboard with separate dashboard, workflows, agents, and orchestrators views
+- template-versus-instance surfaces for workflows and agents
 - GitHub Actions for always-on scheduled or manual execution
 - no runtime database connection yet
 - database schema parked as future integration groundwork only

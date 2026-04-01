@@ -9,8 +9,16 @@ export function currentWorkspace() {
   return state.workspaces.find((workspace) => workspace.id === uiState.workspaceId) ?? null;
 }
 
+export function getWorkspaceById(workspaceId) {
+  return state.workspaces.find((workspace) => workspace.id === workspaceId) ?? null;
+}
+
 export function getWorkflowById(workflowId) {
   return state.workflows.find((workflow) => workflow.id === workflowId) ?? null;
+}
+
+export function getAgentTemplateById(agentId) {
+  return state.agents.find((agent) => agent.id === agentId) ?? null;
 }
 
 export function baseRuns() {
@@ -180,6 +188,215 @@ export function filteredWorkflows() {
   );
 }
 
+function aggregateState(states) {
+  if (states.includes("error")) {
+    return "error";
+  }
+
+  if (states.includes("running")) {
+    return "running";
+  }
+
+  return "stopped";
+}
+
+export function workflowTemplatesInScope() {
+  const templates = new Map();
+
+  filteredWorkflows().forEach((workflow) => {
+    const entry = templates.get(workflow.templateId) ?? {
+      id: workflow.templateId,
+      name: workflow.templateName,
+      description: workflow.description,
+      instanceCount: 0,
+      stepCount: workflow.stepCount,
+      triggerModes: new Set(),
+      workspaces: new Set()
+    };
+
+    entry.instanceCount += 1;
+    entry.stepCount = Math.max(entry.stepCount, workflow.stepCount ?? 0);
+    entry.triggerModes.add(workflow.triggerMode.replaceAll("_", " / "));
+    entry.workspaces.add(workflow.workspaceId);
+    templates.set(workflow.templateId, entry);
+  });
+
+  return Array.from(templates.values()).map((entry) => ({
+    ...entry,
+    triggerModes: Array.from(entry.triggerModes),
+    workspaces: Array.from(entry.workspaces)
+  }));
+}
+
+export function agentInstancesInScope() {
+  const instances = new Map();
+
+  baseWorkflows().forEach((workflow) => {
+    const latestRun = latestRunForWorkflow(workflow.id);
+    const workflowActivity = getWorkflowActivity(workflow, latestRun);
+    const workspace = getWorkspaceById(workflow.workspaceId);
+
+    (workflow.agentChain ?? []).forEach((node) => {
+      const template = getAgentTemplateById(node.agentId);
+      const bindingState = getAgentNodeStatus(workflow, node, latestRun, workflowActivity);
+      const instanceKey = `${workflow.workspaceId}::${node.agentId}`;
+      const entry = instances.get(instanceKey) ?? {
+        id: instanceKey,
+        workspaceId: workflow.workspaceId,
+        workspaceName: workspace?.name ?? workflow.workspaceId,
+        agentId: node.agentId,
+        agentName: node.agentName,
+        category: template?.category ?? "uncategorized",
+        responsibility: template?.responsibility ?? "No responsibility set yet.",
+        bindings: []
+      };
+
+      entry.bindings.push({
+        workflowId: workflow.id,
+        workflowName: workflow.name,
+        stepId: node.id,
+        stepName: node.name,
+        selectionKey: agentSelectionKey(workflow.id, node.id),
+        triggerMode: workflow.triggerMode,
+        schedule: workflow.schedule,
+        enabled: workflow.enabled,
+        state: bindingState.state,
+        detail: bindingState.detail
+      });
+      instances.set(instanceKey, entry);
+    });
+  });
+
+  return Array.from(instances.values())
+    .map((entry) => {
+      const states = entry.bindings.map((binding) => binding.state);
+      const state = aggregateState(states);
+      const primaryBinding =
+        entry.bindings.find((binding) => binding.state === "error") ??
+        entry.bindings.find((binding) => binding.state === "running") ??
+        entry.bindings.at(0);
+
+      return {
+        ...entry,
+        state,
+        activeWorkflowCount: entry.bindings.filter((binding) => binding.enabled).length,
+        workflowCount: entry.bindings.length,
+        primarySelectionKey: primaryBinding?.selectionKey ?? "",
+        detail: primaryBinding?.detail ?? "No activity recorded yet."
+      };
+    });
+}
+
+export function filteredAgentInstances() {
+  return agentInstancesInScope()
+    .filter((entry) => {
+      const statusMatch = uiState.statusFilter === "all" || entry.state === uiState.statusFilter;
+      const searchMatch = matchesSearch([
+        entry.agentName,
+        entry.workspaceId,
+        entry.workspaceName,
+        entry.category,
+        entry.responsibility,
+        ...entry.bindings.flatMap((binding) => [binding.workflowName, binding.stepName, binding.triggerMode])
+      ]);
+
+      return statusMatch && searchMatch;
+    });
+}
+
+export function agentTemplatesInScope() {
+  const counts = new Map();
+
+  filteredAgentInstances().forEach((instance) => {
+    const entry = counts.get(instance.agentId) ?? {
+      instanceCount: 0,
+      workspaces: new Set()
+    };
+
+    entry.instanceCount += 1;
+    entry.workspaces.add(instance.workspaceId);
+    counts.set(instance.agentId, entry);
+  });
+
+  return state.agents.filter((agent) => {
+    const countEntry = counts.get(agent.id);
+
+    if (countEntry) {
+      return true;
+    }
+
+    return matchesSearch([agent.name, agent.category, agent.responsibility]);
+  }).map((agent) => ({
+    ...agent,
+    instanceCount: counts.get(agent.id)?.instanceCount ?? 0,
+    workspaceCount: counts.get(agent.id)?.workspaces.size ?? 0
+  }));
+}
+
+export function orchestratorsInScope() {
+  const workflows = baseWorkflows();
+  const manualWorkflows = workflows.filter((workflow) => workflow.triggerMode.includes("manual"));
+  const scheduledWorkflows = workflows.filter((workflow) => Boolean(workflow.schedule));
+  const webhookWorkflows = workflows.filter((workflow) => workflow.triggerMode.includes("webhook"));
+  const orchestrators = [
+    {
+      id: "manual-dispatch",
+      name: "Manual Dispatch",
+      state: manualWorkflows.some((workflow) => workflow.enabled) ? "running" : "stopped",
+      detail:
+        manualWorkflows.length > 0
+          ? `${manualWorkflows.length} workflow instances can be fired by an operator`
+          : "No manual routes are configured in scope",
+      attachmentCount: manualWorkflows.length,
+      setup: "Manual triggers are attached at the workflow-instance level.",
+      surfaces: manualWorkflows.map((workflow) => workflow.name)
+    },
+    {
+      id: "schedule-runner",
+      name: "Schedule Runner",
+      state: scheduledWorkflows.some((workflow) => workflow.enabled) ? "running" : "stopped",
+      detail:
+        scheduledWorkflows.length > 0
+          ? `${scheduledWorkflows.length} workflow instances are wired to schedules`
+          : "No scheduled routes are configured in scope",
+      attachmentCount: scheduledWorkflows.length,
+      setup: "Schedules are configured per workflow instance, not inside the agent.",
+      surfaces: scheduledWorkflows.map((workflow) => workflow.schedule ?? workflow.name)
+    },
+    {
+      id: "webhook-ingress",
+      name: "Webhook Ingress",
+      state: webhookWorkflows.some((workflow) => workflow.enabled) ? "running" : "stopped",
+      detail:
+        webhookWorkflows.length > 0
+          ? `${webhookWorkflows.length} workflow instances are ready for inbound webhook activation`
+          : "No webhook routes are configured in scope",
+      attachmentCount: webhookWorkflows.length,
+      setup: "Webhook activation belongs to the workflow instance boundary.",
+      surfaces: webhookWorkflows.map((workflow) => workflow.name)
+    },
+    {
+      id: "state-publisher",
+      name: "State Publisher",
+      state: state.mode === "file-backed-v1" ? "running" : "stopped",
+      detail: `Runtime mode is ${state.mode} and publishes state snapshots for the control plane`,
+      attachmentCount: baseRuns().length,
+      setup: "The current runtime writes state to disk instead of a database.",
+      surfaces: ["dashboard/data/state.js", "runtime/last-run.json"]
+    }
+  ];
+
+  return orchestrators;
+}
+
+export function filteredOrchestrators() {
+  return orchestratorsInScope().filter((entry) => {
+    const statusMatch = uiState.statusFilter === "all" || entry.state === uiState.statusFilter;
+    const searchMatch = matchesSearch([entry.name, entry.detail, entry.setup, ...entry.surfaces]);
+    return statusMatch && searchMatch;
+  });
+}
+
 export function selectedRun() {
   const runs = filteredRuns();
   return runs.find((run) => run.id === uiState.runId) ?? runs[0] ?? null;
@@ -191,7 +408,7 @@ export function ensureSelectedRun() {
 }
 
 export function selectedWorkflowContext() {
-  const workflow = filteredWorkflows().find((entry) => entry.id === uiState.selectedWorkflowId) ?? null;
+  const workflow = baseWorkflows().find((entry) => entry.id === uiState.selectedWorkflowId) ?? null;
 
   if (!workflow) {
     return null;
@@ -208,7 +425,7 @@ export function selectedWorkflowContext() {
 }
 
 export function selectedAgentContext() {
-  const workflows = filteredWorkflows();
+  const workflows = baseWorkflows();
 
   for (const workflow of workflows) {
     for (const node of workflow.agentChain ?? []) {

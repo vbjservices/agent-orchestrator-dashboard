@@ -1,6 +1,44 @@
 import { nodes, state, statusFilters, uiState } from "../context.js";
 import { escapeHtml } from "../lib.js";
-import { baseWorkflows, ensureSelectedRun, getWorkflowActivity } from "../model.js";
+import {
+  agentInstancesInScope,
+  baseWorkflows,
+  ensureSelectedRun,
+  getWorkflowActivity,
+  orchestratorsInScope
+} from "../model.js";
+
+function statusCounts() {
+  if (uiState.activeView === "agents") {
+    const instances = agentInstancesInScope();
+
+    return statusFilters.reduce((accumulator, status) => {
+      accumulator[status] =
+        status === "all" ? instances.length : instances.filter((instance) => instance.state === status).length;
+      return accumulator;
+    }, {});
+  }
+
+  if (uiState.activeView === "orchestrators") {
+    const orchestrators = orchestratorsInScope();
+
+    return statusFilters.reduce((accumulator, status) => {
+      accumulator[status] =
+        status === "all"
+          ? orchestrators.length
+          : orchestrators.filter((orchestrator) => orchestrator.state === status).length;
+      return accumulator;
+    }, {});
+  }
+
+  return statusFilters.reduce((accumulator, status) => {
+    accumulator[status] =
+      status === "all"
+        ? baseWorkflows().length
+        : baseWorkflows().filter((workflow) => getWorkflowActivity(workflow).state === status).length;
+    return accumulator;
+  }, {});
+}
 
 export function renderWorkspaceSwitcher({ renderScopedSections }) {
   const buttons = [
@@ -35,23 +73,17 @@ export function renderWorkspaceSwitcher({ renderScopedSections }) {
 }
 
 export function renderControlBar({ renderScopedSections }) {
-  const workflowCounts = statusFilters.reduce((accumulator, status) => {
-    accumulator[status] =
-      status === "all"
-        ? baseWorkflows().length
-        : baseWorkflows().filter((workflow) => getWorkflowActivity(workflow).state === status).length;
-    return accumulator;
-  }, {});
+  const workflowCounts = statusCounts();
 
   nodes.controlBar.innerHTML = `
     <div class="operator-controls">
       <label class="search-field">
-        <span class="search-field__label">Search workflows and runs</span>
+        <span class="search-field__label">Search platform surfaces</span>
         <input
           id="search-query"
           type="search"
           value="${escapeHtml(uiState.searchQuery)}"
-          placeholder="Search by workflow, tenant, trigger, or summary"
+          placeholder="Search by workflow, agent, workspace, trigger, or summary"
           autocomplete="off"
         />
       </label>

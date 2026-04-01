@@ -23,7 +23,12 @@ export function showSectionLoader(sectionName, message, inline = false) {
 export function showScopeLoaders() {
   showSectionLoader("workspaceSpotlight", "Refreshing workspace context");
   showSectionLoader("metrics", "Refreshing summary metrics");
+  showSectionLoader("workflowTemplates", "Refreshing workflow templates");
   showSectionLoader("workflows", "Refreshing workflow surface");
+  showSectionLoader("agentTemplates", "Refreshing agent templates");
+  showSectionLoader("agentInstances", "Refreshing agent instances");
+  showSectionLoader("orchestrators", "Refreshing orchestrator surfaces");
+  showSectionLoader("orchestratorSetup", "Refreshing setup model");
   showSectionLoader("runList", "Refreshing execution ledger");
   showSectionLoader("runDetail", "Refreshing run trace");
 }
