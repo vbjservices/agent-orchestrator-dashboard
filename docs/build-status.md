@@ -31,10 +31,13 @@ The active build focus is not:
 - Static dashboard in `dashboard/`
 - Dark cyber control-room visual theme
 - Pulse bar loading overlay for dashboard boot state
+- Operator control bar with search and status filtering
+- Workspace spotlight panel for current scope context
+- Command deck with copyable manual run shortcuts
 - Workspace filtering
 - Workflow instance overview
 - Run history ledger
-- Run detail trace with step artifacts and logs
+- Run detail trace with scoped metadata, step pills, collapsible artifacts, and logs
 
 ### Orchestrator
 
@@ -92,6 +95,6 @@ This is the current structure we are keeping clean:
 ## Immediate Next Build Steps
 
 1. Replace the fake executor contract with a real provider adapter boundary.
-2. Improve the dashboard into something an operator can actually use to inspect workflows quickly.
-3. Add manual run controls from the UI contract, even if the initial action is still GitHub Actions backed.
+2. Turn the command deck and operator controls into actual run actions instead of copy-only shortcuts.
+3. Add workflow-level drill-down and better failure surfacing in the dashboard.
 4. Keep the runtime file-backed until the workflow and UI surfaces stop changing aggressively.

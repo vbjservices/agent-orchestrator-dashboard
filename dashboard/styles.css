@@ -274,6 +274,12 @@ body::after {
   gap: 22px;
 }
 
+.operator-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
 .panel {
   padding: 24px;
   animation: rise-in 620ms ease-out both;
@@ -297,6 +303,94 @@ body::after {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.operator-controls {
+  display: grid;
+  gap: 16px;
+}
+
+.search-field {
+  display: grid;
+  gap: 10px;
+}
+
+.search-field__label {
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.search-field input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(104, 240, 255, 0.16);
+  background: rgba(3, 12, 24, 0.88);
+  color: var(--ink);
+  font: inherit;
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.search-field input::placeholder {
+  color: rgba(132, 160, 188, 0.76);
+}
+
+.search-field input:focus {
+  border-color: rgba(104, 240, 255, 0.48);
+  box-shadow: 0 0 0 3px rgba(104, 240, 255, 0.12);
+}
+
+.filter-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-pill {
+  display: inline-grid;
+  gap: 4px;
+  min-width: 90px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(104, 240, 255, 0.12);
+  background: linear-gradient(180deg, rgba(10, 21, 39, 0.92), rgba(5, 12, 24, 0.92));
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.filter-pill span,
+.filter-pill small {
+  font-family: "Cascadia Code", "Consolas", monospace;
+  text-transform: uppercase;
+}
+
+.filter-pill span {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+}
+
+.filter-pill small {
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+
+.filter-pill:hover,
+.filter-pill.is-active {
+  transform: translateY(-2px);
+  border-color: rgba(104, 240, 255, 0.48);
+  box-shadow:
+    0 0 0 1px rgba(104, 240, 255, 0.12),
+    0 0 24px rgba(104, 240, 255, 0.08);
 }
 
 .workspace-pill {
@@ -359,10 +453,104 @@ body::after {
 .run-summary__text,
 .step-card__summary,
 .workflow-card dd,
+.spotlight-card__body,
+.command-card__body,
 .empty,
 .log-panel ul {
   color: var(--muted);
   line-height: 1.6;
+}
+
+.spotlight-card,
+.command-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.spotlight-card__head,
+.command-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 16px;
+}
+
+.spotlight-card__meta,
+.run-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.spotlight-card__meta div,
+.run-summary-grid div {
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(104, 240, 255, 0.1);
+  background: rgba(4, 14, 27, 0.64);
+}
+
+.spotlight-card__meta dt,
+.run-summary-grid dt {
+  margin: 0 0 6px;
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(236, 254, 255, 0.58);
+}
+
+.spotlight-card__meta dd,
+.run-summary-grid dd {
+  margin: 0;
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.spotlight-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+  color: var(--muted);
+}
+
+.command-card {
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(104, 240, 255, 0.12);
+  background: linear-gradient(180deg, rgba(7, 18, 35, 0.92), rgba(3, 11, 22, 0.9));
+}
+
+.command-card h3 {
+  margin: 0;
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  word-break: break-all;
+  color: var(--accent);
+}
+
+.copy-button {
+  min-width: 74px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(104, 240, 255, 0.18);
+  background: rgba(104, 240, 255, 0.08);
+  color: var(--ink);
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: border-color 180ms ease, transform 180ms ease, background 180ms ease;
+}
+
+.copy-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(104, 240, 255, 0.44);
+  background: rgba(104, 240, 255, 0.14);
 }
 
 .workflow-grid {
@@ -433,6 +621,12 @@ body::after {
   border-color: rgba(132, 160, 188, 0.18);
 }
 
+.status-chip--all {
+  color: var(--accent);
+  background: rgba(104, 240, 255, 0.1);
+  border-color: rgba(104, 240, 255, 0.2);
+}
+
 .status-chip--failed {
   color: var(--danger);
   background: rgba(255, 107, 107, 0.12);
@@ -477,6 +671,16 @@ body::after {
   font-weight: 700;
 }
 
+.run-row__main,
+.run-row__side {
+  display: grid;
+  gap: 4px;
+}
+
+.run-row__side {
+  justify-items: end;
+}
+
 .run-row:hover,
 .run-row.is-selected {
   transform: translateX(4px);
@@ -501,10 +705,66 @@ body::after {
   margin: 18px 0 20px;
 }
 
+.step-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.step-pill {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(104, 240, 255, 0.12);
+  background: rgba(6, 16, 30, 0.84);
+}
+
+.step-pill span,
+.step-pill small,
+.step-card__meta {
+  font-family: "Cascadia Code", "Consolas", monospace;
+}
+
+.step-pill span {
+  font-size: 0.8rem;
+}
+
+.step-pill small,
+.step-card__meta {
+  color: var(--muted);
+}
+
 .step-card,
 .log-panel {
   border-radius: 18px;
   padding: 18px;
+}
+
+.step-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 0 12px;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.artifact-details {
+  border-top: 1px solid rgba(104, 240, 255, 0.12);
+  padding-top: 12px;
+}
+
+.artifact-details summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
 }
 
 .step-card pre {
@@ -553,6 +813,7 @@ body::after {
 }
 
 @media (max-width: 980px) {
+  .operator-grid,
   .hero,
   .ledger,
   .metrics {
@@ -576,8 +837,15 @@ body::after {
     grid-template-columns: 1fr;
   }
 
+  .spotlight-card__meta,
+  .run-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
   .run-summary,
   .run-summary__meta,
+  .spotlight-card__head,
+  .command-card__head,
   .workflow-card__head,
   .step-card__head,
   .panel__heading {
