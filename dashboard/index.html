@@ -8,19 +8,6 @@
   </head>
   <body>
     <div class="shell">
-      <div class="dashboard-loader" id="dashboard-loader" role="status" aria-live="polite">
-        <div class="pulse-bars-loader">
-          <div class="pulse-bars-loader__bars" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <p class="pulse-bars-loader__text" id="dashboard-loader-message">
-            Syncing orchestrator state
-          </p>
-        </div>
-      </div>
-
       <header class="hero">
         <div class="hero__copy">
           <p class="eyebrow">Control Plane</p>
@@ -86,11 +73,17 @@
         <section class="panel">
           <div class="panel__heading">
             <div>
-              <p class="eyebrow">Workflow Surface</p>
-              <h2>Active workflow instances</h2>
+              <p class="eyebrow">Agent Launch Grid</p>
+              <h2>Fire executable workflow surfaces</h2>
+              <p class="section-note">
+                Fire actions copy executable commands for now. Live run buttons come when the backend contract exists.
+              </p>
             </div>
           </div>
-          <div class="workflow-grid" id="workflow-grid"></div>
+          <div class="launch-surface">
+            <div class="workflow-grid" id="workflow-grid"></div>
+            <aside class="agent-focus" id="agent-focus"></aside>
+          </div>
         </section>
 
         <section class="ledger">

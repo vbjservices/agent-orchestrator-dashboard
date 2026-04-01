@@ -34,4 +34,8 @@ test("runOrchestrator writes a dashboard state file for one workspace", async ()
   assert.equal(state.workspaces.some((workspace) => workspace.id === "vbj-services"), true);
   assert.equal(state.runs.every((run) => run.status === "succeeded"), true);
   assert.equal(state.runs.every((run) => run.workspaceId === "vbj-services"), true);
+  assert.equal(
+    state.workflows.every((workflow) => Array.isArray(workflow.agentChain) && workflow.agentChain.length > 0),
+    true
+  );
 });

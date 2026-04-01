@@ -2,7 +2,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 
-import { agentTemplates, getWorkflowTemplate } from "./catalog.mjs";
+import { agentTemplates, getAgentTemplate, getWorkflowTemplate } from "./catalog.mjs";
 import { executeStep } from "./executors.mjs";
 import { defaultPaths } from "./paths.mjs";
 import { loadState, writeState } from "./state-store.mjs";
@@ -114,7 +114,14 @@ function buildWorkflowView(workspaces, runs) {
         schedule: workflowInstance.schedule,
         lastRunStatus: latestRun?.status ?? "idle",
         lastRunAt: latestRun?.finishedAt ?? null,
-        stepCount: workflowTemplate?.steps.length ?? 0
+        stepCount: workflowTemplate?.steps.length ?? 0,
+        agentChain:
+          workflowTemplate?.steps.map((step) => ({
+            id: step.id,
+            name: step.name,
+            agentId: step.agentId,
+            agentName: getAgentTemplate(step.agentId)?.name ?? step.agentId
+          })) ?? []
       };
     })
   );

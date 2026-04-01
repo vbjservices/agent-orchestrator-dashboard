@@ -15,14 +15,15 @@ const fallbackState = {
 };
 
 const state = window.__ORCHESTRATOR_STATE__ ?? fallbackState;
-const statusFilters = ["all", "succeeded", "running", "failed", "idle"];
+const statusFilters = ["all", "running", "stopped", "error"];
 
 const uiState = {
   workspaceId: "all",
   runId: state.runs[0]?.id ?? null,
   searchQuery: "",
   statusFilter: "all",
-  copyFeedback: ""
+  copyFeedback: "",
+  selectedAgentKey: ""
 };
 
 const workspaceSwitcher = document.querySelector("#workspace-switcher");
@@ -30,26 +31,36 @@ const metricsContainer = document.querySelector("#metrics");
 const workflowGrid = document.querySelector("#workflow-grid");
 const runList = document.querySelector("#run-list");
 const runDetail = document.querySelector("#run-detail");
+const agentFocus = document.querySelector("#agent-focus");
 const modeBadge = document.querySelector("#mode-badge");
 const generatedAt = document.querySelector("#generated-at");
-const dashboardLoader = document.querySelector("#dashboard-loader");
-const dashboardLoaderMessage = document.querySelector("#dashboard-loader-message");
 const controlBar = document.querySelector("#control-bar");
 const workspaceSpotlight = document.querySelector("#workspace-spotlight");
 const commandDeck = document.querySelector("#command-deck");
 
-function setLoading(message = "Syncing orchestrator state") {
-  dashboardLoaderMessage.textContent = message;
-  dashboardLoader.classList.remove("is-hidden");
-}
-
-function clearLoading() {
-  dashboardLoader.classList.add("is-hidden");
-}
+const sectionNodes = {
+  controlBar,
+  workspaceSpotlight,
+  commandDeck,
+  workspaceSwitcher,
+  metrics: metricsContainer,
+  workflows: workflowGrid,
+  agentFocus,
+  runList,
+  runDetail
+};
 
 function wait(durationMs) {
   return new Promise((resolve) => {
     window.setTimeout(resolve, durationMs);
+  });
+}
+
+function nextPaint() {
+  return new Promise((resolve) => {
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(resolve);
+    });
   });
 }
 
@@ -70,6 +81,10 @@ function displayDate(value) {
     dateStyle: "medium",
     timeStyle: "short"
   }).format(new Date(value));
+}
+
+function agentSelectionKey(workflowId, agentStepId) {
+  return `${workflowId}::${agentStepId}`;
 }
 
 function durationBetween(startedAt, finishedAt) {
@@ -106,6 +121,10 @@ function currentWorkspace() {
   return state.workspaces.find((workspace) => workspace.id === uiState.workspaceId) ?? null;
 }
 
+function getWorkflowById(workflowId) {
+  return state.workflows.find((workflow) => workflow.id === workflowId) ?? null;
+}
+
 function baseRuns() {
   if (uiState.workspaceId === "all") {
     return state.runs;
@@ -122,10 +141,6 @@ function baseWorkflows() {
   return state.workflows.filter((workflow) => workflow.workspaceId === uiState.workspaceId);
 }
 
-function matchesStatus(status) {
-  return uiState.statusFilter === "all" || status === uiState.statusFilter;
-}
-
 function matchesSearch(parts) {
   const search = normalize(uiState.searchQuery);
 
@@ -137,15 +152,19 @@ function matchesSearch(parts) {
 }
 
 function filteredRuns() {
-  return baseRuns().filter((run) =>
-    matchesStatus(run.status) &&
-    matchesSearch([run.workflowName, run.workspaceName, run.summary, run.trigger, run.workflowTemplateId])
-  );
+  return baseRuns().filter((run) => {
+    const workflow = getWorkflowById(run.workflowInstanceId);
+
+    return (
+      (workflow ? matchesActivity(workflow) : true) &&
+      matchesSearch([run.workflowName, run.workspaceName, run.summary, run.trigger, run.workflowTemplateId])
+    );
+  });
 }
 
 function filteredWorkflows() {
   return baseWorkflows().filter((workflow) =>
-    matchesStatus(workflow.lastRunStatus) &&
+    matchesActivity(workflow) &&
     matchesSearch([
       workflow.name,
       workflow.workspaceId,
@@ -166,19 +185,222 @@ function ensureSelectedRun() {
   uiState.runId = activeRun?.id ?? null;
 }
 
+function defaultAgentSelection() {
+  const workflow = filteredWorkflows()[0] ?? null;
+  const agentNode = workflow?.agentChain?.[0] ?? null;
+
+  if (!workflow || !agentNode) {
+    return "";
+  }
+
+  return agentSelectionKey(workflow.id, agentNode.id);
+}
+
+function selectedAgentContext() {
+  const workflows = filteredWorkflows();
+
+  for (const workflow of workflows) {
+    for (const node of workflow.agentChain ?? []) {
+      const key = agentSelectionKey(workflow.id, node.id);
+
+      if (key === uiState.selectedAgentKey) {
+        const latestRun = latestRunForWorkflow(workflow.id);
+        const workflowActivity = getWorkflowActivity(workflow, latestRun);
+        const agentState = getAgentNodeStatus(workflow, node, latestRun, workflowActivity);
+        const latestStep =
+          latestRun?.steps.find((step) => step.id === node.id) ??
+          latestRun?.steps?.[(workflow.agentChain ?? []).findIndex((entry) => entry.id === node.id)] ??
+          null;
+
+        return {
+          workflow,
+          node,
+          latestRun,
+          latestStep,
+          workflowActivity,
+          agentState,
+          selectionKey: key
+        };
+      }
+    }
+  }
+
+  return null;
+}
+
+function ensureSelectedAgent() {
+  if (selectedAgentContext()) {
+    return;
+  }
+
+  uiState.selectedAgentKey = defaultAgentSelection();
+}
+
 function copyCommandLabel(commandId) {
   return uiState.copyFeedback === commandId ? "Copied" : "Copy";
 }
 
-async function copyToClipboard(text, commandId) {
+function latestRunForWorkflow(workflowId) {
+  return state.runs.find((run) => run.workflowInstanceId === workflowId) ?? null;
+}
+
+function getWorkflowActivity(workflow, latestRun = latestRunForWorkflow(workflow.id)) {
+  if (!workflow.enabled) {
+    return {
+      state: "stopped",
+      label: "Stopped",
+      detail: "Workflow disabled",
+      activeStepId: null
+    };
+  }
+
+  if (workflow.lastRunStatus === "running") {
+    const activeStep =
+      latestRun?.steps.find((step) => step.status === "running") ??
+      latestRun?.steps.find((step) => step.status === "queued") ??
+      latestRun?.steps.at(0) ??
+      null;
+
+    return {
+      state: "running",
+      label: "Running",
+      detail: activeStep ? `Working on ${activeStep.name}` : "Executing workflow",
+      activeStepId: activeStep?.id ?? null
+    };
+  }
+
+  if (workflow.lastRunStatus === "failed") {
+    const blockedStep =
+      latestRun?.steps.find((step) => step.status === "failed") ?? latestRun?.steps.at(-1) ?? null;
+
+    return {
+      state: "error",
+      label: "Error",
+      detail: blockedStep ? `Blocked on ${blockedStep.name}` : "Last run failed",
+      activeStepId: blockedStep?.id ?? null
+    };
+  }
+
+  return {
+    state: "stopped",
+    label: "Stopped",
+    detail:
+      latestRun
+        ? "Ready for the next fire"
+        : workflow.schedule
+          ? `Waiting for ${workflow.schedule}`
+          : "Waiting for first fire",
+    activeStepId: null
+  };
+}
+
+function getAgentNodeStatus(workflow, node, latestRun, workflowActivity) {
+  const templateChain = workflow.agentChain ?? [];
+  const chainIndex = templateChain.findIndex((entry) => entry.id === node.id);
+  const latestStep =
+    latestRun?.steps.find((step) => step.id === node.id) ?? latestRun?.steps?.[chainIndex] ?? null;
+  const latestSteps = latestRun?.steps ?? [];
+  const runningIndex = latestSteps.findIndex((step) => step.status === "running");
+  const failedIndex = latestSteps.findIndex((step) => step.status === "failed");
+
+  if (!workflow.enabled) {
+    return { state: "stopped", detail: "Workflow disabled" };
+  }
+
+  if (workflowActivity.state === "running") {
+    if (latestStep?.status === "running" || node.id === workflowActivity.activeStepId) {
+      return { state: "running", detail: `Working on ${node.name}` };
+    }
+
+    if (latestStep?.status === "succeeded") {
+      return { state: "stopped", detail: `Finished ${node.name}` };
+    }
+
+    if (runningIndex !== -1 && chainIndex > runningIndex) {
+      return {
+        state: "stopped",
+        detail: `Queued after ${latestSteps[runningIndex]?.name ?? "active step"}`
+      };
+    }
+  }
+
+  if (workflowActivity.state === "error") {
+    if (latestStep?.status === "failed" || chainIndex === failedIndex) {
+      return { state: "error", detail: `Blocked on ${node.name}` };
+    }
+
+    if (latestStep?.status === "succeeded") {
+      return { state: "stopped", detail: `Finished ${node.name}` };
+    }
+
+    return { state: "stopped", detail: "Waiting for recovery" };
+  }
+
+  if (latestStep?.status === "succeeded") {
+    return {
+      state: "stopped",
+      detail:
+        latestRun
+          ? `Last finished ${node.name}`
+          : "Ready for first execution"
+    };
+  }
+
+  return {
+    state: "stopped",
+    detail:
+      workflow.schedule
+        ? "Waiting for scheduled wake-up"
+        : "Waiting for manual fire"
+  };
+}
+
+function matchesActivity(workflow) {
+  if (uiState.statusFilter === "all") {
+    return true;
+  }
+
+  return getWorkflowActivity(workflow).state === uiState.statusFilter;
+}
+
+function loaderMarkup(message, inline = false) {
+  return `
+    <div class="panel-loader">
+      <div class="pulse-bars-loader ${inline ? "pulse-bars-loader--inline" : ""}" role="status" aria-live="polite">
+        <div class="pulse-bars-loader__bars" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <p class="pulse-bars-loader__text">${escapeHtml(message)}</p>
+      </div>
+    </div>
+  `;
+}
+
+function showSectionLoader(sectionName, message, inline = false) {
+  sectionNodes[sectionName].innerHTML = loaderMarkup(message, inline);
+}
+
+function showScopeLoaders() {
+  showSectionLoader("workspaceSpotlight", "Refreshing workspace context");
+  showSectionLoader("commandDeck", "Refreshing operator commands");
+  showSectionLoader("metrics", "Refreshing summary metrics");
+  showSectionLoader("workflows", "Refreshing workflow surface");
+  showSectionLoader("agentFocus", "Refreshing agent focus");
+  showSectionLoader("runList", "Refreshing execution ledger");
+  showSectionLoader("runDetail", "Refreshing run trace");
+}
+
+async function copyToClipboard(text, commandId, onComplete) {
   try {
     await navigator.clipboard.writeText(text);
     uiState.copyFeedback = commandId;
-    renderCommandDeck();
+    onComplete?.();
     window.setTimeout(() => {
       if (uiState.copyFeedback === commandId) {
         uiState.copyFeedback = "";
-        renderCommandDeck();
+        onComplete?.();
       }
     }, 1400);
   } catch (error) {
@@ -186,10 +408,10 @@ async function copyToClipboard(text, commandId) {
   }
 }
 
-function attachCopyHandlers() {
-  commandDeck.querySelectorAll("[data-copy-command]").forEach((button) => {
+function attachCopyHandlers(rootNode, onComplete) {
+  rootNode.querySelectorAll("[data-copy-command]").forEach((button) => {
     button.addEventListener("click", async () => {
-      await copyToClipboard(button.dataset.copyCommand, button.dataset.commandId);
+      await copyToClipboard(button.dataset.copyCommand, button.dataset.commandId, onComplete);
     });
   });
 }
@@ -216,11 +438,12 @@ function renderWorkspaceSwitcher() {
   workspaceSwitcher.innerHTML = buttons || `<p class="empty">No workspaces configured.</p>`;
 
   workspaceSwitcher.querySelectorAll("[data-workspace-id]").forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", async () => {
       uiState.workspaceId = button.dataset.workspaceId;
       uiState.copyFeedback = "";
       ensureSelectedRun();
-      render();
+      renderWorkspaceSwitcher();
+      await renderScopedSections();
     });
   });
 }
@@ -229,10 +452,8 @@ function renderControlBar() {
   const runCounts = statusFilters.reduce((accumulator, status) => {
     accumulator[status] =
       status === "all"
-        ? baseRuns().length
-        : status === "idle"
-          ? baseWorkflows().filter((workflow) => workflow.lastRunStatus === "idle").length
-          : baseRuns().filter((run) => run.status === status).length;
+        ? baseWorkflows().length
+        : baseWorkflows().filter((workflow) => getWorkflowActivity(workflow).state === status).length;
     return accumulator;
   }, {});
 
@@ -267,17 +488,18 @@ function renderControlBar() {
   `;
 
   const searchInput = controlBar.querySelector("#search-query");
-  searchInput.addEventListener("input", (event) => {
+  searchInput.addEventListener("input", async (event) => {
     uiState.searchQuery = event.target.value;
     ensureSelectedRun();
-    render();
+    await renderScopedSections();
   });
 
   controlBar.querySelectorAll("[data-status-filter]").forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", async () => {
       uiState.statusFilter = button.dataset.statusFilter;
       ensureSelectedRun();
-      render();
+      renderControlBar();
+      await renderScopedSections();
     });
   });
 }
@@ -329,7 +551,7 @@ function renderWorkspaceSpotlight() {
           <span class="status-chip status-chip--${uiState.statusFilter}">${uiState.statusFilter}</span>
         </div>
         <p class="spotlight-card__body">
-          Use this scope to compare tenant health, find noisy workflows fast, and spot where the run surface is drifting.
+          Use this scope to compare tenant health, find noisy launch surfaces fast, and spot where execution pressure is drifting.
         </p>
         <dl class="spotlight-card__meta">
           <div>
@@ -451,7 +673,88 @@ function renderCommandDeck() {
     </div>
   `;
 
-  attachCopyHandlers();
+  attachCopyHandlers(commandDeck, renderCommandDeck);
+}
+
+function renderAgentFocus() {
+  ensureSelectedAgent();
+  const context = selectedAgentContext();
+
+  if (!context) {
+    agentFocus.innerHTML = `<p class="empty">Select an agent node to inspect what it is doing.</p>`;
+    return;
+  }
+
+  const { workflow, node, latestRun, latestStep, workflowActivity, agentState } = context;
+  const localCommand = `node orchestrator/run.mjs --workspace=${workflow.workspaceId} --workflow=${workflow.id}`;
+  const cloudCommand = `gh workflow run orchestrator.yml -f workspace_id=${workflow.workspaceId} -f workflow_id=${workflow.id}`;
+  const artifactPreview = latestStep?.artifact
+    ? `<pre>${JSON.stringify(latestStep.artifact, null, 2)}</pre>`
+    : `<p class="empty">No artifact yet for this agent.</p>`;
+
+  agentFocus.innerHTML = `
+    <div class="agent-focus__card">
+      <div class="agent-focus__head">
+        <div>
+          <p class="eyebrow">Agent Focus</p>
+          <h3>${node.agentName}</h3>
+        </div>
+        <span class="live-state live-state--${agentState.state}">
+          <span class="live-state__orb"></span>
+          <span>${agentState.state}</span>
+        </span>
+      </div>
+      <p class="agent-focus__body">${agentState.detail}</p>
+      <dl class="agent-focus__meta">
+        <div>
+          <dt>Workflow</dt>
+          <dd>${workflow.name}</dd>
+        </div>
+        <div>
+          <dt>Step</dt>
+          <dd>${node.name}</dd>
+        </div>
+        <div>
+          <dt>Workspace</dt>
+          <dd>${workflow.workspaceId}</dd>
+        </div>
+        <div>
+          <dt>Workflow status</dt>
+          <dd>${workflowActivity.label}</dd>
+        </div>
+        <div>
+          <dt>Trigger mode</dt>
+          <dd>${workflow.triggerMode.replaceAll("_", " / ")}</dd>
+        </div>
+        <div>
+          <dt>Last finished</dt>
+          <dd>${displayDate(latestStep?.finishedAt ?? latestRun?.finishedAt ?? null)}</dd>
+        </div>
+      </dl>
+      <div class="agent-focus__actions">
+        <button
+          class="launch-action"
+          data-command-id="focus-local-${workflow.id}"
+          data-copy-command="${escapeHtml(localCommand)}"
+        >
+          ${copyCommandLabel(`focus-local-${workflow.id}`) === "Copied" ? "Local copied" : "Fire local"}
+        </button>
+        <button
+          class="launch-action"
+          data-command-id="focus-cloud-${workflow.id}"
+          data-copy-command="${escapeHtml(cloudCommand)}"
+        >
+          ${copyCommandLabel(`focus-cloud-${workflow.id}`) === "Copied" ? "Cloud copied" : "Fire cloud"}
+        </button>
+      </div>
+      <div class="agent-focus__artifact">
+        <p class="eyebrow">Latest artifact</p>
+        ${artifactPreview}
+      </div>
+    </div>
+  `;
+
+  attachCopyHandlers(agentFocus, renderAgentFocus);
 }
 
 function renderWorkflows() {
@@ -460,16 +763,62 @@ function renderWorkflows() {
   workflowGrid.innerHTML =
     workflows
       .map(
-        (workflow) => `
-          <article class="workflow-card">
+        (workflow) => {
+          const latestRun = latestRunForWorkflow(workflow.id);
+          const workflowActivity = getWorkflowActivity(workflow, latestRun);
+          const localCommand = `node orchestrator/run.mjs --workspace=${workflow.workspaceId} --workflow=${workflow.id}`;
+          const cloudCommand = `gh workflow run orchestrator.yml -f workspace_id=${workflow.workspaceId} -f workflow_id=${workflow.id}`;
+          const agentNodes =
+            workflow.agentChain?.length
+              ? workflow.agentChain
+                  .map((node) => {
+                    const agentState = getAgentNodeStatus(workflow, node, latestRun, workflowActivity);
+                    const selectionKey = agentSelectionKey(workflow.id, node.id);
+
+                    return `
+                      <button
+                        class="agent-node agent-node--${agentState.state} ${uiState.selectedAgentKey === selectionKey ? "is-selected" : ""}"
+                        data-agent-selection="${selectionKey}"
+                      >
+                        <div class="agent-node__head">
+                          <span>${node.agentName}</span>
+                          <span class="live-state live-state--${agentState.state}">
+                            <span class="live-state__orb"></span>
+                            <span>${agentState.state}</span>
+                          </span>
+                        </div>
+                        <small>${node.name}</small>
+                      </button>
+                    `;
+                  })
+                  .join("")
+              : `
+                <span class="agent-node agent-node--ghost">
+                  <span>Unrun workflow</span>
+                  <small>Agent chain unavailable</small>
+                </span>
+              `;
+
+          return `
+          <article class="workflow-card workflow-card--launch">
             <div class="workflow-card__head">
               <div>
                 <p class="workflow-card__tenant">${workflow.workspaceId}</p>
                 <h3>${workflow.name}</h3>
               </div>
-              <span class="status-chip status-chip--${workflow.lastRunStatus}">${workflow.lastRunStatus}</span>
+              <span class="live-state live-state--${workflowActivity.state}">
+                <span class="live-state__orb"></span>
+                <span>${workflowActivity.label}</span>
+              </span>
             </div>
             <p class="workflow-card__body">${workflow.description}</p>
+            <div class="workflow-card__runtime">
+              <p class="workflow-card__runtime-text">${workflowActivity.detail}</p>
+            </div>
+            <div class="workflow-card__launch">
+              <p class="workflow-card__launch-label">Agent chain</p>
+              <div class="workflow-card__agents">${agentNodes}</div>
+            </div>
             <dl class="workflow-card__meta">
               <div>
                 <dt>Template</dt>
@@ -487,11 +836,65 @@ function renderWorkflows() {
                 <dt>Last run</dt>
                 <dd>${displayDate(workflow.lastRunAt)}</dd>
               </div>
+              <div>
+                <dt>Last result</dt>
+                <dd>${workflow.lastRunStatus}</dd>
+              </div>
             </dl>
+            <div class="workflow-card__actions">
+              <button
+                class="launch-action"
+                data-command-id="launch-local-${workflow.id}"
+                data-copy-command="${escapeHtml(localCommand)}"
+              >
+                ${copyCommandLabel(`launch-local-${workflow.id}`) === "Copied" ? "Local copied" : "Fire local"}
+              </button>
+              <button
+                class="launch-action"
+                data-command-id="launch-cloud-${workflow.id}"
+                data-copy-command="${escapeHtml(cloudCommand)}"
+              >
+                ${copyCommandLabel(`launch-cloud-${workflow.id}`) === "Copied" ? "Cloud copied" : "Fire cloud"}
+              </button>
+              <button
+                class="launch-action launch-action--ghost"
+                data-open-run="${latestRun?.id ?? ""}"
+                ${latestRun ? "" : "disabled"}
+              >
+                Open latest
+              </button>
+            </div>
           </article>
-        `
+        `;
+        }
       )
       .join("") || `<p class="empty">No workflow instances match the current filter.</p>`;
+
+  attachCopyHandlers(workflowGrid, renderWorkflows);
+  workflowGrid.querySelectorAll("[data-agent-selection]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      uiState.selectedAgentKey = button.dataset.agentSelection;
+      showSectionLoader("agentFocus", "Loading agent focus");
+      await nextPaint();
+      renderWorkflows();
+      renderAgentFocus();
+    });
+  });
+  workflowGrid.querySelectorAll("[data-open-run]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const runId = button.dataset.openRun;
+
+      if (!runId) {
+        return;
+      }
+
+      uiState.runId = runId;
+      showSectionLoader("runDetail", "Opening latest run");
+      await nextPaint();
+      renderRunList();
+      renderRunDetail();
+    });
+  });
 }
 
 function renderRunList() {
@@ -517,10 +920,12 @@ function renderRunList() {
       .join("") || `<p class="empty">No runs available for this scope.</p>`;
 
   runList.querySelectorAll("[data-run-id]").forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", async () => {
       uiState.runId = button.dataset.runId;
-      renderRunDetail();
+      showSectionLoader("runDetail", "Refreshing run trace");
+      await nextPaint();
       renderRunList();
+      renderRunDetail();
     });
   });
 }
@@ -619,29 +1024,58 @@ function renderRunDetail() {
   `;
 }
 
-function render() {
-  ensureSelectedRun();
+async function renderPrimarySections() {
   modeBadge.textContent = state.mode;
   generatedAt.textContent = displayDate(state.generatedAt);
+
+  showSectionLoader("controlBar", "Priming operator controls");
+  showSectionLoader("workspaceSpotlight", "Loading workspace context");
+  showSectionLoader("commandDeck", "Preparing command deck");
+  showSectionLoader("workspaceSwitcher", "Loading workspace scopes", true);
+  showSectionLoader("metrics", "Summarizing telemetry");
+  showSectionLoader("agentFocus", "Preparing agent focus");
+
+  await nextPaint();
   renderWorkspaceSwitcher();
   renderControlBar();
   renderWorkspaceSpotlight();
   renderCommandDeck();
   renderMetrics();
+}
+
+async function renderScopedSections() {
+  ensureSelectedRun();
+  ensureSelectedAgent();
+  showScopeLoaders();
+
+  await nextPaint();
+  renderWorkspaceSpotlight();
+  renderCommandDeck();
+  renderMetrics();
+
+  await nextPaint();
   renderWorkflows();
+
+  await nextPaint();
+  renderAgentFocus();
+
+  await nextPaint();
   renderRunList();
+
+  await nextPaint();
   renderRunDetail();
 }
 
 async function bootstrap() {
   try {
-    setLoading(state.generatedAt ? "Loading run telemetry" : "Waiting for orchestrator state");
-    await wait(320);
-    render();
-    clearLoading();
+    await wait(80);
+    await renderPrimarySections();
+    await renderScopedSections();
   } catch (error) {
     console.error(error);
-    setLoading("Dashboard boot failed");
+    Object.values(sectionNodes).forEach((node) => {
+      node.innerHTML = `<p class="empty">Dashboard section failed to load.</p>`;
+    });
   }
 }
 

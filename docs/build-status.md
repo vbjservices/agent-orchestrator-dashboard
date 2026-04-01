@@ -30,7 +30,11 @@ The active build focus is not:
 
 - Static dashboard in `dashboard/`
 - Dark cyber control-room visual theme
-- Pulse bar loading overlay for dashboard boot state
+- Hero title scaled down so the interface reads like an operator console instead of a landing page
+- Pulse bar loaders for independently staged dashboard sections
+- Agent launch grid with workflow-specific fire actions and visible agent chains
+- Color-coded workflow and agent activity states using `running`, `stopped`, and `error`
+- Compact clickable agent nodes with focused detail rail
 - Operator control bar with search and status filtering
 - Workspace spotlight panel for current scope context
 - Command deck with copyable manual run shortcuts
