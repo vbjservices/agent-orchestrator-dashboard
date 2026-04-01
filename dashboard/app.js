@@ -1,10 +1,16 @@
-import { state, nodes, sectionNodes } from "./app/context.js";
+import { state, nodes, sectionNodes, uiState } from "./app/context.js";
 import { displayDate, nextPaint, wait } from "./app/lib.js";
 import { showScopeLoaders, showSectionLoader } from "./app/loaders.js";
-import { ensureSelectedAgent, ensureSelectedRun } from "./app/model.js";
+import { ensureSelectedRun, selectedAgentContext, selectedWorkflowContext } from "./app/model.js";
 import { renderControlBar, renderWorkspaceSwitcher } from "./app/renderers/controls.js";
-import { renderCommandDeck, renderMetrics, renderWorkspaceSpotlight } from "./app/renderers/overview.js";
-import { renderAgentFocus, renderWorkflows } from "./app/renderers/workflows.js";
+import { renderMetrics, renderWorkspaceSpotlight } from "./app/renderers/overview.js";
+import {
+  initializeAgentModal,
+  initializeWorkflowModal,
+  renderAgentModal,
+  renderWorkflowModal,
+  renderWorkflows
+} from "./app/renderers/workflows.js";
 import { renderRunDetail, renderRunList } from "./app/renderers/runs.js";
 
 function renderRunListSection() {
@@ -13,7 +19,8 @@ function renderRunListSection() {
 
 function renderWorkflowSection() {
   renderWorkflows({
-    renderAgentFocus,
+    renderAgentModal,
+    renderWorkflowModal,
     renderRunDetail,
     renderRunList: renderRunListSection
   });
@@ -25,34 +32,42 @@ async function renderPrimarySections() {
 
   showSectionLoader("controlBar", "Priming operator controls");
   showSectionLoader("workspaceSpotlight", "Loading workspace context");
-  showSectionLoader("commandDeck", "Preparing command deck");
   showSectionLoader("workspaceSwitcher", "Loading workspace scopes", true);
   showSectionLoader("metrics", "Summarizing telemetry");
-  showSectionLoader("agentFocus", "Preparing agent focus");
 
   await nextPaint();
   renderWorkspaceSwitcher({ renderScopedSections });
   renderControlBar({ renderScopedSections });
   renderWorkspaceSpotlight();
-  renderCommandDeck();
   renderMetrics();
 }
 
 async function renderScopedSections() {
   ensureSelectedRun();
-  ensureSelectedAgent();
   showScopeLoaders();
 
   await nextPaint();
   renderWorkspaceSpotlight();
-  renderCommandDeck();
   renderMetrics();
 
   await nextPaint();
   renderWorkflowSection();
 
+  if (nodes.agentModal && !selectedAgentContext()) {
+    uiState.isAgentModalOpen = false;
+    nodes.agentModal.hidden = true;
+  }
+
   await nextPaint();
-  renderAgentFocus();
+  renderAgentModal();
+
+  if (nodes.workflowModal && !selectedWorkflowContext()) {
+    uiState.isWorkflowModalOpen = false;
+    nodes.workflowModal.hidden = true;
+  }
+
+  await nextPaint();
+  renderWorkflowModal({ renderRunList: renderRunListSection, renderRunDetail });
 
   await nextPaint();
   renderRunListSection();
@@ -63,6 +78,8 @@ async function renderScopedSections() {
 
 async function bootstrap() {
   try {
+    initializeAgentModal({ renderAgentModal });
+    initializeWorkflowModal({ renderWorkflowModal, renderRunList: renderRunListSection, renderRunDetail });
     await wait(80);
     await renderPrimarySections();
     await renderScopedSections();

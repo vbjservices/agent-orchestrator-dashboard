@@ -23,7 +23,10 @@ export const uiState = {
   searchQuery: "",
   statusFilter: "all",
   copyFeedback: "",
-  selectedAgentKey: ""
+  selectedWorkflowId: "",
+  isWorkflowModalOpen: false,
+  selectedAgentKey: "",
+  isAgentModalOpen: false
 };
 
 export const nodes = {
@@ -32,22 +35,22 @@ export const nodes = {
   workflowGrid: document.querySelector("#workflow-grid"),
   runList: document.querySelector("#run-list"),
   runDetail: document.querySelector("#run-detail"),
-  agentFocus: document.querySelector("#agent-focus"),
+  workflowModal: document.querySelector("#workflow-modal"),
+  workflowModalContent: document.querySelector("#workflow-modal-content"),
+  agentModal: document.querySelector("#agent-modal"),
+  agentModalContent: document.querySelector("#agent-modal-content"),
   modeBadge: document.querySelector("#mode-badge"),
   generatedAt: document.querySelector("#generated-at"),
   controlBar: document.querySelector("#control-bar"),
-  workspaceSpotlight: document.querySelector("#workspace-spotlight"),
-  commandDeck: document.querySelector("#command-deck")
+  workspaceSpotlight: document.querySelector("#workspace-spotlight")
 };
 
 export const sectionNodes = {
   controlBar: nodes.controlBar,
   workspaceSpotlight: nodes.workspaceSpotlight,
-  commandDeck: nodes.commandDeck,
   workspaceSwitcher: nodes.workspaceSwitcher,
   metrics: nodes.metrics,
   workflows: nodes.workflowGrid,
-  agentFocus: nodes.agentFocus,
   runList: nodes.runList,
   runDetail: nodes.runDetail
 };

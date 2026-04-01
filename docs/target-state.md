@@ -40,11 +40,16 @@ Codex is part of the execution layer. It is not the platform.
 
 ### Dashboard requirements
 
+- KPI overview surface
+- Separate navigation for dashboard, workflows, agents, and orchestrators
+- Mobile sidebar or drawer navigation
 - Workflow overview
+- Agent overview with status and activation state
+- Orchestrator overview with trigger and runtime state
 - Run history
 - Detailed logs and artifacts
 - Manual run controls
-- Config surface for instances
+- Config surface for workflow instances and agent instances
 - Clear status, failures, and retries
 
 ### Runtime requirements

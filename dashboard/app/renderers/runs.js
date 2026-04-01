@@ -1,5 +1,5 @@
 import { nodes, uiState } from "../context.js";
-import { currency, displayDate, durationBetween, nextPaint } from "../lib.js";
+import { agentAvatarMarkup, currency, displayDate, durationBetween, nextPaint } from "../lib.js";
 import { showSectionLoader } from "../loaders.js";
 import { filteredRuns, selectedRun } from "../model.js";
 
@@ -48,8 +48,11 @@ export function renderRunDetail() {
     .map(
       (step) => `
         <span class="step-pill">
-          <span>${step.name}</span>
-          <small>${step.agentName}</small>
+          <span class="step-pill__agent">
+            ${agentAvatarMarkup("xs")}
+            <span>${step.agentName}</span>
+          </span>
+          <small>${step.name}</small>
         </span>
       `
     )
@@ -60,8 +63,11 @@ export function renderRunDetail() {
       (step) => `
         <article class="step-card">
           <div class="step-card__head">
-            <div>
-              <p>${step.agentName}</p>
+            <div class="step-card__identity">
+              <p class="step-card__agent">
+                ${agentAvatarMarkup("sm")}
+                <span>${step.agentName}</span>
+              </p>
               <h3>${step.name}</h3>
             </div>
             <span class="status-chip status-chip--${step.status}">${step.status}</span>

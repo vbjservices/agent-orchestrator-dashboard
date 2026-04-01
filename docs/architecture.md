@@ -64,7 +64,7 @@ Visualization:
 ## Hard Next Steps
 
 1. Replace simulated executor handlers with real server-side model adapters.
-2. Tighten the dashboard into a real operator interface instead of a status page.
+2. Split the dashboard into task-specific operator surfaces instead of one long page.
 3. Introduce retries, dead-letter handling, and run cancellation.
 4. Add auth and workspace membership checks at the dashboard/backend boundary.
 5. Wire the database only after the runtime contract and UI surface stop thrashing.

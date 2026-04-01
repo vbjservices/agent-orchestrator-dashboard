@@ -29,18 +29,20 @@ The active build focus is not:
 ### Frontend
 
 - Static dashboard in `dashboard/`
+- Root `index.html` redirects branch-based static hosting to `dashboard/`
 - Dashboard source split into smaller modules for state, activity rules, loaders, and renderers
 - Dark cyber control-room visual theme
 - Hero title scaled down so the interface reads like an operator console instead of a landing page
+- Layout grids, modal surfaces, and action rows now scale more cleanly across desktop, tablet, and phone sizes
 - Pulse bar loaders for independently staged dashboard sections
-- Agent launch grid with workflow-specific fire actions and visible agent chains
+- Minimal clickable workflow cards with full workflow detail moved into a popup
+- Shared SVG avatar icon for displayed agents across launch and trace surfaces
+- Clickable agent chain inside the workflow popup plus popup-only agent detail instead of a fixed side rail
 - Color-coded workflow and agent activity states using `running`, `stopped`, and `error`
-- Compact clickable agent nodes with focused detail rail
 - Operator control bar with search and status filtering
 - Workspace spotlight panel for current scope context
-- Command deck with copyable manual run shortcuts
 - Workspace filtering
-- Workflow instance overview
+- Workflow instance overview through compact cards and workflow popup detail
 - Run history ledger
 - Run detail trace with scoped metadata, step pills, collapsible artifacts, and logs
 
@@ -101,6 +103,6 @@ This is the current structure we are keeping clean:
 ## Immediate Next Build Steps
 
 1. Replace the fake executor contract with a real provider adapter boundary.
-2. Turn the command deck and operator controls into actual run actions instead of copy-only shortcuts.
-3. Add workflow-level drill-down and better failure surfacing in the dashboard.
+2. Split the dashboard into dedicated views for KPI overview, workflows, agents, and orchestrators.
+3. Add real configuration surfaces for workflow and agent instances instead of popup-only inspection.
 4. Keep the runtime file-backed until the workflow and UI surfaces stop changing aggressively.

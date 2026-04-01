@@ -46,16 +46,6 @@
             </div>
             <div id="workspace-spotlight"></div>
           </section>
-
-          <section class="panel">
-            <div class="panel__heading">
-              <div>
-                <p class="eyebrow">Command Deck</p>
-                <h2>Manual run shortcuts</h2>
-              </div>
-            </div>
-            <div id="command-deck"></div>
-          </section>
         </section>
 
         <section class="panel panel--workspace">
@@ -73,16 +63,15 @@
         <section class="panel">
           <div class="panel__heading">
             <div>
-              <p class="eyebrow">Agent Launch Grid</p>
+              <p class="eyebrow">Workflow Launch Grid</p>
               <h2>Fire executable workflow surfaces</h2>
               <p class="section-note">
-                Fire actions copy executable commands for now. Live run buttons come when the backend contract exists.
+                These compact cards are workflows. The square tiles inside them are the agents. Use `Inspect workflow` for workflow detail, or click an agent tile to open agent detail.
               </p>
             </div>
           </div>
           <div class="launch-surface">
             <div class="workflow-grid" id="workflow-grid"></div>
-            <aside class="agent-focus" id="agent-focus"></aside>
           </div>
         </section>
 
@@ -108,6 +97,26 @@
           </div>
         </section>
       </main>
+    </div>
+
+    <div class="workflow-modal" id="workflow-modal" hidden>
+      <div class="workflow-modal__backdrop" data-close-workflow-modal></div>
+      <div class="workflow-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="workflow-modal-title">
+        <button class="workflow-modal__close" type="button" aria-label="Close workflow popup" data-close-workflow-modal>
+          Close
+        </button>
+        <div id="workflow-modal-content"></div>
+      </div>
+    </div>
+
+    <div class="agent-modal" id="agent-modal" hidden>
+      <div class="agent-modal__backdrop" data-close-agent-modal></div>
+      <div class="agent-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="agent-modal-title">
+        <button class="agent-modal__close" type="button" aria-label="Close agent popup" data-close-agent-modal>
+          Close
+        </button>
+        <div id="agent-modal-content"></div>
+      </div>
     </div>
 
     <script src="./data/state.js"></script>

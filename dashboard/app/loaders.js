@@ -22,10 +22,8 @@ export function showSectionLoader(sectionName, message, inline = false) {
 
 export function showScopeLoaders() {
   showSectionLoader("workspaceSpotlight", "Refreshing workspace context");
-  showSectionLoader("commandDeck", "Refreshing operator commands");
   showSectionLoader("metrics", "Refreshing summary metrics");
   showSectionLoader("workflows", "Refreshing workflow surface");
-  showSectionLoader("agentFocus", "Refreshing agent focus");
   showSectionLoader("runList", "Refreshing execution ledger");
   showSectionLoader("runDetail", "Refreshing run trace");
 }

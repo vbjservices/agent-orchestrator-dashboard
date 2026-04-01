@@ -1,7 +1,6 @@
 import { nodes, state, uiState } from "../context.js";
-import { currency, displayDate, escapeHtml } from "../lib.js";
-import { attachCopyHandlers } from "../loaders.js";
-import { copyCommandLabel, currentWorkspace, filteredRuns, filteredWorkflows } from "../model.js";
+import { currency, displayDate } from "../lib.js";
+import { currentWorkspace, filteredRuns, filteredWorkflows } from "../model.js";
 
 export function renderMetrics() {
   const runs = filteredRuns();
@@ -113,64 +112,4 @@ export function renderWorkspaceSpotlight() {
       </ul>
     </div>
   `;
-}
-
-export function renderCommandDeck() {
-  const workspace = currentWorkspace();
-  const runCommand =
-    workspace ? `node orchestrator/run.mjs --workspace=${workspace.id}` : "node orchestrator/run.mjs";
-  const workflowDispatchCommand = workspace
-    ? `gh workflow run orchestrator.yml -f workspace_id=${workspace.id}`
-    : "gh workflow run orchestrator.yml";
-  const inspectCommand = "Get-Content runtime\\last-run.json";
-
-  const commands = [
-    {
-      id: "local-run",
-      title: "Local run",
-      description: "Fastest way to refresh state while iterating on workflows.",
-      command: runCommand
-    },
-    {
-      id: "actions-run",
-      title: "GitHub dispatch",
-      description: "Manual cloud-side execution for the current scope.",
-      command: workflowDispatchCommand
-    },
-    {
-      id: "inspect-snapshot",
-      title: "Inspect snapshot",
-      description: "View the most recent runtime payload directly from disk.",
-      command: inspectCommand
-    }
-  ];
-
-  nodes.commandDeck.innerHTML = `
-    <div class="command-stack">
-      ${commands
-        .map(
-          (item) => `
-            <article class="command-card">
-              <div class="command-card__head">
-                <div>
-                  <p class="eyebrow">${item.title}</p>
-                  <h3>${item.command}</h3>
-                </div>
-                <button
-                  class="copy-button"
-                  data-command-id="${item.id}"
-                  data-copy-command="${escapeHtml(item.command)}"
-                >
-                  ${copyCommandLabel(item.id)}
-                </button>
-              </div>
-              <p class="command-card__body">${item.description}</p>
-            </article>
-          `
-        )
-        .join("")}
-    </div>
-  `;
-
-  attachCopyHandlers(nodes.commandDeck, renderCommandDeck);
 }

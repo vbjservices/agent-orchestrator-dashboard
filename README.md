@@ -41,7 +41,7 @@ node --test --test-isolation=none
 
 Open the dashboard:
 
-- load [dashboard/index.html](./dashboard/index.html) directly in a browser, or
+- load [index.html](./index.html) or [dashboard/index.html](./dashboard/index.html) directly in a browser, or
 - serve the repo with any static file server
 
 ## Repo Layout

@@ -190,15 +190,21 @@ export function ensureSelectedRun() {
   uiState.runId = activeRun?.id ?? null;
 }
 
-export function defaultAgentSelection() {
-  const workflow = filteredWorkflows()[0] ?? null;
-  const agentNode = workflow?.agentChain?.[0] ?? null;
+export function selectedWorkflowContext() {
+  const workflow = filteredWorkflows().find((entry) => entry.id === uiState.selectedWorkflowId) ?? null;
 
-  if (!workflow || !agentNode) {
-    return "";
+  if (!workflow) {
+    return null;
   }
 
-  return agentSelectionKey(workflow.id, agentNode.id);
+  const latestRun = latestRunForWorkflow(workflow.id);
+  const workflowActivity = getWorkflowActivity(workflow, latestRun);
+
+  return {
+    workflow,
+    latestRun,
+    workflowActivity
+  };
 }
 
 export function selectedAgentContext() {
@@ -231,14 +237,6 @@ export function selectedAgentContext() {
   }
 
   return null;
-}
-
-export function ensureSelectedAgent() {
-  if (selectedAgentContext()) {
-    return;
-  }
-
-  uiState.selectedAgentKey = defaultAgentSelection();
 }
 
 export function copyCommandLabel(commandId) {
