@@ -1,0 +1,131 @@
+import { nodes, uiState } from "../context.js";
+import { currency, displayDate, durationBetween, nextPaint } from "../lib.js";
+import { showSectionLoader } from "../loaders.js";
+import { filteredRuns, selectedRun } from "../model.js";
+
+export function renderRunList({ renderRunDetail }) {
+  const runs = filteredRuns();
+
+  nodes.runList.innerHTML =
+    runs
+      .map(
+        (run) => `
+          <button class="run-row ${run.id === selectedRun()?.id ? "is-selected" : ""}" data-run-id="${run.id}">
+            <div class="run-row__main">
+              <p>${run.workflowName}</p>
+              <small>${run.workspaceName}</small>
+            </div>
+            <div class="run-row__side">
+              <span class="status-chip status-chip--${run.status}">${run.status}</span>
+              <small>${displayDate(run.finishedAt)}</small>
+              <small>${currency(run.costEstimateUsd)}</small>
+            </div>
+          </button>
+        `
+      )
+      .join("") || `<p class="empty">No runs available for this scope.</p>`;
+
+  nodes.runList.querySelectorAll("[data-run-id]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      uiState.runId = button.dataset.runId;
+      showSectionLoader("runDetail", "Refreshing run trace");
+      await nextPaint();
+      renderRunList({ renderRunDetail });
+      renderRunDetail();
+    });
+  });
+}
+
+export function renderRunDetail() {
+  const run = selectedRun();
+
+  if (!run) {
+    nodes.runDetail.innerHTML = `<p class="empty">Run detail will appear after the first matching execution.</p>`;
+    return;
+  }
+
+  const stepPills = run.steps
+    .map(
+      (step) => `
+        <span class="step-pill">
+          <span>${step.name}</span>
+          <small>${step.agentName}</small>
+        </span>
+      `
+    )
+    .join("");
+
+  const steps = run.steps
+    .map(
+      (step) => `
+        <article class="step-card">
+          <div class="step-card__head">
+            <div>
+              <p>${step.agentName}</p>
+              <h3>${step.name}</h3>
+            </div>
+            <span class="status-chip status-chip--${step.status}">${step.status}</span>
+          </div>
+          <div class="step-card__meta">
+            <span>${step.executor}</span>
+            <span>${displayDate(step.finishedAt)}</span>
+          </div>
+          <p class="step-card__summary">${step.summary}</p>
+          <details class="artifact-details">
+            <summary>Inspect artifact payload</summary>
+            <pre>${JSON.stringify(step.artifact, null, 2)}</pre>
+          </details>
+        </article>
+      `
+    )
+    .join("");
+
+  const logLines = run.logs.map((line) => `<li>${line}</li>`).join("");
+
+  nodes.runDetail.innerHTML = `
+    <div class="run-summary">
+      <div>
+        <p class="eyebrow">Run summary</p>
+        <h3>${run.workflowName}</h3>
+      </div>
+      <div class="run-summary__meta">
+        <span class="status-chip status-chip--${run.status}">${run.status}</span>
+        <span>${run.trigger}</span>
+        <span>${currency(run.costEstimateUsd)}</span>
+      </div>
+    </div>
+    <p class="run-summary__text">${run.summary}</p>
+    <dl class="run-summary-grid">
+      <div>
+        <dt>Workspace</dt>
+        <dd>${run.workspaceName}</dd>
+      </div>
+      <div>
+        <dt>Started</dt>
+        <dd>${displayDate(run.startedAt)}</dd>
+      </div>
+      <div>
+        <dt>Finished</dt>
+        <dd>${displayDate(run.finishedAt)}</dd>
+      </div>
+      <div>
+        <dt>Duration</dt>
+        <dd>${durationBetween(run.startedAt, run.finishedAt)}</dd>
+      </div>
+      <div>
+        <dt>Steps</dt>
+        <dd>${run.steps.length}</dd>
+      </div>
+      <div>
+        <dt>Template</dt>
+        <dd>${run.workflowTemplateId}</dd>
+      </div>
+    </dl>
+    <div class="step-pill-row">${stepPills}</div>
+    <div class="step-stack">${steps}</div>
+    <div class="log-panel">
+      <p class="eyebrow">Logs</p>
+      <ul>${logLines}</ul>
+    </div>
+  `;
+}

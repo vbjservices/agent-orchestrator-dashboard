@@ -29,6 +29,7 @@ The active build focus is not:
 ### Frontend
 
 - Static dashboard in `dashboard/`
+- Dashboard source split into smaller modules for state, activity rules, loaders, and renderers
 - Dark cyber control-room visual theme
 - Hero title scaled down so the interface reads like an operator console instead of a landing page
 - Pulse bar loaders for independently staged dashboard sections
@@ -89,6 +90,7 @@ The active build focus is not:
 This is the current structure we are keeping clean:
 
 - `dashboard/`: static frontend and generated dashboard state
+- `dashboard/app/`: modular dashboard source split by responsibility
 - `orchestrator/`: runtime entrypoint and orchestration engine
 - `config/`: tenant and workflow instance configuration
 - `docs/`: architecture, build status, and target-state documents
