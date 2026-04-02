@@ -14,19 +14,19 @@ export function renderMetrics() {
       : state.workspaces.filter((workspace) => workspace.id === uiState.workspaceId).length;
 
   const cards = [
-    ["Workspaces", String(activeWorkspaces), "Tenants currently in scope"],
-    ["Workflow instances", String(workflows.length), "Filtered operator-ready workflows"],
-    ["Success rate", `${successRate}%`, "Run health inside the active scope"],
-    ["Estimated cost", currency(totalCost), "Visible run cost estimate"]
+    ["workspaces", "Workspaces", String(activeWorkspaces), "Tenants currently in scope"],
+    ["workflows", "Workflow instances", String(workflows.length), "Filtered operator-ready workflows"],
+    ["success", "Success rate", `${successRate}%`, "Run health inside the active scope"],
+    ["cost", "Estimated cost", currency(totalCost), "Visible run cost estimate"]
   ];
 
   nodes.metrics.innerHTML = cards
     .map(
-      ([label, value, meta]) => `
-        <article class="metric-card">
-          <p>${label}</p>
-          <strong>${value}</strong>
-          <span>${meta}</span>
+      ([tone, label, value, meta]) => `
+        <article class="metric-card metric-card--${tone}">
+          <p class="metric-card__label">${label}</p>
+          <strong class="metric-card__value">${value}</strong>
+          <span class="metric-card__meta">${meta}</span>
         </article>
       `
     )

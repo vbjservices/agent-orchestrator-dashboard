@@ -3,6 +3,7 @@ import { displayDate, nextPaint, wait } from "./app/lib.js";
 import { showScopeLoaders, showSectionLoader } from "./app/loaders.js";
 import { ensureSelectedRun, selectedAgentContext, selectedWorkflowContext } from "./app/model.js";
 import { renderControlBar, renderWorkspaceSwitcher } from "./app/renderers/controls.js";
+import { renderDashboardWorkflowBoard } from "./app/renderers/dashboard.js";
 import { renderNavigation } from "./app/renderers/navigation.js";
 import { renderMetrics, renderWorkspaceSpotlight } from "./app/renderers/overview.js";
 import {
@@ -49,6 +50,7 @@ async function renderPrimarySections() {
   showSectionLoader("workspaceSpotlight", "Loading workspace context");
   showSectionLoader("workspaceSwitcher", "Loading workspace scopes", true);
   showSectionLoader("metrics", "Summarizing telemetry");
+  showSectionLoader("dashboardWorkflowBoard", "Mapping workflow board");
   showSectionLoader("workflowTemplates", "Loading workflow templates");
   showSectionLoader("workflows", "Loading workflow instances");
   showSectionLoader("agentTemplates", "Loading agent templates");
@@ -69,6 +71,7 @@ async function renderPrimarySections() {
   renderControlBar({ renderScopedSections });
   renderWorkspaceSpotlight();
   renderMetrics();
+  renderDashboardWorkflowBoard({ renderAgentModal, renderWorkflowModal, renderRunList: renderRunListSection, renderRunDetail });
   renderViewScopes();
   renderWorkflowTemplates();
   renderWorkflowSection();
@@ -92,6 +95,7 @@ async function renderScopedSections() {
   renderControlBar({ renderScopedSections });
   renderWorkspaceSpotlight();
   renderMetrics();
+  renderDashboardWorkflowBoard({ renderAgentModal, renderWorkflowModal, renderRunList: renderRunListSection, renderRunDetail });
   renderViewScopes();
 
   await nextPaint();

@@ -33,14 +33,16 @@ The active build focus is not:
 - Dashboard source split into smaller modules for state, activity rules, loaders, and renderers
 - Dark cyber control-room visual theme
 - Visual system tightened toward a more restrained professional operator-console look
+- Dashboard styling now leans into a denser operations-board layout with darker matte surfaces, compact cards, and subtler accent hierarchy
 - Hero title scaled down so the interface reads like an operator console instead of a landing page
 - Layout grids, modal surfaces, and action rows now scale more cleanly across desktop, tablet, and phone sizes
 - Dashboard split into dedicated navigation surfaces for `Dashboard`, `Workflows`, `Agents`, and `Orchestrators`
-- Desktop top navigation bar now reduced to tabs only, plus mobile drawer navigation
+- Desktop navigation now uses an icon-led vertical sidebar rail, plus mobile drawer navigation
 - Mobile drawer now has explicit open, close, backdrop-close, and escape-close behavior, with a utility-style close control that is visually separate from the tabs
 - Broad search and workspace controls now live on the dashboard view instead of repeating as large global panels
 - Hero and runtime context panels now live on the dashboard view instead of leaking into every tab
 - Dashboard intro, runtime context, search/status controls, and workspace filtering now share one unified top command surface
+- Dashboard now exposes a workflow board with visible agent chains grouped by workspace, so workflows and their active bots are visible without leaving the dashboard tab
 - Workflow, agent, and orchestrator tabs now use lighter scope summaries instead of reusing dashboard-heavy context blocks
 - Workflow cards keep a consistent width instead of stretching based on how many cards are visible
 - Pulse bar loaders for independently staged dashboard sections

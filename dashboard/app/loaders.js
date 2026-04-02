@@ -23,6 +23,7 @@ export function showSectionLoader(sectionName, message, inline = false) {
 export function showScopeLoaders() {
   showSectionLoader("workspaceSpotlight", "Refreshing workspace context");
   showSectionLoader("metrics", "Refreshing summary metrics");
+  showSectionLoader("dashboardWorkflowBoard", "Refreshing workflow board");
   showSectionLoader("workflowTemplates", "Refreshing workflow templates");
   showSectionLoader("workflows", "Refreshing workflow surface");
   showSectionLoader("agentTemplates", "Refreshing agent templates");
