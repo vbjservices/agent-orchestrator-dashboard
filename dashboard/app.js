@@ -1,5 +1,5 @@
 import { nodes, sectionNodes, uiState } from "./app/context.js";
-import { nextPaint, wait } from "./app/lib.js";
+import { nextPaint, setFeedRailWidth, wait } from "./app/lib.js";
 import { showScopeLoaders, showSectionLoader } from "./app/loaders.js";
 import { ensureSelectedRun, selectedAgentContext, selectedWorkflowContext } from "./app/model.js";
 import { renderControlBar, renderWorkspaceSwitcher } from "./app/renderers/controls.js";
@@ -41,6 +41,24 @@ function closeModals() {
   uiState.isWorkflowModalOpen = false;
   nodes.agentModal.hidden = true;
   nodes.workflowModal.hidden = true;
+}
+
+function initializeFeedWidthControl() {
+  const width = setFeedRailWidth(uiState.feedRailWidth);
+
+  if (nodes.feedWidthRange) {
+    nodes.feedWidthRange.value = String(width);
+    nodes.feedWidthRange.addEventListener("input", (event) => {
+      uiState.feedRailWidth = setFeedRailWidth(event.target.value);
+      if (nodes.feedWidthValue) {
+        nodes.feedWidthValue.textContent = `${uiState.feedRailWidth}px`;
+      }
+    });
+  }
+
+  if (nodes.feedWidthValue) {
+    nodes.feedWidthValue.textContent = `${width}px`;
+  }
 }
 
 async function renderPrimarySections() {
@@ -130,6 +148,7 @@ async function bootstrap() {
   try {
     initializeAgentModal({ renderAgentModal });
     initializeWorkflowModal({ renderWorkflowModal, renderRunList: renderRunListSection, renderRunDetail });
+    initializeFeedWidthControl();
     await wait(80);
     await renderPrimarySections();
     await renderScopedSections();

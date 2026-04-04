@@ -3,6 +3,44 @@ import { agentAvatarMarkup, currency, displayDate, durationBetween, nextPaint } 
 import { showSectionLoader } from "../loaders.js";
 import { filteredRuns, selectedRun } from "../model.js";
 
+function agentTone(agentName) {
+  const normalized = String(agentName ?? "").trim().toLowerCase();
+
+  if (normalized.includes("research")) {
+    return "research";
+  }
+
+  if (normalized.includes("idea")) {
+    return "idea";
+  }
+
+  if (normalized.includes("script")) {
+    return "script";
+  }
+
+  if (normalized.includes("editor")) {
+    return "editor";
+  }
+
+  if (normalized.includes("scheduler")) {
+    return "scheduler";
+  }
+
+  if (normalized.includes("analytic")) {
+    return "analytics";
+  }
+
+  if (normalized.includes("lead")) {
+    return "lead";
+  }
+
+  if (normalized.includes("dm")) {
+    return "dm";
+  }
+
+  return "default";
+}
+
 export function renderRunList({ renderRunDetail }) {
   const runs = filteredRuns();
 
@@ -10,14 +48,18 @@ export function renderRunList({ renderRunDetail }) {
     runs
       .map((run) => {
         const leadAgent = run.steps.at(-1)?.agentName ?? run.workflowName;
+        const tone = agentTone(leadAgent);
 
         return `
-          <button class="run-row ${run.id === selectedRun()?.id ? "is-selected" : ""}" data-run-id="${run.id}">
+          <button
+            class="run-row run-row--${run.status} ${run.id === selectedRun()?.id ? "is-selected" : ""}"
+            data-run-id="${run.id}"
+          >
             <div class="run-row__head">
               <small>${displayDate(run.finishedAt)}</small>
               <span class="status-chip status-chip--${run.status}">${run.status}</span>
             </div>
-            <p class="run-row__title">${leadAgent}</p>
+            <p class="run-row__title run-row__title--${tone}">${leadAgent}</p>
             <p class="run-row__summary">${run.summary}</p>
             <div class="run-row__foot">
               <small>${run.workflowName}</small>

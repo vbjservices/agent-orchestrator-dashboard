@@ -44,6 +44,9 @@ The active build focus is not:
 - Dashboard hero and mode cards were removed so the main dashboard stays focused on execution surfaces
 - Dashboard now centers on KPI cards, content-agent progress cards, and a right-side content activity feed instead of a workspace spotlight plus generic run list
 - Activity feed now lives in a dedicated sticky right rail on desktop so execution history stays visible while the main dashboard scrolls
+- Activity rail now defaults to a narrower width and exposes a desktop width control for operator preference
+- Activity rail scrollbar chrome is hidden so the feed reads cleaner while staying scrollable
+- Activity feed run titles now use agent-specific color coding and stronger success/failure emphasis
 - Workflow, agent, and orchestrator tabs now use lighter scope summaries instead of reusing dashboard-heavy context blocks
 - Workflow cards keep a consistent width instead of stretching based on how many cards are visible
 - Pulse bar loaders for independently staged dashboard sections
@@ -55,6 +58,7 @@ The active build focus is not:
 - Orchestrator surface now stays honest about GitHub Actions as the only M1 runtime route, with manual dispatch and cron schedule only
 - Shared SVG avatar icon for displayed agents across launch and trace surfaces
 - Agent avatar now uses a dedicated bot asset in `dashboard/assets/icons/`, while the previous person icon is preserved for future user identity surfaces
+- AI team header now shows the live count of visible agents in scope
 - Clickable agent chain inside the workflow popup plus popup-only agent detail instead of a fixed side rail
 - Color-coded workflow and agent activity states using `running`, `stopped`, and `error`
 - Operator control bar with search and status filtering

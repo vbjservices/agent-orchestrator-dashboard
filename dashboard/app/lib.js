@@ -95,3 +95,9 @@ export function agentAvatarMarkup(size = "sm") {
 export function userAvatarMarkup(size = "sm") {
   return avatarMarkup("user", size);
 }
+
+export function setFeedRailWidth(width) {
+  const clampedWidth = Math.min(Math.max(Number(width) || 340, 300), 460);
+  document.documentElement.style.setProperty("--feed-rail-width", `${clampedWidth}px`);
+  return clampedWidth;
+}

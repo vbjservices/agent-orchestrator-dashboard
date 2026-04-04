@@ -41,7 +41,7 @@
                   <section class="panel panel--board">
                     <div class="panel__heading">
                       <div>
-                        <p class="eyebrow">AI Team</p>
+                        <p class="eyebrow">AI Team <span id="dashboard-ai-team-count"></span></p>
                         <h2>Content agents currently driving execution</h2>
                       </div>
                     </div>
@@ -66,6 +66,18 @@
                         <p class="eyebrow">Activity Feed</p>
                         <h2>Recent content runs and live execution</h2>
                       </div>
+                      <label class="feed-width-control" for="feed-width-range">
+                        <span>Rail width</span>
+                        <input
+                          id="feed-width-range"
+                          type="range"
+                          min="300"
+                          max="460"
+                          step="10"
+                          value="340"
+                        />
+                        <strong id="feed-width-value">340px</strong>
+                      </label>
                     </div>
                     <div class="run-list" id="run-list"></div>
                   </section>

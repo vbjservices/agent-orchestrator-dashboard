@@ -1,6 +1,14 @@
+.eyebrow__count {
+  color: var(--ink-soft);
+}
+
 .sidebar {
   align-self: start;
   height: 100vh;
+}
+
+.agent-avatar {
+  overflow: hidden;
 }
 
 .agent-avatar img {
@@ -10,9 +18,29 @@
   object-fit: contain;
 }
 
+.agent-avatar--xs {
+  width: 24px;
+  height: 24px;
+}
+
+.agent-avatar--sm {
+  width: 34px;
+  height: 34px;
+}
+
+.agent-avatar--md {
+  width: 44px;
+  height: 44px;
+}
+
+.agent-avatar--lg {
+  width: 56px;
+  height: 56px;
+}
+
 .dashboard-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.58fr) minmax(320px, 0.82fr);
+  grid-template-columns: minmax(0, 1fr) minmax(300px, var(--feed-rail-width, 340px));
   gap: 22px;
   align-items: start;
 }
@@ -36,6 +64,40 @@
   max-height: calc(100vh - 164px);
   overflow-y: auto;
   padding-right: 4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.panel--feed-sticky .run-list::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.feed-width-control {
+  display: grid;
+  gap: 6px;
+  min-width: 132px;
+}
+
+.feed-width-control span,
+.feed-width-control strong {
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.feed-width-control span {
+  color: var(--muted);
+}
+
+.feed-width-control strong {
+  color: var(--ink-soft);
+}
+
+.feed-width-control input {
+  width: 100%;
+  accent-color: var(--accent);
 }
 
 .search-layout {
@@ -73,6 +135,51 @@
 .search-summary__card span {
   color: var(--ink-soft);
   line-height: 1.55;
+}
+
+.run-row--succeeded {
+  border-color: rgba(51, 242, 163, 0.12);
+}
+
+.run-row--failed,
+.run-row--error {
+  border-color: rgba(255, 107, 107, 0.14);
+}
+
+.run-row__title--research {
+  color: #7fe7ff;
+}
+
+.run-row__title--idea {
+  color: #cf9bff;
+}
+
+.run-row__title--script {
+  color: #ffcc72;
+}
+
+.run-row__title--editor {
+  color: #ff9c78;
+}
+
+.run-row__title--scheduler {
+  color: #8ce8f7;
+}
+
+.run-row__title--analytics {
+  color: #7ab8ff;
+}
+
+.run-row__title--lead {
+  color: #8ee08b;
+}
+
+.run-row__title--dm {
+  color: #ff98cb;
+}
+
+.run-row__title--default {
+  color: var(--ink);
 }
 
 .contract-stack {
@@ -166,6 +273,10 @@
 
   .panel--feed-sticky .run-list {
     max-height: none;
+  }
+
+  .feed-width-control {
+    display: none;
   }
 
   .team-card__meta {

@@ -5,6 +5,9 @@ import { dashboardAiTeams } from "../model.js";
 
 export function renderAiTeam({ renderAgentModal }) {
   const teams = dashboardAiTeams();
+  if (nodes.dashboardAiTeamCount) {
+    nodes.dashboardAiTeamCount.textContent = `- ${teams.length} agents`;
+  }
 
   nodes.dashboardAiTeam.innerHTML =
     teams
@@ -17,7 +20,7 @@ export function renderAiTeam({ renderAgentModal }) {
           >
             <div class="team-card__head">
               <div class="team-card__identity">
-                ${agentAvatarMarkup("sm")}
+                ${agentAvatarMarkup("md")}
                 <div>
                   <p class="team-card__role">${team.category}</p>
                   <h3>${team.name}</h3>
