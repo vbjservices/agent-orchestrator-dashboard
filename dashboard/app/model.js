@@ -4,3 +4,6 @@ export * from "./model/agents.js";
 export * from "./model/dashboard.js";
 export * from "./model/runs.js";
 export * from "./model/orchestrators.js";
+export * from "./model/pipeline.js";
+export * from "./model/performance.js";
+export * from "./model/tasks.js";

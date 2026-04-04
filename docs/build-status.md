@@ -31,16 +31,23 @@ The active build focus is not:
 - Static dashboard in `dashboard/`
 - Root `index.html` redirects branch-based static hosting to `dashboard/`
 - Dashboard source split into smaller modules for state, loaders, renderers, and domain-specific model selectors
-- M1 UI changes now land in `dashboard/styles/m1-foundation.css` instead of bloating the legacy stylesheet further
+- Dashboard CSS is now split into `dashboard/styles/base.css`, `dashboard/styles/shared.css`, `dashboard/styles/dashboard.css`, `dashboard/styles/platform.css`, `dashboard/styles/runs.css`, and `dashboard/styles/responsive.css`
+- `dashboard/styles.css` is now a thin manifest instead of a 2k-line dump file
+- M1 UI changes still land in `dashboard/styles/m1-foundation.css` instead of bloating the base modules further
 - Dark cyber control-room visual theme
 - Visual system tightened toward a more restrained professional operator-console look
 - Dashboard styling now leans into a denser operations-board layout with darker matte surfaces, compact cards, and subtler accent hierarchy
 - Hero title scaled down so the interface reads like an operator console instead of a landing page
 - Layout grids, modal surfaces, and action rows now scale more cleanly across desktop, tablet, and phone sizes
 - Dashboard split into dedicated navigation surfaces for `Dashboard`, `Search`, `Workflows`, `Agents`, and `Orchestrators`
+- Dashboard navigation now also includes dedicated `Pipeline`, `Performance`, and `Tasks` surfaces for content operations
 - Desktop navigation now uses an icon-led vertical sidebar rail, plus mobile drawer navigation
+- Shell now includes a compact application top bar for command-center context, sync state, refresh timestamp, and active view breadcrumb
 - Mobile drawer now has explicit open, close, backdrop-close, and escape-close behavior, with a utility-style close control that is visually separate from the tabs
 - Search, status filtering, and workspace scoping now live in a dedicated `Search` tab instead of bloating the dashboard surface
+- `Pipeline` tab now shows a staged content roadmap with runtime-backed `Ideas` and `Scripted` lanes, while later publication stages stay visibly empty until the runtime actually tracks them
+- `Performance` tab now shows simulated Instagram, TikTok, and YouTube performance derived from current content outputs, plus a sticky insights rail
+- `Tasks` tab now shows agent workload cards, a prioritized derived task queue, and a sticky recent task-activity rail
 - Dashboard hero and mode cards were removed so the main dashboard stays focused on execution surfaces
 - Dashboard now centers on KPI cards, content-agent progress cards, and a right-side content activity feed instead of a workspace spotlight plus generic run list
 - Activity feed now lives in a dedicated sticky right rail on desktop so execution history stays visible while the main dashboard scrolls

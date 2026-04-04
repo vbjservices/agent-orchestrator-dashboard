@@ -3,12 +3,19 @@ import { nodes, uiState } from "../context.js";
 let escapeHandlerBound = false;
 
 const navItems = [
-  { id: "dashboard", label: "Dashboard", icon: "dashboard" },
-  { id: "search", label: "Search", icon: "search" },
-  { id: "workflows", label: "Workflows", icon: "workflows" },
-  { id: "agents", label: "Agents", icon: "agents" },
-  { id: "orchestrators", label: "Orchestrators", icon: "orchestrators" }
+  { id: "dashboard", label: "Dashboard", topbarLabel: "Overview", icon: "dashboard" },
+  { id: "search", label: "Search", topbarLabel: "Search", icon: "search" },
+  { id: "pipeline", label: "Pipeline", topbarLabel: "Pipeline", icon: "pipeline" },
+  { id: "performance", label: "Performance", topbarLabel: "Performance", icon: "performance" },
+  { id: "tasks", label: "Tasks", topbarLabel: "Agent Tasks", icon: "tasks" },
+  { id: "workflows", label: "Workflows", topbarLabel: "Workflows", icon: "workflows" },
+  { id: "agents", label: "Agents", topbarLabel: "Agents", icon: "agents" },
+  { id: "orchestrators", label: "Orchestrators", topbarLabel: "Orchestrators", icon: "orchestrators" }
 ];
+
+export function labelForView(viewId) {
+  return navItems.find((item) => item.id === viewId)?.topbarLabel ?? "Overview";
+}
 
 function navIcon(name) {
   const paths = {
@@ -16,6 +23,12 @@ function navIcon(name) {
       `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5v4.5H3.75zm0 9h7.5v4.5h-7.5zm10.5 0h6v4.5h-6z" />`,
     search:
       `<path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6 6a7.5 7.5 0 0 0 10.65 10.65Z" />`,
+    pipeline:
+      `<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 5.25h15m-15 6.75h15m-15 6.75h15M8.25 3v18" />`,
+    performance:
+      `<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5h15M6.75 16.5V9m5.25 7.5V4.5m5.25 12V12" />`,
+    tasks:
+      `<path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75h11.25M9 12h11.25M9 17.25h11.25M4.5 6.75h.008v.008H4.5zm0 5.25h.008v.008H4.5zm0 5.25h.008v.008H4.5z" />`,
     workflows:
       `<path stroke-linecap="round" stroke-linejoin="round" d="M7.5 6.75h9m-9 5.25h6m-6 5.25h9M4.5 6.75h.008v.008H4.5zm0 5.25h.008v.008H4.5zm0 5.25h.008v.008H4.5z" />`,
     agents:
@@ -37,6 +50,9 @@ function syncViews() {
   const views = {
     dashboard: nodes.dashboardView,
     search: nodes.searchView,
+    pipeline: nodes.pipelineView,
+    performance: nodes.performanceView,
+    tasks: nodes.tasksView,
     workflows: nodes.workflowsView,
     agents: nodes.agentsView,
     orchestrators: nodes.orchestratorsView

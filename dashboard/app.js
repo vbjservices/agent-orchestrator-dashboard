@@ -6,6 +6,9 @@ import { renderControlBar, renderWorkspaceSwitcher } from "./app/renderers/contr
 import { renderAiTeam } from "./app/renderers/dashboard.js";
 import { renderNavigation } from "./app/renderers/navigation.js";
 import { renderMetrics } from "./app/renderers/overview.js";
+import { renderPerformanceDashboard } from "./app/renderers/performance.js";
+import { renderContentPipeline } from "./app/renderers/pipeline.js";
+import { renderAgentTasks } from "./app/renderers/tasks.js";
 import {
   renderAgentInstances,
   renderAgentTemplates,
@@ -14,6 +17,7 @@ import {
 } from "./app/renderers/platform.js";
 import { renderSearchSummary } from "./app/renderers/search.js";
 import { renderViewScopes } from "./app/renderers/scopes.js";
+import { renderTopbar } from "./app/renderers/topbar.js";
 import {
   initializeAgentModal,
   initializeWorkflowModal,
@@ -65,6 +69,14 @@ async function renderPrimarySections() {
   showSectionLoader("controlBar", "Priming operator controls");
   showSectionLoader("workspaceSwitcher", "Loading workspace scopes", true);
   showSectionLoader("searchSummary", "Loading search summary");
+  showSectionLoader("pipelineSummary", "Loading content pipeline counts");
+  showSectionLoader("pipelineBoard", "Loading content roadmap");
+  showSectionLoader("performanceSummary", "Loading performance summary");
+  showSectionLoader("performanceTable", "Loading content performance");
+  showSectionLoader("performanceInsights", "Loading performance insights");
+  showSectionLoader("taskAgentGrid", "Loading agent workload");
+  showSectionLoader("taskQueue", "Loading task queue");
+  showSectionLoader("taskActivity", "Loading task activity");
   showSectionLoader("metrics", "Summarizing telemetry");
   showSectionLoader("dashboardAiTeam", "Mapping AI team");
   showSectionLoader("workflowTemplates", "Loading workflow templates");
@@ -77,6 +89,7 @@ async function renderPrimarySections() {
   showSectionLoader("runDetail", "Loading run trace");
 
   await nextPaint();
+  renderTopbar();
   renderNavigation({
     onNavigate: async () => {
       closeModals();
@@ -86,6 +99,9 @@ async function renderPrimarySections() {
   renderWorkspaceSwitcher({ renderScopedSections });
   renderControlBar({ renderScopedSections });
   renderSearchSummary();
+  renderContentPipeline({ renderWorkflowModal, renderRunList: renderRunListSection, renderRunDetail });
+  renderPerformanceDashboard();
+  renderAgentTasks({ renderAgentModal });
   renderMetrics();
   renderAiTeam({ renderAgentModal });
   renderViewScopes();
@@ -101,6 +117,7 @@ async function renderScopedSections() {
   showScopeLoaders();
 
   await nextPaint();
+  renderTopbar();
   renderNavigation({
     onNavigate: async () => {
       closeModals();
@@ -110,6 +127,9 @@ async function renderScopedSections() {
   renderWorkspaceSwitcher({ renderScopedSections });
   renderControlBar({ renderScopedSections });
   renderSearchSummary();
+  renderContentPipeline({ renderWorkflowModal, renderRunList: renderRunListSection, renderRunDetail });
+  renderPerformanceDashboard();
+  renderAgentTasks({ renderAgentModal });
   renderMetrics();
   renderAiTeam({ renderAgentModal });
   renderViewScopes();

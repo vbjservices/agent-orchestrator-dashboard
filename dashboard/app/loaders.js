@@ -22,6 +22,14 @@ export function showSectionLoader(sectionName, message, inline = false) {
 
 export function showScopeLoaders() {
   showSectionLoader("searchSummary", "Refreshing search summary");
+  showSectionLoader("pipelineSummary", "Refreshing pipeline counts");
+  showSectionLoader("pipelineBoard", "Refreshing content roadmap");
+  showSectionLoader("performanceSummary", "Refreshing performance summary");
+  showSectionLoader("performanceTable", "Refreshing recent post performance");
+  showSectionLoader("performanceInsights", "Refreshing performance insights");
+  showSectionLoader("taskAgentGrid", "Refreshing agent workload");
+  showSectionLoader("taskQueue", "Refreshing prioritized task queue");
+  showSectionLoader("taskActivity", "Refreshing task activity");
   showSectionLoader("metrics", "Refreshing summary metrics");
   showSectionLoader("dashboardAiTeam", "Refreshing AI team");
   showSectionLoader("workflowTemplates", "Refreshing workflow templates");

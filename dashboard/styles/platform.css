@@ -1,0 +1,458 @@
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 16px;
+}
+
+.instance-grid,
+.orchestrator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 16px;
+}
+
+.template-card,
+.instance-card,
+.orchestrator-card,
+.setup-card {
+  border-radius: 14px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+  animation: rise-in 700ms ease-out both;
+}
+
+.template-card h3,
+.orchestrator-card h3,
+.setup-card h3 {
+  margin: 0;
+}
+
+.template-card__body,
+.instance-card__body,
+.orchestrator-card__body {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.template-card__meta,
+.instance-card__meta,
+.orchestrator-card__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+
+.template-card__meta div,
+.instance-card__meta div,
+.orchestrator-card__meta div {
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(143, 154, 168, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.template-card__meta dt,
+.instance-card__meta dt,
+.orchestrator-card__meta dt {
+  margin: 0 0 6px;
+  color: rgba(236, 254, 255, 0.58);
+}
+
+.template-card__meta dd,
+.instance-card__meta dd,
+.orchestrator-card__meta dd {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.instance-card {
+  width: 100%;
+  appearance: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.instance-card:hover,
+.instance-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-soft);
+  outline: none;
+}
+
+.instance-card__head,
+.orchestrator-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.instance-card__identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: var(--ink);
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.84rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.instance-card--running,
+.orchestrator-card--running {
+  border-color: rgba(104, 240, 255, 0.24);
+}
+
+.instance-card--error,
+.orchestrator-card--error {
+  border-color: rgba(255, 107, 107, 0.24);
+}
+
+.instance-card--stopped,
+.orchestrator-card--stopped {
+  border-color: rgba(143, 178, 255, 0.18);
+}
+
+.setup-card {
+  gap: 14px;
+}
+
+.setup-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 280px));
+  justify-content: start;
+  align-items: start;
+  gap: 16px;
+}
+
+.agent-modal[hidden],
+.workflow-modal[hidden] {
+  display: none;
+}
+
+.agent-modal,
+.workflow-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  padding: clamp(12px, 3vw, 28px);
+}
+
+.agent-modal__backdrop,
+.workflow-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(1, 6, 15, 0.76);
+  backdrop-filter: blur(14px);
+}
+
+.agent-modal__dialog,
+.workflow-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 760px);
+  max-height: min(calc(100dvh - 32px), 900px);
+  overflow: auto;
+  padding: clamp(48px, 7vw, 56px) clamp(16px, 3vw, 24px) clamp(16px, 3vw, 24px);
+  border-radius: 24px;
+  border: 1px solid rgba(146, 164, 185, 0.14);
+  box-shadow:
+    0 28px 80px rgba(2, 8, 20, 0.54),
+    0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  background: linear-gradient(180deg, rgba(16, 27, 45, 0.99), rgba(10, 18, 31, 0.99));
+}
+
+.agent-modal__close,
+.workflow-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  appearance: none;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(146, 164, 185, 0.14);
+  background: rgba(10, 18, 31, 0.94);
+  color: var(--muted);
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.agent-modal__card,
+.workflow-modal__card {
+  display: grid;
+  gap: 18px;
+}
+
+.agent-modal__head,
+.agent-modal__actions,
+.workflow-modal__head,
+.workflow-modal__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.agent-modal__identity,
+.workflow-modal__identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.agent-modal__body {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.workflow-modal__body,
+.workflow-modal__summary-text {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.agent-modal__meta,
+.workflow-modal__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.agent-modal__meta div,
+.workflow-modal__meta div {
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(146, 164, 185, 0.1);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.agent-modal__meta dt,
+.workflow-modal__meta dt {
+  margin: 0 0 6px;
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(236, 254, 255, 0.58);
+}
+
+.agent-modal__meta dd,
+.workflow-modal__meta dd {
+  margin: 0;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.agent-modal__artifact,
+.workflow-modal__artifact {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(146, 164, 185, 0.1);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.agent-modal__artifact pre,
+.workflow-modal__artifact pre {
+  margin: 0;
+  padding: 14px;
+  overflow: auto;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(8, 13, 23, 0.98), rgba(6, 10, 18, 0.98));
+  color: #d8fbff;
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  border: 1px solid rgba(146, 164, 185, 0.1);
+}
+
+.workflow-modal__summary {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+.workflow-modal__chain {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.workflow-modal__chain-node {
+  display: flex;
+  gap: 10px;
+  align-items: start;
+  width: 100%;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(146, 164, 185, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.workflow-modal__chain-node:hover,
+.workflow-modal__chain-node:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-soft);
+  outline: none;
+}
+
+.workflow-modal__chain-node--running {
+  border-color: rgba(104, 240, 255, 0.28);
+}
+
+.workflow-modal__chain-node--error {
+  border-color: rgba(255, 107, 107, 0.28);
+}
+
+.workflow-modal__chain-node strong,
+.workflow-modal__chain-node small {
+  display: block;
+  font-family: "Cascadia Code", "Consolas", monospace;
+}
+
+.workflow-modal__chain-node strong {
+  font-size: 0.8rem;
+  color: var(--ink);
+}
+
+.workflow-modal__chain-node small {
+  margin-top: 4px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.workflow-card {
+  border-radius: 14px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+  animation: rise-in 740ms ease-out both;
+}
+
+.workflow-card--launch {
+  background: linear-gradient(180deg, rgba(31, 36, 45, 0.98), rgba(22, 26, 33, 0.96));
+}
+
+.workflow-card__runtime-text {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+.workflow-card__head,
+.step-card__head,
+.run-summary,
+.run-summary__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.workflow-card[role="button"] {
+  cursor: pointer;
+}
+
+.workflow-card[role="button"]:hover,
+.workflow-card[role="button"]:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-soft);
+  outline: none;
+}
+
+.workflow-card__summary,
+.workflow-card__stats {
+  display: grid;
+  gap: 8px;
+}
+
+.workflow-card__stats {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.workflow-card__stats span {
+  padding: 9px 11px;
+  border-radius: 10px;
+  border: 1px solid rgba(143, 154, 168, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--muted);
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.45;
+}
+
+.step-pill__agent,
+.step-card__agent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.workflow-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-top: 2px;
+}
+
+.workflow-card__footnote {
+  color: var(--muted);
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+}
+
+.launch-action--compact {
+  width: fit-content;
+  min-width: 0;
+}
+
