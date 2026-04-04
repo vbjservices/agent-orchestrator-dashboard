@@ -1,4 +1,4 @@
-import { sectionNodes, uiState } from "./context.js";
+import { sectionNodes } from "./context.js";
 import { escapeHtml } from "./lib.js";
 
 export function loaderMarkup(message, inline = false) {
@@ -21,9 +21,9 @@ export function showSectionLoader(sectionName, message, inline = false) {
 }
 
 export function showScopeLoaders() {
-  showSectionLoader("workspaceSpotlight", "Refreshing workspace context");
+  showSectionLoader("searchSummary", "Refreshing search summary");
   showSectionLoader("metrics", "Refreshing summary metrics");
-  showSectionLoader("dashboardWorkflowBoard", "Refreshing workflow board");
+  showSectionLoader("dashboardAiTeam", "Refreshing AI team");
   showSectionLoader("workflowTemplates", "Refreshing workflow templates");
   showSectionLoader("workflows", "Refreshing workflow surface");
   showSectionLoader("agentTemplates", "Refreshing agent templates");
@@ -32,28 +32,4 @@ export function showScopeLoaders() {
   showSectionLoader("orchestratorSetup", "Refreshing setup model");
   showSectionLoader("runList", "Refreshing execution ledger");
   showSectionLoader("runDetail", "Refreshing run trace");
-}
-
-export async function copyToClipboard(text, commandId, onComplete) {
-  try {
-    await navigator.clipboard.writeText(text);
-    uiState.copyFeedback = commandId;
-    onComplete?.();
-    window.setTimeout(() => {
-      if (uiState.copyFeedback === commandId) {
-        uiState.copyFeedback = "";
-        onComplete?.();
-      }
-    }, 1400);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-export function attachCopyHandlers(rootNode, onComplete) {
-  rootNode.querySelectorAll("[data-copy-command]").forEach((button) => {
-    button.addEventListener("click", async () => {
-      await copyToClipboard(button.dataset.copyCommand, button.dataset.commandId, onComplete);
-    });
-  });
 }

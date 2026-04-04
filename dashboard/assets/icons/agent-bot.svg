@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="bot-bubble" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffe88f" />
+      <stop offset="100%" stop-color="#f8b93f" />
+    </linearGradient>
+    <linearGradient id="bot-shell" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#eef8f3" />
+      <stop offset="100%" stop-color="#d9ece7" />
+    </linearGradient>
+  </defs>
+  <rect x="41" y="8" width="46" height="34" rx="10" fill="url(#bot-bubble)" />
+  <path d="M56 40h16l-8 18z" fill="#f6c651" />
+  <rect x="20" y="46" width="88" height="60" rx="22" fill="url(#bot-shell)" />
+  <rect x="10" y="60" width="12" height="38" rx="6" fill="#e8f3ef" />
+  <rect x="106" y="60" width="12" height="38" rx="6" fill="#e8f3ef" />
+  <rect x="18" y="70" width="16" height="30" rx="8" fill="#aabcb7" opacity="0.78" />
+  <rect x="94" y="70" width="16" height="30" rx="8" fill="#aabcb7" opacity="0.78" />
+  <rect x="52" y="54" width="24" height="18" rx="4" fill="#e78fd4" />
+  <rect x="28" y="64" width="72" height="48" rx="14" fill="#7b8e88" />
+  <circle cx="48" cy="86" r="4.5" fill="#4fb1ff" />
+  <circle cx="80" cy="86" r="4.5" fill="#4fb1ff" />
+  <path d="M58 93c2.2 3.2 9.8 3.2 12 0" fill="none" stroke="#667873" stroke-linecap="round" stroke-width="4" />
+</svg>

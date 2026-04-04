@@ -470,18 +470,17 @@ body::after {
 
 .dashboard-stage {
   display: grid;
-  grid-template-columns: minmax(0, 1.7fr) minmax(300px, 0.95fr);
+  grid-template-columns: minmax(0, 1.65fr) minmax(300px, 0.88fr);
   gap: 16px;
   align-items: start;
 }
 
-.dashboard-stage__side {
-  display: grid;
-  gap: 16px;
-}
-
 .panel--dashboard-overview {
   padding: clamp(16px, 2.3vw, 22px);
+}
+
+.panel--feed {
+  align-self: stretch;
 }
 
 .dashboard-overview {
@@ -524,62 +523,21 @@ body::after {
   box-shadow: none;
 }
 
-#dashboard-workflow-board {
+#dashboard-ai-team {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 12px;
 }
 
-.workflow-column {
+.team-card {
   display: grid;
   gap: 12px;
-  padding: 14px;
+  padding: 16px;
   border-radius: 14px;
   border: 1px solid rgba(143, 154, 168, 0.1);
-  background: rgba(255, 255, 255, 0.018);
-}
-
-.workflow-column__head {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  gap: 12px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(143, 154, 168, 0.08);
-}
-
-.workflow-column__head h3 {
-  margin: 0;
-  font-family: "Bahnschrift SemiCondensed", "Arial Narrow", sans-serif;
-  font-size: 1.05rem;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
-.workflow-column__count {
-  padding: 5px 8px;
-  border-radius: 999px;
-  border: 1px solid rgba(143, 154, 168, 0.12);
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--muted);
-  font-family: "Cascadia Code", "Consolas", monospace;
-  font-size: 0.64rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.workflow-column__stack {
-  display: grid;
-  gap: 10px;
-}
-
-.workflow-lane {
-  display: grid;
-  gap: 10px;
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(143, 154, 168, 0.1);
   background: linear-gradient(180deg, rgba(31, 36, 45, 0.98), rgba(22, 26, 33, 0.96));
+  color: var(--ink);
+  text-align: left;
   cursor: pointer;
   transition:
     transform 180ms ease,
@@ -588,125 +546,118 @@ body::after {
     background 180ms ease;
 }
 
-.workflow-lane:hover,
-.workflow-lane:focus-visible {
+.team-card:hover,
+.team-card:focus-visible {
   transform: translateY(-2px);
   border-color: var(--border-strong);
   box-shadow: var(--shadow-soft);
   outline: none;
 }
 
-.workflow-lane__head {
+.team-card__head,
+.team-card__progress-head,
+.run-row__head,
+.run-row__foot {
   display: flex;
   justify-content: space-between;
   align-items: start;
   gap: 12px;
 }
 
-.workflow-lane__workspace,
-.workflow-lane__foot span,
-.workflow-lane__agent small {
+.team-card__identity {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  min-width: 0;
+}
+
+.team-card__role {
+  margin: 0;
+  color: rgba(208, 215, 226, 0.56);
   font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.workflow-lane__workspace {
-  margin: 0 0 6px;
-  color: rgba(208, 215, 226, 0.58);
-  font-size: 0.66rem;
-  letter-spacing: 0.15em;
-}
-
-.workflow-lane__head h3 {
-  margin: 0;
+.team-card__head h3 {
+  margin: 4px 0 0;
   font-family: "Bahnschrift SemiCondensed", "Arial Narrow", sans-serif;
   font-size: 1rem;
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 
-.workflow-lane__detail {
+.team-card__body {
   margin: 0;
   color: var(--ink-soft);
-  line-height: 1.5;
-  font-size: 0.92rem;
+  line-height: 1.55;
+  min-height: 3.1em;
 }
 
-.workflow-lane__agents {
+.team-card__progress {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
 }
 
-.workflow-lane__agent {
-  display: grid;
-  gap: 4px;
-  min-width: 0;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid rgba(143, 154, 168, 0.1);
-  background: rgba(255, 255, 255, 0.02);
-  color: var(--ink);
-  text-align: left;
-  cursor: pointer;
-  transition:
-    transform 160ms ease,
-    border-color 160ms ease,
-    background 160ms ease;
-}
-
-.workflow-lane__agent:hover,
-.workflow-lane__agent:focus-visible {
-  transform: translateY(-1px);
-  border-color: var(--border-strong);
-  background: rgba(255, 255, 255, 0.04);
-  outline: none;
-}
-
-.workflow-lane__agent-head {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 0;
-}
-
-.workflow-lane__agent strong {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.team-card__progress-head span,
+.team-card__progress-head strong {
   font-family: "Cascadia Code", "Consolas", monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.workflow-lane__agent small {
+.team-card__progress-head span {
   color: var(--muted);
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
 }
 
-.workflow-lane__agent--running {
-  border-color: rgba(140, 232, 247, 0.3);
+.team-card__progress-track {
+  position: relative;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
 }
 
-.workflow-lane__agent--error {
-  border-color: rgba(255, 139, 121, 0.28);
+.team-card__progress-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(140, 232, 247, 0.9), rgba(240, 188, 99, 0.92));
+  box-shadow: 0 0 12px rgba(140, 232, 247, 0.18);
 }
 
-.workflow-lane__foot {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  padding-top: 4px;
+.team-card__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
 }
 
-.workflow-lane__foot span {
-  color: var(--muted);
+.team-card__meta div {
+  padding: 9px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(143, 154, 168, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.team-card__meta dt,
+.team-card__meta dd {
+  margin: 0;
+  font-family: "Cascadia Code", "Consolas", monospace;
+}
+
+.team-card__meta dt {
+  color: rgba(208, 215, 226, 0.56);
   font-size: 0.62rem;
   letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.team-card__meta dd {
+  margin-top: 4px;
+  color: var(--ink);
 }
 
 .view-stack {
@@ -1084,20 +1035,20 @@ body::after {
   line-height: 1.6;
 }
 
-.metric-card--workspaces .metric-card__value {
-  color: var(--accent);
+.metric-card--outreach .metric-card__value {
+  color: var(--warning);
 }
 
-.metric-card--workflows .metric-card__value {
-  color: var(--warning);
+.metric-card--runs .metric-card__value {
+  color: var(--accent-alt);
+}
+
+.metric-card--content .metric-card__value {
+  color: #ffd993;
 }
 
 .metric-card--success .metric-card__value {
   color: var(--success);
-}
-
-.metric-card--cost .metric-card__value {
-  color: #ffb8a3;
 }
 
 .workflow-card__body--compact {
@@ -1586,8 +1537,7 @@ body::after {
 .workflow-card__head,
 .step-card__head,
 .run-summary,
-.run-summary__meta,
-.run-row {
+.run-summary__meta {
   display: flex;
   justify-content: space-between;
   align-items: start;
@@ -1731,6 +1681,12 @@ body::after {
   gap: 12px;
 }
 
+.panel--feed .run-list {
+  max-height: 760px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
 .run-row {
   width: 100%;
   padding: 14px;
@@ -1746,19 +1702,29 @@ body::after {
     background 180ms ease;
 }
 
-.run-row p {
-  margin: 0 0 4px;
-  font-weight: 700;
+.run-row__title,
+.run-row__summary {
+  margin: 0;
 }
 
-.run-row__main,
-.run-row__side {
-  display: grid;
-  gap: 4px;
+.run-row__title {
+  font-family: "Bahnschrift SemiCondensed", "Arial Narrow", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
-.run-row__side {
-  justify-items: end;
+.run-row__summary {
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+.run-row__foot small {
+  color: var(--muted);
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .run-row:hover,
@@ -2053,8 +2019,7 @@ body::after {
 }
 
 @media (max-width: 980px) {
-  #dashboard-workflow-board,
-  .workflow-lane__agents,
+  #dashboard-ai-team,
   .ledger {
     grid-template-columns: 1fr;
   }
@@ -2076,6 +2041,7 @@ body::after {
   .catalog-grid,
   .instance-grid,
   .orchestrator-grid,
+  #dashboard-ai-team,
   .filter-strip,
   .workspace-switcher {
     grid-template-columns: 1fr;
@@ -2100,9 +2066,13 @@ body::after {
   .agent-modal__actions,
   .workflow-modal__head,
   .workflow-modal__actions,
+  .team-card__head,
+  .team-card__progress-head,
   .run-summary,
   .run-summary__meta,
   .run-row,
+  .run-row__head,
+  .run-row__foot,
   .spotlight-card__head,
   .scope-banner__head,
   .workflow-card__head,
@@ -2112,10 +2082,6 @@ body::after {
   .panel__heading {
     flex-direction: column;
     align-items: start;
-  }
-
-  .run-row__side {
-    justify-items: start;
   }
 
   .agent-modal__dialog {

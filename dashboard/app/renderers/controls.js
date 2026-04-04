@@ -9,6 +9,18 @@ import {
 } from "../model.js";
 
 function statusCounts() {
+  const dashboardWorkflows = baseWorkflows().filter((workflow) => workflow.templateId === "content-pipeline");
+
+  if (uiState.activeView === "dashboard") {
+    return statusFilters.reduce((accumulator, status) => {
+      accumulator[status] =
+        status === "all"
+          ? dashboardWorkflows.length
+          : dashboardWorkflows.filter((workflow) => getWorkflowActivity(workflow).state === status).length;
+      return accumulator;
+    }, {});
+  }
+
   if (uiState.activeView === "agents") {
     const instances = agentInstancesInScope();
 
@@ -64,7 +76,6 @@ export function renderWorkspaceSwitcher({ renderScopedSections }) {
   nodes.workspaceSwitcher.querySelectorAll("[data-workspace-id]").forEach((button) => {
     button.addEventListener("click", async () => {
       uiState.workspaceId = button.dataset.workspaceId;
-      uiState.copyFeedback = "";
       ensureSelectedRun();
       renderWorkspaceSwitcher({ renderScopedSections });
       await renderScopedSections();

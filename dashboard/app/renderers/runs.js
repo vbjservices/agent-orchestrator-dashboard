@@ -8,21 +8,24 @@ export function renderRunList({ renderRunDetail }) {
 
   nodes.runList.innerHTML =
     runs
-      .map(
-        (run) => `
+      .map((run) => {
+        const leadAgent = run.steps.at(-1)?.agentName ?? run.workflowName;
+
+        return `
           <button class="run-row ${run.id === selectedRun()?.id ? "is-selected" : ""}" data-run-id="${run.id}">
-            <div class="run-row__main">
-              <p>${run.workflowName}</p>
+            <div class="run-row__head">
+              <small>${displayDate(run.finishedAt)}</small>
+              <span class="status-chip status-chip--${run.status}">${run.status}</span>
+            </div>
+            <p class="run-row__title">${leadAgent}</p>
+            <p class="run-row__summary">${run.summary}</p>
+            <div class="run-row__foot">
+              <small>${run.workflowName}</small>
               <small>${run.workspaceName}</small>
             </div>
-            <div class="run-row__side">
-              <span class="status-chip status-chip--${run.status}">${run.status}</span>
-              <small>${displayDate(run.finishedAt)}</small>
-              <small>${currency(run.costEstimateUsd)}</small>
-            </div>
           </button>
-        `
-      )
+        `;
+      })
       .join("") || `<p class="empty">No runs available for this scope.</p>`;
 
   nodes.runList.querySelectorAll("[data-run-id]").forEach((button) => {

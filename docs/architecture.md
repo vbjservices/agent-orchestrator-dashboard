@@ -34,9 +34,9 @@ Routing:
 - orchestrator resolves enabled workflow instances
 
 Execution:
-- workflow steps call executor handlers
-- current executor is a simulated worker contract
-- real model adapters replace the handler internals later
+- workflow steps resolve through an executor adapter boundary
+- current adapter is a simulated worker contract
+- real model adapters replace the simulated adapter later
 
 Persistence:
 - runner writes dashboard state to `dashboard/data/state.js`

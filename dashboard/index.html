@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agent Orchestrator Dashboard</title>
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles/m1-foundation.css" />
   </head>
   <body>
     <div class="app-shell">
@@ -33,100 +34,74 @@
         <main class="dashboard">
           <section class="view-stack">
             <section class="view" id="view-dashboard" data-view="dashboard">
-              <section class="panel panel--dashboard-overview">
-                <div class="dashboard-overview">
-                  <div class="dashboard-overview__top">
-                    <div class="hero__copy">
-                      <p class="eyebrow">Control Plane</p>
-                      <h1>Agent orchestration that shows its work.</h1>
-                      <p class="hero__lede">
-                        This dashboard is the control plane. Execution lives in workflows and workers. If the
-                        run trace is missing, the platform is lying.
-                      </p>
-                    </div>
+              <div class="dashboard-layout">
+                <div class="dashboard-main">
+                  <section class="metrics" id="metrics"></section>
 
-                    <div class="hero__panel">
-                      <div class="hero__meta">
-                        <div>
-                          <p class="hero__label">Current mode</p>
-                          <p class="hero__value" id="mode-badge">file-backed-v1</p>
-                        </div>
-                        <div>
-                          <p class="hero__label">Last refresh</p>
-                          <p class="hero__value" id="generated-at">waiting for state</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="dashboard-overview__bottom">
-                    <section class="control-rack__block control-rack__block--filters">
-                      <div class="panel__heading control-rack__heading">
-                        <div>
-                          <p class="eyebrow">Operator Controls</p>
-                          <h2>Search and status filters</h2>
-                        </div>
-                      </div>
-                      <div id="control-bar"></div>
-                    </section>
-
-                    <section class="control-rack__block control-rack__block--workspace">
-                      <div class="panel__heading control-rack__heading">
-                        <div>
-                          <p class="eyebrow">Tenant Scope</p>
-                          <h2>Workspace filter</h2>
-                        </div>
-                      </div>
-                      <div class="workspace-switcher" id="workspace-switcher"></div>
-                    </section>
-                  </div>
-                </div>
-              </section>
-
-              <section class="metrics" id="metrics"></section>
-
-              <section class="dashboard-stage">
-                <div class="panel panel--board">
-                  <div class="panel__heading">
-                    <div>
-                      <p class="eyebrow">Workflow Board</p>
-                      <h2>Workflow surfaces and active agents</h2>
-                    </div>
-                  </div>
-                  <div id="dashboard-workflow-board"></div>
-                </div>
-
-                <div class="dashboard-stage__side">
-                  <section class="panel">
+                  <section class="panel panel--board">
                     <div class="panel__heading">
                       <div>
-                        <p class="eyebrow">Workspace Spotlight</p>
-                        <h2>Current operating context</h2>
+                        <p class="eyebrow">AI Team</p>
+                        <h2>Content agents currently driving execution</h2>
                       </div>
                     </div>
-                    <div id="workspace-spotlight"></div>
+                    <div id="dashboard-ai-team"></div>
                   </section>
 
-                  <section class="panel panel--list">
+                  <section class="panel panel--detail">
                     <div class="panel__heading">
                       <div>
-                        <p class="eyebrow">Execution Ledger</p>
-                        <h2>Run history</h2>
+                        <p class="eyebrow">Trace</p>
+                        <h2>Run detail</h2>
+                      </div>
+                    </div>
+                    <div id="run-detail"></div>
+                  </section>
+                </div>
+
+                <aside class="dashboard-rail">
+                  <section class="panel panel--feed panel--feed-sticky">
+                    <div class="panel__heading">
+                      <div>
+                        <p class="eyebrow">Activity Feed</p>
+                        <h2>Recent content runs and live execution</h2>
                       </div>
                     </div>
                     <div class="run-list" id="run-list"></div>
                   </section>
+                </aside>
+              </div>
+            </section>
+
+            <section class="view" id="view-search" data-view="search" hidden>
+              <section class="panel">
+                <div class="panel__heading">
+                  <div>
+                    <p class="eyebrow">Search Surface</p>
+                    <h2>Search and filter the control plane</h2>
+                    <p class="section-note">
+                      Search, workspace scope, and status filters live here so the dashboard stays focused on execution.
+                    </p>
+                  </div>
+                </div>
+                <div class="search-layout">
+                  <div class="search-layout__block">
+                    <div id="control-bar"></div>
+                  </div>
+                  <div class="search-layout__block">
+                    <div class="workspace-switcher" id="workspace-switcher"></div>
+                  </div>
                 </div>
               </section>
 
-              <section class="panel panel--detail">
+              <section class="panel">
                 <div class="panel__heading">
                   <div>
-                    <p class="eyebrow">Trace</p>
-                    <h2>Run detail</h2>
+                    <p class="eyebrow">Search Summary</p>
+                    <h2>Current filtered result scope</h2>
                   </div>
                 </div>
-                <div id="run-detail"></div>
+                <div id="search-summary"></div>
               </section>
             </section>
 

@@ -3,7 +3,7 @@
 This file describes the product we are building toward, not what already exists.
 
 Last updated:
-- 2026-04-01
+- 2026-04-04
 
 ## Product Goal
 

@@ -7,7 +7,7 @@ Rule:
 - If it is out of date, the repo is being described dishonestly.
 
 Last updated:
-- 2026-04-01
+- 2026-04-04
 
 ## Current Focus
 
@@ -30,19 +30,20 @@ The active build focus is not:
 
 - Static dashboard in `dashboard/`
 - Root `index.html` redirects branch-based static hosting to `dashboard/`
-- Dashboard source split into smaller modules for state, activity rules, loaders, and renderers
+- Dashboard source split into smaller modules for state, loaders, renderers, and domain-specific model selectors
+- M1 UI changes now land in `dashboard/styles/m1-foundation.css` instead of bloating the legacy stylesheet further
 - Dark cyber control-room visual theme
 - Visual system tightened toward a more restrained professional operator-console look
 - Dashboard styling now leans into a denser operations-board layout with darker matte surfaces, compact cards, and subtler accent hierarchy
 - Hero title scaled down so the interface reads like an operator console instead of a landing page
 - Layout grids, modal surfaces, and action rows now scale more cleanly across desktop, tablet, and phone sizes
-- Dashboard split into dedicated navigation surfaces for `Dashboard`, `Workflows`, `Agents`, and `Orchestrators`
+- Dashboard split into dedicated navigation surfaces for `Dashboard`, `Search`, `Workflows`, `Agents`, and `Orchestrators`
 - Desktop navigation now uses an icon-led vertical sidebar rail, plus mobile drawer navigation
 - Mobile drawer now has explicit open, close, backdrop-close, and escape-close behavior, with a utility-style close control that is visually separate from the tabs
-- Broad search and workspace controls now live on the dashboard view instead of repeating as large global panels
-- Hero and runtime context panels now live on the dashboard view instead of leaking into every tab
-- Dashboard intro, runtime context, search/status controls, and workspace filtering now share one unified top command surface
-- Dashboard now exposes a workflow board with visible agent chains grouped by workspace, so workflows and their active bots are visible without leaving the dashboard tab
+- Search, status filtering, and workspace scoping now live in a dedicated `Search` tab instead of bloating the dashboard surface
+- Dashboard hero and mode cards were removed so the main dashboard stays focused on execution surfaces
+- Dashboard now centers on KPI cards, content-agent progress cards, and a right-side content activity feed instead of a workspace spotlight plus generic run list
+- Activity feed now lives in a dedicated sticky right rail on desktop so execution history stays visible while the main dashboard scrolls
 - Workflow, agent, and orchestrator tabs now use lighter scope summaries instead of reusing dashboard-heavy context blocks
 - Workflow cards keep a consistent width instead of stretching based on how many cards are visible
 - Pulse bar loaders for independently staged dashboard sections
@@ -50,12 +51,13 @@ The active build focus is not:
 - Workflow popup leads with its attached agent chain so the execution surface shows before metadata
 - Separate workflow template and workflow instance surfaces
 - Separate agent template and agent instance surfaces
-- Orchestrator surface showing trigger/runtime routes plus a read-only setup model
+- Agent and workflow popups now expose SOP links, runtime contracts, and artifact summaries instead of fake fire buttons
+- Orchestrator surface now stays honest about GitHub Actions as the only M1 runtime route, with manual dispatch and cron schedule only
 - Shared SVG avatar icon for displayed agents across launch and trace surfaces
+- Agent avatar now uses a dedicated bot asset in `dashboard/assets/icons/`, while the previous person icon is preserved for future user identity surfaces
 - Clickable agent chain inside the workflow popup plus popup-only agent detail instead of a fixed side rail
 - Color-coded workflow and agent activity states using `running`, `stopped`, and `error`
 - Operator control bar with search and status filtering
-- Workspace spotlight panel for current scope context
 - Workspace filtering
 - Workflow instance overview through compact cards and workflow popup detail
 - Run history ledger
@@ -65,8 +67,12 @@ The active build focus is not:
 
 - Node-based runner in `orchestrator/`
 - Workspace config loading from `config/workspaces/`
-- Workflow template catalog
-- Step execution handlers
+- Agent templates split into dedicated modules under `orchestrator/agents/templates/`
+- Workflow templates split into dedicated modules under `orchestrator/workflows/templates/`
+- Step execution handlers split into dedicated modules under `orchestrator/agents/handlers/`
+- Agent templates now carry runtime, input, config, and SOP metadata
+- Executor adapter boundary lives under `orchestrator/executors/adapters/`
+- Runtime contract validation lives in `orchestrator/lib/validation.mjs`
 - Generated dashboard state output to `dashboard/data/state.js`
 - Runtime snapshot output to `runtime/last-run.json`
 
@@ -75,17 +81,22 @@ The active build focus is not:
 - Content pipeline workflow
 - Lead qualification workflow
 - Agent templates for research, ideation, scripting, qualification, and DM response
+- Content pipeline is the active M1 workflow family
+- Lead qualification remains in the repo as a disabled manual-only surface, not an active M1 runtime path
 - Two sample tenant workspaces with instance-level configuration
 
 ### Automation
 
 - GitHub Actions workflow for manual and scheduled runs
-- Test coverage for the main orchestrator write path
+- Test coverage for orchestrator write path and contract validation
 
 ### Planning and Architecture
 
 - Architecture boundary doc in `docs/architecture.md`
 - Target product doc in `docs/target-state.md`
+- Repo working brief in `codex.md`, now expanded with engineering standards, UI direction, and agent architecture rules
+- Structured SOP library in `knowledge/sops/`
+- SonarQube project config prepared in `sonar-project.properties`
 - Parked database schema draft in `supabase/schema.sql`
 
 ## What Is Verified
@@ -93,6 +104,8 @@ The active build focus is not:
 - `node orchestrator/run.mjs`
 - `node orchestrator/run.mjs --workspace=vbj-services`
 - `node --test --test-isolation=none`
+- syntax checks for `dashboard/app/**/*.js`
+- syntax checks for `orchestrator/**/*.mjs`
 
 ## What Is Still Fake
 
@@ -101,6 +114,7 @@ The active build focus is not:
 - No real backend API exists yet
 - No database writes happen at runtime
 - No authentication or tenant enforcement exists in the UI path
+- No actual SonarQube scan is running yet because the repo has config only, not a wired scanner or server connection
 
 ## Folder Structure
 
@@ -109,6 +123,7 @@ This is the current structure we are keeping clean:
 - `dashboard/`: static frontend and generated dashboard state
 - `dashboard/app/`: modular dashboard source split by responsibility
 - `orchestrator/`: runtime entrypoint and orchestration engine
+- `knowledge/`: SOP and operational knowledge library
 - `config/`: tenant and workflow instance configuration
 - `docs/`: architecture, build status, and target-state documents
 - `.github/workflows/`: always-on orchestration triggers
@@ -117,7 +132,7 @@ This is the current structure we are keeping clean:
 
 ## Immediate Next Build Steps
 
-1. Replace the fake executor contract with a real provider adapter boundary.
+1. Replace the simulated executor adapter implementation with a real provider-backed adapter.
 2. Turn the read-only template and instance surfaces into structured configuration forms.
 3. Add a real backend contract for manual runs and saved instance configuration.
 4. Keep the runtime file-backed until the workflow and UI surfaces stop changing aggressively.

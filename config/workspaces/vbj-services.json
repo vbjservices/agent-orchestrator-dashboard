@@ -37,8 +37,8 @@
       "id": "vbj-lead-triage",
       "name": "Inbound Lead Triage",
       "template": "lead-qualification",
-      "enabled": true,
-      "triggerMode": "manual_or_webhook",
+      "enabled": false,
+      "triggerMode": "manual_only",
       "schedule": null,
       "params": {
         "qualificationThreshold": 72,

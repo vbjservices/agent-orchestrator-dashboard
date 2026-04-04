@@ -1,135 +1,66 @@
 import { nodes, uiState } from "../context.js";
 import { agentAvatarMarkup, nextPaint } from "../lib.js";
 import { loaderMarkup } from "../loaders.js";
-import {
-  agentSelectionKey,
-  filteredWorkflows,
-  getAgentNodeStatus,
-  getWorkflowActivity,
-  getWorkspaceById,
-  latestRunForWorkflow
-} from "../model.js";
+import { dashboardAiTeams } from "../model.js";
 
-function workflowLaneMarkup(workflow) {
-  const latestRun = latestRunForWorkflow(workflow.id);
-  const workflowActivity = getWorkflowActivity(workflow, latestRun);
-  const workspace = getWorkspaceById(workflow.workspaceId);
-  const agentNodes =
-    workflow.agentChain?.map((node) => {
-      const agentState = getAgentNodeStatus(workflow, node, latestRun, workflowActivity);
+export function renderAiTeam({ renderAgentModal }) {
+  const teams = dashboardAiTeams();
 
-      return `
-        <button
-          class="workflow-lane__agent workflow-lane__agent--${agentState.state}"
-          data-dashboard-agent="${agentSelectionKey(workflow.id, node.id)}"
-          type="button"
-        >
-          <span class="workflow-lane__agent-head">
-            ${agentAvatarMarkup("xs")}
-            <strong>${node.agentName}</strong>
-          </span>
-          <small>${node.name}</small>
-        </button>
-      `;
-    }).join("") ?? "";
-
-  return `
-    <article
-      class="workflow-lane workflow-lane--${workflowActivity.state}"
-      data-dashboard-workflow="${workflow.id}"
-      role="button"
-      tabindex="0"
-      aria-label="Open ${workflow.name}"
-    >
-      <div class="workflow-lane__head">
-        <div>
-          <p class="workflow-lane__workspace">${workspace?.name ?? workflow.workspaceId}</p>
-          <h3>${workflow.name}</h3>
-        </div>
-        <span class="live-state live-state--${workflowActivity.state}">
-          <span class="live-state__orb"></span>
-          <span>${workflowActivity.label}</span>
-        </span>
-      </div>
-      <p class="workflow-lane__detail">${workflowActivity.detail}</p>
-      <div class="workflow-lane__agents">
-        ${agentNodes || `<p class="empty">No agent chain recorded yet.</p>`}
-      </div>
-      <div class="workflow-lane__foot">
-        <span>${workflow.templateName}</span>
-        <span>${workflow.schedule ?? "manual only"}</span>
-      </div>
-    </article>
-  `;
-}
-
-export function renderDashboardWorkflowBoard({ renderAgentModal, renderWorkflowModal, renderRunList, renderRunDetail }) {
-  const grouped = filteredWorkflows().reduce((accumulator, workflow) => {
-    const workspace = getWorkspaceById(workflow.workspaceId);
-    const groupId = workflow.workspaceId;
-    const group = accumulator.get(groupId) ?? {
-      id: groupId,
-      name: workspace?.name ?? workflow.workspaceId,
-      workflows: []
-    };
-
-    group.workflows.push(workflow);
-    accumulator.set(groupId, group);
-    return accumulator;
-  }, new Map());
-
-  nodes.dashboardWorkflowBoard.innerHTML =
-    Array.from(grouped.values())
+  nodes.dashboardAiTeam.innerHTML =
+    teams
       .map(
-        (group) => `
-          <section class="workflow-column">
-            <header class="workflow-column__head">
-              <div>
-                <p class="eyebrow">Workspace</p>
-                <h3>${group.name}</h3>
+        (team) => `
+          <button
+            class="team-card team-card--${team.state}"
+            data-ai-team="${team.primarySelectionKey}"
+            type="button"
+          >
+            <div class="team-card__head">
+              <div class="team-card__identity">
+                ${agentAvatarMarkup("sm")}
+                <div>
+                  <p class="team-card__role">${team.category}</p>
+                  <h3>${team.name}</h3>
+                </div>
               </div>
-              <span class="workflow-column__count">${group.workflows.length} workflows</span>
-            </header>
-            <div class="workflow-column__stack">
-              ${group.workflows.map((workflow) => workflowLaneMarkup(workflow)).join("")}
+              <span class="status-chip status-chip--${team.state}">${team.state}</span>
             </div>
-          </section>
+            <p class="team-card__body">${team.detail}</p>
+            <div class="team-card__progress">
+              <div class="team-card__progress-head">
+                <span>Processing</span>
+                <strong>${team.progress}%</strong>
+              </div>
+              <div class="team-card__progress-track" aria-hidden="true">
+                <span style="width: ${team.progress}%"></span>
+              </div>
+            </div>
+            <dl class="team-card__meta">
+              <div>
+                <dt>Workflows</dt>
+                <dd>${team.workflowCount}</dd>
+              </div>
+              <div>
+                <dt>Workspaces</dt>
+                <dd>${team.workspaceCount}</dd>
+              </div>
+              <div>
+                <dt>Output</dt>
+                <dd>${team.outputArtifactKind}</dd>
+              </div>
+            </dl>
+          </button>
         `
       )
-      .join("") || `<p class="empty">No workflows match the current dashboard scope.</p>`;
+      .join("") || `<p class="empty">No AI team surfaces match the current dashboard scope.</p>`;
 
-  nodes.dashboardWorkflowBoard.querySelectorAll("[data-dashboard-workflow]").forEach((lane) => {
-    const openWorkflow = async () => {
-      uiState.selectedWorkflowId = lane.dataset.dashboardWorkflow;
-      uiState.isAgentModalOpen = false;
-      uiState.isWorkflowModalOpen = true;
-      nodes.agentModal.hidden = true;
-      nodes.workflowModal.hidden = false;
-      nodes.workflowModalContent.innerHTML = loaderMarkup("Loading workflow popup");
-      await nextPaint();
-      renderDashboardWorkflowBoard({ renderAgentModal, renderWorkflowModal, renderRunList, renderRunDetail });
-      renderWorkflowModal({ renderRunList, renderRunDetail });
-    };
-
-    lane.addEventListener("click", openWorkflow);
-    lane.addEventListener("keydown", async (event) => {
-      if (event.target !== lane) {
+  nodes.dashboardAiTeam.querySelectorAll("[data-ai-team]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      if (!button.dataset.aiTeam) {
         return;
       }
 
-      if (event.key !== "Enter" && event.key !== " ") {
-        return;
-      }
-
-      event.preventDefault();
-      await openWorkflow();
-    });
-  });
-
-  nodes.dashboardWorkflowBoard.querySelectorAll("[data-dashboard-agent]").forEach((button) => {
-    button.addEventListener("click", async (event) => {
-      event.stopPropagation();
-      uiState.selectedAgentKey = button.dataset.dashboardAgent;
+      uiState.selectedAgentKey = button.dataset.aiTeam;
       uiState.isWorkflowModalOpen = false;
       uiState.isAgentModalOpen = true;
       nodes.workflowModal.hidden = true;
@@ -137,10 +68,6 @@ export function renderDashboardWorkflowBoard({ renderAgentModal, renderWorkflowM
       nodes.agentModalContent.innerHTML = loaderMarkup("Loading agent popup");
       await nextPaint();
       renderAgentModal();
-    });
-
-    button.addEventListener("keydown", (event) => {
-      event.stopPropagation();
     });
   });
 }

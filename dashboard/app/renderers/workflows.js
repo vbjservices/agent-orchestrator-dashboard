@@ -1,9 +1,8 @@
 import { nodes, uiState } from "../context.js";
-import { agentAvatarMarkup, displayDate, escapeHtml, nextPaint } from "../lib.js";
-import { attachCopyHandlers, loaderMarkup, showSectionLoader } from "../loaders.js";
+import { agentAvatarMarkup, displayDate, formatTriggerMode, nextPaint } from "../lib.js";
+import { loaderMarkup, showSectionLoader } from "../loaders.js";
 import {
   agentSelectionKey,
-  copyCommandLabel,
   filteredWorkflows,
   getAgentNodeStatus,
   getWorkflowActivity,
@@ -48,6 +47,31 @@ export function initializeWorkflowModal({ renderWorkflowModal, renderRunList, re
   });
 }
 
+function latestArtifactMarkup(artifact) {
+  if (!artifact) {
+    return `<p class="empty">No artifact has been produced yet.</p>`;
+  }
+
+  const preview =
+    artifact.script ??
+    artifact.response ??
+    artifact.headline ??
+    artifact.hook ??
+    artifact.bullets?.[0] ??
+    artifact.ideas?.[0]?.hook ??
+    "Structured artifact available.";
+
+  return `
+    <div class="artifact-preview">
+      <div class="artifact-preview__meta">
+        <span>${artifact.kind ?? "artifact"}</span>
+        <strong>${artifact.headline ?? "Latest artifact"}</strong>
+      </div>
+      <p>${preview}</p>
+    </div>
+  `;
+}
+
 export function renderAgentModal() {
   const context = selectedAgentContext();
 
@@ -57,9 +81,7 @@ export function renderAgentModal() {
     return;
   }
 
-  const { workflow, node, latestRun, latestStep, workflowActivity, agentState } = context;
-  const localCommand = `node orchestrator/run.mjs --workspace=${workflow.workspaceId} --workflow=${workflow.id}`;
-  const cloudCommand = `gh workflow run orchestrator.yml -f workspace_id=${workflow.workspaceId} -f workflow_id=${workflow.id}`;
+  const { workflow, node, latestRun, latestStep, workflowActivity, agentState, template } = context;
   const artifactPreview = latestStep?.artifact
     ? `<pre>${JSON.stringify(latestStep.artifact, null, 2)}</pre>`
     : `<p class="empty">No artifact yet for this agent.</p>`;
@@ -80,7 +102,7 @@ export function renderAgentModal() {
           <span>${agentState.state}</span>
         </span>
       </div>
-      <p class="agent-modal__body">${agentState.detail}</p>
+      <p class="agent-modal__body">${template?.responsibility ?? agentState.detail}</p>
       <dl class="agent-modal__meta">
         <div>
           <dt>Workflow</dt>
@@ -100,28 +122,32 @@ export function renderAgentModal() {
         </div>
         <div>
           <dt>Trigger mode</dt>
-          <dd>${workflow.triggerMode.replaceAll("_", " / ")}</dd>
+          <dd>${formatTriggerMode(workflow.triggerMode)}</dd>
         </div>
         <div>
           <dt>Last finished</dt>
           <dd>${displayDate(latestStep?.finishedAt ?? latestRun?.finishedAt ?? null)}</dd>
         </div>
+        <div>
+          <dt>Required inputs</dt>
+          <dd>${template?.requiredInputs?.join(", ") ?? "n/a"}</dd>
+        </div>
+        <div>
+          <dt>Output kind</dt>
+          <dd>${template?.outputArtifactKind ?? "n/a"}</dd>
+        </div>
+        <div>
+          <dt>SOP</dt>
+          <dd>${template?.sopPath ?? "n/a"}</dd>
+        </div>
+        <div>
+          <dt>Allowed config</dt>
+          <dd>${template?.allowedConfigFields?.join(", ") ?? "n/a"}</dd>
+        </div>
       </dl>
-      <div class="agent-modal__actions">
-        <button
-          class="launch-action"
-          data-command-id="focus-local-${workflow.id}"
-          data-copy-command="${escapeHtml(localCommand)}"
-        >
-          ${copyCommandLabel(`focus-local-${workflow.id}`) === "Copied" ? "Local copied" : "Fire local"}
-        </button>
-        <button
-          class="launch-action"
-          data-command-id="focus-cloud-${workflow.id}"
-          data-copy-command="${escapeHtml(cloudCommand)}"
-        >
-          ${copyCommandLabel(`focus-cloud-${workflow.id}`) === "Copied" ? "Cloud copied" : "Fire cloud"}
-        </button>
+      <div class="agent-modal__artifact">
+        <p class="eyebrow">Runtime contract</p>
+        <p class="workflow-modal__summary-text">${agentState.detail}</p>
       </div>
       <div class="agent-modal__artifact">
         <p class="eyebrow">Latest artifact</p>
@@ -129,8 +155,6 @@ export function renderAgentModal() {
       </div>
     </div>
   `;
-
-  attachCopyHandlers(nodes.agentModalContent, renderAgentModal);
 }
 
 export function renderWorkflowModal({ renderRunList, renderRunDetail }) {
@@ -142,13 +166,12 @@ export function renderWorkflowModal({ renderRunList, renderRunDetail }) {
     return;
   }
 
-  const { workflow, latestRun, workflowActivity } = context;
-  const localCommand = `node orchestrator/run.mjs --workspace=${workflow.workspaceId} --workflow=${workflow.id}`;
-  const cloudCommand = `gh workflow run orchestrator.yml -f workspace_id=${workflow.workspaceId} -f workflow_id=${workflow.id}`;
+  const { workflow, latestRun, workflowActivity, template, agents } = context;
   const latestSummary = latestRun?.summary ?? "No run has completed for this workflow yet.";
+  const latestArtifact = latestRun?.primaryArtifact ?? null;
   const agentChain =
-    workflow.agentChain?.length
-      ? workflow.agentChain
+    agents.length
+      ? agents
           .map((node) => {
             const selectionKey = agentSelectionKey(workflow.id, node.id);
             const agentState = getAgentNodeStatus(workflow, node, latestRun, workflowActivity);
@@ -202,7 +225,7 @@ export function renderWorkflowModal({ renderRunList, renderRunDetail }) {
         </div>
         <div>
           <dt>Trigger</dt>
-          <dd>${workflow.triggerMode.replaceAll("_", " / ")}</dd>
+          <dd>${formatTriggerMode(workflow.triggerMode)}</dd>
         </div>
         <div>
           <dt>Schedule</dt>
@@ -216,22 +239,16 @@ export function renderWorkflowModal({ renderRunList, renderRunDetail }) {
           <dt>Last result</dt>
           <dd>${workflow.lastRunStatus}</dd>
         </div>
+        <div>
+          <dt>SOP directory</dt>
+          <dd>${template?.sopDirectory ?? "n/a"}</dd>
+        </div>
+        <div>
+          <dt>Instance config</dt>
+          <dd>${template?.instanceConfigFields?.join(", ") ?? "n/a"}</dd>
+        </div>
       </dl>
       <div class="workflow-modal__actions">
-        <button
-          class="launch-action"
-          data-command-id="workflow-local-${workflow.id}"
-          data-copy-command="${escapeHtml(localCommand)}"
-        >
-          ${copyCommandLabel(`workflow-local-${workflow.id}`) === "Copied" ? "Local copied" : "Fire local"}
-        </button>
-        <button
-          class="launch-action"
-          data-command-id="workflow-cloud-${workflow.id}"
-          data-copy-command="${escapeHtml(cloudCommand)}"
-        >
-          ${copyCommandLabel(`workflow-cloud-${workflow.id}`) === "Copied" ? "Cloud copied" : "Fire cloud"}
-        </button>
         <button
           class="launch-action launch-action--ghost"
           data-open-workflow-run="${latestRun?.id ?? ""}"
@@ -244,10 +261,13 @@ export function renderWorkflowModal({ renderRunList, renderRunDetail }) {
         <p class="eyebrow">Latest run summary</p>
         <p class="workflow-modal__summary-text">${latestSummary}</p>
       </div>
+      <div class="workflow-modal__artifact">
+        <p class="eyebrow">Latest artifact</p>
+        ${latestArtifactMarkup(latestArtifact)}
+      </div>
     </div>
   `;
 
-  attachCopyHandlers(nodes.workflowModalContent, () => renderWorkflowModal({ renderRunList, renderRunDetail }));
   nodes.workflowModalContent.querySelectorAll("[data-open-workflow-run]").forEach((button) => {
     button.addEventListener("click", async () => {
       const runId = button.dataset.openWorkflowRun;
@@ -314,7 +334,7 @@ export function renderWorkflows({ renderAgentModal, renderWorkflowModal, renderR
             </div>
             <div class="workflow-card__stats">
               <span>${workflow.agentChain?.length ?? 0} agents</span>
-              <span>${workflow.templateName}</span>
+              <span>${formatTriggerMode(workflow.triggerMode)}</span>
             </div>
             <div class="workflow-card__footer">
               <small class="workflow-card__footnote">

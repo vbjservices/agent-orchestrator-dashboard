@@ -2,10 +2,11 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 
-import { agentTemplates, getAgentTemplate, getWorkflowTemplate } from "./catalog.mjs";
+import { agentTemplates, getAgentTemplate, getWorkflowTemplate, workflowTemplates } from "./catalog.mjs";
 import { executeStep } from "./executors.mjs";
 import { defaultPaths } from "./paths.mjs";
 import { loadState, writeState } from "./state-store.mjs";
+import { validateContracts } from "./validation.mjs";
 import { loadWorkspaces } from "./workspace-loader.mjs";
 
 function parsePreviousRuns(previousState) {
@@ -64,7 +65,7 @@ async function executeWorkflowInstance({ workspace, workflowInstance, trigger, e
       name: templateStep.name,
       agentId: templateStep.agentId,
       agentName: result.agentName,
-      executor: templateStep.executor,
+      executor: result.executor ?? templateStep.executor,
       status: "succeeded",
       startedAt: stepStartedAtIso,
       finishedAt: stepFinishedAtIso,
@@ -180,6 +181,7 @@ export async function runOrchestrator(options = {}) {
   const targetWorkflowId = options.workflowId ?? null;
   const workspaces = await loadWorkspaces(paths.workspaceConfigDir);
   const previousState = await loadState(paths.outputStatePath);
+  validateContracts(workspaces);
 
   const selectedWorkspaces = targetWorkspaceId
     ? workspaces.filter((workspace) => workspace.id === targetWorkspaceId)
@@ -227,6 +229,7 @@ export async function runOrchestrator(options = {}) {
     trigger,
     stats: buildGlobalStats(workspaceView, workflows, runs),
     agents: agentTemplates,
+    workflowTemplates: Object.values(workflowTemplates),
     workspaces: workspaceView,
     workflows,
     runs

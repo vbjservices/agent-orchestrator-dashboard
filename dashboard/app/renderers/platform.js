@@ -19,6 +19,12 @@ export function renderWorkflowTemplates() {
             <p class="eyebrow">Workflow Template</p>
             <h3>${template.name}</h3>
             <p class="template-card__body">${template.description}</p>
+            <div class="contract-stack">
+              <p class="contract-stack__label">SOP directory</p>
+              <p class="contract-stack__value">${template.sopDirectory}</p>
+              <p class="contract-stack__label">Instance config</p>
+              <p class="contract-stack__value">${template.instanceConfigFields.join(", ")}</p>
+            </div>
             <dl class="template-card__meta">
               <div>
                 <dt>Instances</dt>
@@ -54,6 +60,14 @@ export function renderAgentTemplates() {
             <p class="eyebrow">${template.category}</p>
             <h3>${template.name}</h3>
             <p class="template-card__body">${template.responsibility}</p>
+            <div class="contract-stack">
+              <p class="contract-stack__label">Required inputs</p>
+              <p class="contract-stack__value">${template.requiredInputs.join(", ")}</p>
+              <p class="contract-stack__label">Output kind</p>
+              <p class="contract-stack__value">${template.outputArtifactKind}</p>
+              <p class="contract-stack__label">SOP</p>
+              <p class="contract-stack__value">${template.sopPath}</p>
+            </div>
             <dl class="template-card__meta">
               <div>
                 <dt>Instances</dt>
@@ -103,12 +117,12 @@ export function renderAgentInstances({ renderAgentModal }) {
                 <dd>${instance.category}</dd>
               </div>
               <div>
-                <dt>Workflows</dt>
-                <dd>${instance.workflowCount}</dd>
+                <dt>Output</dt>
+                <dd>${instance.outputArtifactKind}</dd>
               </div>
               <div>
-                <dt>Active</dt>
-                <dd>${instance.activeWorkflowCount}</dd>
+                <dt>SOP</dt>
+                <dd>${instance.sopPath}</dd>
               </div>
             </dl>
           </button>
@@ -140,7 +154,7 @@ export function renderOrchestrators() {
           <article class="orchestrator-card orchestrator-card--${entry.state}">
             <div class="orchestrator-card__head">
               <div>
-                <p class="eyebrow">Orchestrator</p>
+                <p class="eyebrow">Runtime Surface</p>
                 <h3>${entry.name}</h3>
               </div>
               <span class="live-state live-state--${entry.state}">
@@ -166,14 +180,14 @@ export function renderOrchestrators() {
 
   nodes.orchestratorSetup.innerHTML = `
     <div class="setup-card">
-      <p class="eyebrow">Setup Rules</p>
-      <h3>How configuration should work</h3>
+      <p class="eyebrow">M1 Rules</p>
+      <h3>What this milestone does and does not support</h3>
       <ul class="setup-list">
+        <li>GitHub Actions is the only active orchestrator in M1.</li>
+        <li>Supported trigger paths are manual dispatch and cron schedule only.</li>
         <li>Agent templates stay platform-built and define allowed config fields.</li>
-        <li>Agent instances stay workspace-scoped and are attached to workflows.</li>
-        <li>Workflow templates define step order and allowed trigger types.</li>
-        <li>Workflow instances activate schedules, webhooks, and workspace-specific parameters.</li>
-        <li>Backend-backed editing comes later. This surface stays read-only until it can persist honestly.</li>
+        <li>Workflow instances bind tenant parameters and schedule state in code-backed config.</li>
+        <li>Backend-backed editing and webhook ingress stay out until a real runtime exists.</li>
       </ul>
     </div>
   `;

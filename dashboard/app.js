@@ -1,17 +1,18 @@
-import { state, nodes, sectionNodes, uiState } from "./app/context.js";
-import { displayDate, nextPaint, wait } from "./app/lib.js";
+import { nodes, sectionNodes, uiState } from "./app/context.js";
+import { nextPaint, wait } from "./app/lib.js";
 import { showScopeLoaders, showSectionLoader } from "./app/loaders.js";
 import { ensureSelectedRun, selectedAgentContext, selectedWorkflowContext } from "./app/model.js";
 import { renderControlBar, renderWorkspaceSwitcher } from "./app/renderers/controls.js";
-import { renderDashboardWorkflowBoard } from "./app/renderers/dashboard.js";
+import { renderAiTeam } from "./app/renderers/dashboard.js";
 import { renderNavigation } from "./app/renderers/navigation.js";
-import { renderMetrics, renderWorkspaceSpotlight } from "./app/renderers/overview.js";
+import { renderMetrics } from "./app/renderers/overview.js";
 import {
   renderAgentInstances,
   renderAgentTemplates,
   renderOrchestrators,
   renderWorkflowTemplates
 } from "./app/renderers/platform.js";
+import { renderSearchSummary } from "./app/renderers/search.js";
 import { renderViewScopes } from "./app/renderers/scopes.js";
 import {
   initializeAgentModal,
@@ -43,14 +44,11 @@ function closeModals() {
 }
 
 async function renderPrimarySections() {
-  nodes.modeBadge.textContent = state.mode;
-  nodes.generatedAt.textContent = displayDate(state.generatedAt);
-
   showSectionLoader("controlBar", "Priming operator controls");
-  showSectionLoader("workspaceSpotlight", "Loading workspace context");
   showSectionLoader("workspaceSwitcher", "Loading workspace scopes", true);
+  showSectionLoader("searchSummary", "Loading search summary");
   showSectionLoader("metrics", "Summarizing telemetry");
-  showSectionLoader("dashboardWorkflowBoard", "Mapping workflow board");
+  showSectionLoader("dashboardAiTeam", "Mapping AI team");
   showSectionLoader("workflowTemplates", "Loading workflow templates");
   showSectionLoader("workflows", "Loading workflow instances");
   showSectionLoader("agentTemplates", "Loading agent templates");
@@ -69,9 +67,9 @@ async function renderPrimarySections() {
   });
   renderWorkspaceSwitcher({ renderScopedSections });
   renderControlBar({ renderScopedSections });
-  renderWorkspaceSpotlight();
+  renderSearchSummary();
   renderMetrics();
-  renderDashboardWorkflowBoard({ renderAgentModal, renderWorkflowModal, renderRunList: renderRunListSection, renderRunDetail });
+  renderAiTeam({ renderAgentModal });
   renderViewScopes();
   renderWorkflowTemplates();
   renderWorkflowSection();
@@ -93,9 +91,9 @@ async function renderScopedSections() {
   });
   renderWorkspaceSwitcher({ renderScopedSections });
   renderControlBar({ renderScopedSections });
-  renderWorkspaceSpotlight();
+  renderSearchSummary();
   renderMetrics();
-  renderDashboardWorkflowBoard({ renderAgentModal, renderWorkflowModal, renderRunList: renderRunListSection, renderRunDetail });
+  renderAiTeam({ renderAgentModal });
   renderViewScopes();
 
   await nextPaint();

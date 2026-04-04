@@ -10,6 +10,7 @@ export const fallbackState = {
   },
   workspaces: [],
   workflows: [],
+  workflowTemplates: [],
   runs: [],
   agents: []
 };
@@ -24,7 +25,6 @@ export const uiState = {
   runId: state.runs[0]?.id ?? null,
   searchQuery: "",
   statusFilter: "all",
-  copyFeedback: "",
   selectedWorkflowId: "",
   isWorkflowModalOpen: false,
   selectedAgentKey: "",
@@ -39,7 +39,7 @@ export const nodes = {
   sidebarBackdrop: document.querySelector("#sidebar-backdrop"),
   workspaceSwitcher: document.querySelector("#workspace-switcher"),
   metrics: document.querySelector("#metrics"),
-  dashboardWorkflowBoard: document.querySelector("#dashboard-workflow-board"),
+  dashboardAiTeam: document.querySelector("#dashboard-ai-team"),
   workflowGrid: document.querySelector("#workflow-grid"),
   workflowTemplateGrid: document.querySelector("#workflow-template-grid"),
   workflowScope: document.querySelector("#workflow-scope"),
@@ -52,25 +52,24 @@ export const nodes = {
   runList: document.querySelector("#run-list"),
   runDetail: document.querySelector("#run-detail"),
   dashboardView: document.querySelector("#view-dashboard"),
+  searchView: document.querySelector("#view-search"),
   workflowsView: document.querySelector("#view-workflows"),
   agentsView: document.querySelector("#view-agents"),
   orchestratorsView: document.querySelector("#view-orchestrators"),
+  searchSummary: document.querySelector("#search-summary"),
   workflowModal: document.querySelector("#workflow-modal"),
   workflowModalContent: document.querySelector("#workflow-modal-content"),
   agentModal: document.querySelector("#agent-modal"),
   agentModalContent: document.querySelector("#agent-modal-content"),
-  modeBadge: document.querySelector("#mode-badge"),
-  generatedAt: document.querySelector("#generated-at"),
-  controlBar: document.querySelector("#control-bar"),
-  workspaceSpotlight: document.querySelector("#workspace-spotlight")
+  controlBar: document.querySelector("#control-bar")
 };
 
 export const sectionNodes = {
   controlBar: nodes.controlBar,
-  workspaceSpotlight: nodes.workspaceSpotlight,
   workspaceSwitcher: nodes.workspaceSwitcher,
+  searchSummary: nodes.searchSummary,
   metrics: nodes.metrics,
-  dashboardWorkflowBoard: nodes.dashboardWorkflowBoard,
+  dashboardAiTeam: nodes.dashboardAiTeam,
   workflowTemplates: nodes.workflowTemplateGrid,
   workflows: nodes.workflowGrid,
   agentTemplates: nodes.agentTemplateGrid,
