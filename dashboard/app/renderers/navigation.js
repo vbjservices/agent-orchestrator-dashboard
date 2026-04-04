@@ -1,4 +1,4 @@
-import { nodes, uiState } from "../context.js";
+import { nodes, persistActiveView, uiState } from "../context.js";
 
 let escapeHandlerBound = false;
 
@@ -31,11 +31,27 @@ function navIcon(name) {
     analytics:
       `<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5h15M6.75 15.75v-3m4.5 3V6.75m4.5 9V10.5M5.25 10.5 9 8.25l3 2.25 5.25-5.25" />`,
     tasks:
-      `<path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75h11.25M9 12h11.25M9 17.25h11.25M4.5 6.75h.008v.008H4.5zm0 5.25h.008v.008H4.5zm0 5.25h.008v.008H4.5z" />`,
+      `
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5h6a2.25 2.25 0 0 1 2.25 2.25v10.5A2.25 2.25 0 0 1 15 19.5H9a2.25 2.25 0 0 1-2.25-2.25V6.75A2.25 2.25 0 0 1 9 4.5Z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 4.5V3.75A1.5 1.5 0 0 1 12 2.25h0a1.5 1.5 0 0 1 1.5 1.5v.75" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 11.25 1.5 1.5 3-3" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 15.75h4.5" />
+      `,
     workflows:
-      `<path stroke-linecap="round" stroke-linejoin="round" d="M7.5 6.75h9m-9 5.25h6m-6 5.25h9M4.5 6.75h.008v.008H4.5zm0 5.25h.008v.008H4.5zm0 5.25h.008v.008H4.5z" />`,
+      `
+        <circle cx="6.75" cy="6.75" r="2.25" />
+        <circle cx="17.25" cy="6.75" r="2.25" />
+        <circle cx="12" cy="17.25" r="2.25" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75h6M8.1 8.55l2.85 5.25m2.95-5.25-2.85 5.25" />
+      `,
     agents:
-      `<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 19.125a7.5 7.5 0 0 1 15 0" />`,
+      `
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5V3m6 1.5V3" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 7.5h7.5A2.25 2.25 0 0 1 18 9.75v5.25a2.25 2.25 0 0 1-2.25 2.25h-7.5A2.25 2.25 0 0 1 6 15V9.75A2.25 2.25 0 0 1 8.25 7.5Z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 12h7.5" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 10.5h.008v.008H9.75zm4.492 0h.008v.008h-.008z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v2.25m6-2.25v2.25M6 12H4.5m15 0H18" />
+      `,
     orchestrators:
       `<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 7.5h15m-12 4.5h9m-6 4.5h3m-8.25-9.75v9.75m8.25-9.75v9.75" />`
   };
@@ -109,6 +125,7 @@ export function renderNavigation({ onNavigate }) {
       }
 
       uiState.activeView = button.dataset.viewId;
+      persistActiveView(uiState.activeView);
       uiState.isSidebarOpen = false;
       syncViews();
       syncSidebar();

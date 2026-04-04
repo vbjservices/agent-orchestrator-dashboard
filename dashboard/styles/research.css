@@ -299,6 +299,21 @@
   gap: 12px;
 }
 
+.idea-bank-card__badge-strip {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.idea-bank-card__badge-separator {
+  color: var(--muted);
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .idea-bank-card__head small {
   color: var(--muted);
   font-size: 0.72rem;

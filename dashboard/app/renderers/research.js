@@ -127,7 +127,16 @@ function ideaBank(snapshot) {
       (idea) => `
         <article class="idea-bank-card">
           <div class="idea-bank-card__head">
-            <span class="idea-bank-card__badge">${idea.platformBadge}</span>
+            <div class="idea-bank-card__badge-strip">
+              ${idea.platforms
+                .map(
+                  (platform, index) => `
+                    ${index > 0 ? `<span class="idea-bank-card__badge-separator">+</span>` : ""}
+                    ${platformBadge(platform)}
+                  `
+                )
+                .join("")}
+            </div>
             <small>${displayDate(idea.updatedAt)}</small>
           </div>
           <p class="idea-bank-card__title">${idea.title}</p>

@@ -46,8 +46,10 @@ The active build focus is not:
 - Dashboard navigation now also includes a dedicated `Research` surface for runtime-backed topic discovery, competitor pulse, and idea-bank review
 - `Analytics` now contains internal `Performance` and `KPIs` tabs so content outcomes and control-plane metrics stay grouped in one page
 - Desktop navigation now uses an icon-led vertical sidebar rail, plus mobile drawer navigation
+- Sidebar nav icons now better match their surface intent, with dedicated task, workflow, and agent glyphs instead of generic placeholders
 - Shell now includes a compact application top bar for command-center context, sync state, refresh timestamp, and active view breadcrumb
 - Shell now includes a compact application top bar that shows the active tab name plus sync metadata without extra breadcrumb noise
+- The active sidebar view and the active `Analytics` sub-tab now persist across page refreshes, so a reload keeps operators on the surface they were already using
 - Mobile drawer now has explicit open, close, backdrop-close, and escape-close behavior, with a utility-style close control that is visually separate from the tabs
 - Search, status filtering, and workspace scoping now live in a dedicated `Search` tab instead of bloating the dashboard surface
 - `Pipeline` tab now uses a single auto-advancing board as the source of truth, with per-lane counts in the headers instead of a duplicated summary section

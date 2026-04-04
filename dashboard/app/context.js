@@ -1,3 +1,15 @@
+const activeViewStorageKey = "dashboard.activeView";
+const activeAnalyticsTabStorageKey = "dashboard.activeAnalyticsTab";
+
+function restoreStoredValue(storageKey, fallbackValue, allowedValues) {
+  try {
+    const storedValue = window.localStorage.getItem(storageKey);
+    return allowedValues.has(storedValue) ? storedValue : fallbackValue;
+  } catch {
+    return fallbackValue;
+  }
+}
+
 export const fallbackState = {
   generatedAt: null,
   mode: "uninitialized",
@@ -19,8 +31,26 @@ export const state = window.__ORCHESTRATOR_STATE__ ?? fallbackState;
 export const statusFilters = ["all", "running", "stopped", "error"];
 
 export const uiState = {
-  activeView: "dashboard",
-  activeAnalyticsTab: "performance",
+  activeView: restoreStoredValue(
+    activeViewStorageKey,
+    "dashboard",
+    new Set([
+      "dashboard",
+      "search",
+      "research",
+      "pipeline",
+      "performance",
+      "tasks",
+      "workflows",
+      "agents",
+      "orchestrators"
+    ])
+  ),
+  activeAnalyticsTab: restoreStoredValue(
+    activeAnalyticsTabStorageKey,
+    "performance",
+    new Set(["performance", "kpi"])
+  ),
   isSidebarOpen: false,
   feedRailWidth: 340,
   workspaceId: "all",
@@ -32,6 +62,18 @@ export const uiState = {
   selectedAgentKey: "",
   isAgentModalOpen: false
 };
+
+export function persistActiveView(viewId) {
+  try {
+    window.localStorage.setItem(activeViewStorageKey, viewId);
+  } catch {}
+}
+
+export function persistActiveAnalyticsTab(tabId) {
+  try {
+    window.localStorage.setItem(activeAnalyticsTabStorageKey, tabId);
+  } catch {}
+}
 
 export const nodes = {
   navMenu: document.querySelector("#nav-menu"),

@@ -161,7 +161,7 @@ function ideaBank(topics) {
     id: `idea-bank::${topic.id}`,
     title: topic.hookAngle,
     workspaceName: topic.workspaceName,
-    platformBadge: topic.platforms.join(" + "),
+    platforms: topic.platforms,
     pipelineLabel: index === 0 ? "Priority" : "Pipeline",
     updatedAt: topic.updatedAt
   }));

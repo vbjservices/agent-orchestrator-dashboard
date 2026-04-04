@@ -1,4 +1,4 @@
-import { nodes, uiState } from "../context.js";
+import { nodes, persistActiveAnalyticsTab, uiState } from "../context.js";
 import { renderKpiDeck } from "./kpi.js";
 import { renderPerformanceDashboard } from "./performance.js";
 
@@ -34,6 +34,7 @@ function bindAnalyticsTabs() {
       }
 
       uiState.activeAnalyticsTab = button.dataset.analyticsTab;
+      persistActiveAnalyticsTab(uiState.activeAnalyticsTab);
       syncAnalyticsTabs();
     });
   });
