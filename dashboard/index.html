@@ -33,12 +33,7 @@
       <div class="shell">
         <header class="shell-topbar" aria-label="Application status and navigation context">
           <div class="shell-topbar__left">
-            <p class="shell-topbar__eyebrow">Control Plane</p>
-            <div class="shell-topbar__crumb">
-              <strong>Command Center</strong>
-              <span aria-hidden="true">/</span>
-              <span id="topbar-view-label">Overview</span>
-            </div>
+            <h1 class="shell-topbar__title" id="topbar-view-label">Dashboard</h1>
           </div>
 
           <div class="shell-topbar__right">
@@ -47,12 +42,9 @@
               <span id="topbar-status-label">Synced</span>
             </div>
             <div class="shell-topbar__chip shell-topbar__chip--mode" id="topbar-mode">file-backed-v1</div>
-            <div class="shell-topbar__chip shell-topbar__chip--stamp" id="topbar-refresh">SAT 04 APR 2026 · 12:35</div>
+            <div class="shell-topbar__chip shell-topbar__chip--stamp" id="topbar-refresh">SAT 04 APR 2026 - 12:35</div>
             <div class="shell-topbar__operator" id="topbar-operator" aria-label="Current operator">
               <span>LK</span>
-            </div>
-            <div class="shell-topbar__chip shell-topbar__chip--feed">
-              <span class="shell-topbar__feed-title" id="topbar-context-label">Activity Feed</span>
             </div>
           </div>
         </header>
@@ -86,24 +78,23 @@
                 </div>
 
                 <aside class="dashboard-rail">
+                  <div
+                    class="dashboard-rail-resize"
+                    id="dashboard-rail-resize"
+                    role="separator"
+                    aria-label="Resize activity feed"
+                    aria-orientation="vertical"
+                    aria-valuemin="280"
+                    aria-valuemax="520"
+                    aria-valuenow="340"
+                    tabindex="0"
+                  ></div>
                   <section class="panel panel--feed panel--feed-sticky">
                     <div class="panel__heading">
                       <div>
                         <p class="eyebrow">Activity Feed</p>
-                        <h2>Recent content runs and live execution</h2>
+                        <h2>Recent content activity and live execution</h2>
                       </div>
-                      <label class="feed-width-control" for="feed-width-range">
-                        <span>Rail width</span>
-                        <input
-                          id="feed-width-range"
-                          type="range"
-                          min="300"
-                          max="460"
-                          step="10"
-                          value="340"
-                        />
-                        <strong id="feed-width-value">340px</strong>
-                      </label>
                     </div>
                     <div class="run-list" id="run-list"></div>
                   </section>
@@ -143,6 +134,47 @@
               </section>
             </section>
 
+            <section class="view" id="view-research" data-view="research" hidden>
+              <div class="research-layout">
+                <div class="research-main">
+                  <section class="panel">
+                    <div class="panel__heading">
+                      <div>
+                        <p class="eyebrow">Content Research</p>
+                        <h2>Trending topics and hooks in your current niche</h2>
+                        <p class="section-note">
+                          This view is derived from the content research and ideation artifacts already produced by the pipeline.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="research-table-wrap" id="research-topics"></div>
+                  </section>
+
+                  <section class="panel">
+                    <div class="panel__heading">
+                      <div>
+                        <p class="eyebrow">Competitor Pulse</p>
+                        <h2>Tracked positioning pressure across visible workspaces</h2>
+                      </div>
+                    </div>
+                    <div class="competitor-grid" id="research-competitors"></div>
+                  </section>
+                </div>
+
+                <aside class="research-rail">
+                  <section class="panel panel--research-idea-bank-sticky">
+                    <div class="panel__heading">
+                      <div>
+                        <p class="eyebrow">Idea Bank</p>
+                        <h2>Best hooks currently ready for the pipeline</h2>
+                      </div>
+                    </div>
+                    <div id="research-idea-bank"></div>
+                  </section>
+                </aside>
+              </div>
+            </section>
+
             <section class="view" id="view-pipeline" data-view="pipeline" hidden>
               <section class="panel">
                 <div class="panel__heading">
@@ -150,19 +182,8 @@
                     <p class="eyebrow">Content Pipeline</p>
                     <h2>Ideas, scripting, and publication roadmap</h2>
                     <p class="section-note">
-                      Ideas and scripted items are derived from real content-pipeline artifacts. Editing, scheduled, and
-                      published stay empty until the runtime records those stages instead of pretending they exist.
+                      This board auto-advances from runtime state. Ideas and scripted items are real today; later stages stay empty until the runtime actually tracks them.
                     </p>
-                  </div>
-                </div>
-                <div class="pipeline-summary" id="pipeline-summary"></div>
-              </section>
-
-              <section class="panel">
-                <div class="panel__heading">
-                  <div>
-                    <p class="eyebrow">Roadmap</p>
-                    <h2>Content items moving through the pipeline</h2>
                   </div>
                 </div>
                 <div class="pipeline-board" id="pipeline-board"></div>
@@ -170,44 +191,70 @@
             </section>
 
             <section class="view" id="view-performance" data-view="performance" hidden>
-              <div class="performance-layout">
-                <div class="performance-main">
-                  <section class="panel">
-                    <div class="panel__heading">
-                      <div>
-                        <p class="eyebrow">Content Performance</p>
-                        <h2>Instagram, TikTok, and YouTube performance snapshot</h2>
-                        <p class="section-note">
-                          These metrics are currently simulated from content outputs until real platform telemetry is wired in.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="performance-summary" id="performance-summary"></div>
-                  </section>
-
-                  <section class="panel">
-                    <div class="panel__heading">
-                      <div>
-                        <p class="eyebrow">Recent Posts</p>
-                        <h2>Latest content performance across platforms</h2>
-                      </div>
-                    </div>
-                    <div class="performance-table-wrap" id="performance-table"></div>
-                  </section>
+              <section class="panel">
+                <div class="panel__heading">
+                  <div>
+                    <p class="eyebrow">Analytics</p>
+                    <h2>Performance telemetry and KPI intelligence</h2>
+                    <p class="section-note">
+                      Keep performance and KPI analysis together here. Performance shows content outcomes; KPIs show the broader control-plane picture.
+                    </p>
+                  </div>
+                  <div class="analytics-tabs" id="analytics-tabs" role="tablist" aria-label="Analytics sections">
+                    <button class="analytics-tab is-active" type="button" role="tab" aria-selected="true" data-analytics-tab="performance">
+                      Performance
+                    </button>
+                    <button class="analytics-tab" type="button" role="tab" aria-selected="false" data-analytics-tab="kpi">
+                      KPIs
+                    </button>
+                  </div>
                 </div>
 
-                <aside class="performance-rail">
-                  <section class="panel panel--insights panel--insights-sticky">
-                    <div class="panel__heading">
-                      <div>
-                        <p class="eyebrow">Insights</p>
-                        <h2>What performance is signaling</h2>
-                      </div>
+                <div class="analytics-panel" id="analytics-panel-performance">
+                  <div class="performance-layout">
+                    <div class="performance-main">
+                      <section class="panel panel--nested">
+                        <div class="panel__heading">
+                          <div>
+                            <p class="eyebrow">Content Performance</p>
+                            <h2>Instagram, TikTok, and YouTube performance snapshot</h2>
+                            <p class="section-note">
+                              These metrics are currently simulated from content outputs until real platform telemetry is wired in.
+                            </p>
+                          </div>
+                        </div>
+                        <div class="performance-summary" id="performance-summary"></div>
+                      </section>
+
+                      <section class="panel panel--nested">
+                        <div class="panel__heading">
+                          <div>
+                            <p class="eyebrow">Recent Posts</p>
+                            <h2>Latest content performance across platforms</h2>
+                          </div>
+                        </div>
+                        <div class="performance-table-wrap" id="performance-table"></div>
+                      </section>
                     </div>
-                    <div id="performance-insights"></div>
-                  </section>
-                </aside>
-              </div>
+
+                    <aside class="performance-rail">
+                      <section class="panel panel--nested panel--insights panel--insights-sticky">
+                        <div class="panel__heading">
+                          <div>
+                            <p class="eyebrow">Insights</p>
+                            <h2>What performance is signaling</h2>
+                          </div>
+                        </div>
+                        <div id="performance-insights"></div>
+                      </section>
+                    </aside>
+                  </div>
+                </div>
+
+                <div class="analytics-panel" id="analytics-panel-kpi" hidden>
+                  <div class="kpi-surface" id="kpi-surface"></div>
+                </div>
+              </section>
             </section>
 
             <section class="view" id="view-tasks" data-view="tasks" hidden>

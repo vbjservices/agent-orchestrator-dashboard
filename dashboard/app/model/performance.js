@@ -188,7 +188,7 @@ function insightCards(posts, platforms) {
       label: "Benchmark",
       tone: "benchmark",
       text: platforms.length
-        ? platforms.map((platform) => `${platform.label} avg ${platform.averageEngagementLabel}`).join(" · ")
+        ? platforms.map((platform) => `${platform.label} avg ${platform.averageEngagementLabel}`).join(" / ")
         : "No benchmark data yet."
     }
   ];

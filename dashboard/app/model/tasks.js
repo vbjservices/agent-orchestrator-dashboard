@@ -175,18 +175,36 @@ export function taskAgentStatusCards() {
 
   return Array.from(grouped.values())
     .map((entry) => {
-      const nextTask = entry.tasks[0] ?? null;
+      const runningTask = entry.tasks.find((task) => task.state === "running") ?? null;
+      const blockedTask = entry.tasks.find((task) => task.state === "error") ?? null;
+      const primaryTask = runningTask ?? blockedTask ?? entry.tasks[0] ?? null;
+      const nextQueuedTask =
+        entry.tasks.find((task) => task.id !== primaryTask?.id && task.state === "stopped") ?? null;
       const state = entry.runningCount > 0 ? "running" : entry.blockedCount > 0 ? "error" : "stopped";
       const total = entry.tasks.length;
       const progress = state === "running" ? 64 : state === "error" ? 100 : total > 0 ? 28 : 0;
+      const workflowCount = new Set(entry.tasks.map((task) => task.workflowId)).size;
+      const workspaceCount = new Set(entry.tasks.map((task) => task.workspaceId)).size;
+
+      const taskLabel =
+        state === "running" ? "Running now" : state === "error" ? "Blocked on" : "Next task";
 
       return {
         ...entry,
         state,
         total,
         progress,
-        nextTaskTitle: nextTask?.title ?? "No queued work",
-        nextTaskDetail: nextTask?.detail ?? "No active or queued tasks in scope.",
+        workflowCount,
+        workspaceCount,
+        taskLabel,
+        primaryTaskTitle: primaryTask?.title ?? "No queued work",
+        primaryTaskDetail: primaryTask?.detail ?? "No active or queued tasks in scope.",
+        primaryTaskContext: primaryTask ? `${primaryTask.workflowName} / ${primaryTask.workspaceId}` : "No scope available",
+        nextTaskTitle: nextQueuedTask?.title ?? "No additional queued work",
+        nextTaskContext: nextQueuedTask
+          ? `${nextQueuedTask.workflowName} / ${nextQueuedTask.workspaceId}`
+          : "Queue is clear after the current item",
+        primarySelectionKey: primaryTask?.selectionKey ?? "",
         orderedTasks: entry.tasks.slice(0, 4)
       };
     })

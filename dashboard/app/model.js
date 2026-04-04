@@ -6,4 +6,6 @@ export * from "./model/runs.js";
 export * from "./model/orchestrators.js";
 export * from "./model/pipeline.js";
 export * from "./model/performance.js";
+export * from "./model/kpi.js";
+export * from "./model/research.js";
 export * from "./model/tasks.js";

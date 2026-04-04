@@ -40,13 +40,17 @@ export function renderAgentTasks({ renderAgentModal }) {
         (entry) => `
           <button
             class="task-status-card task-status-card--${entry.state}"
-            data-task-agent="${entry.orderedTasks[0]?.selectionKey ?? ""}"
+            data-task-agent="${entry.primarySelectionKey ?? ""}"
             type="button"
-            ${entry.orderedTasks[0]?.selectionKey ? "" : "disabled"}
+            ${entry.primarySelectionKey ? "" : "disabled"}
           >
             <div class="task-status-card__head">
               <div class="task-status-card__identity">
-                ${agentAvatarMarkup("md")}
+                ${agentAvatarMarkup("md", {
+                  agentId: entry.agentId,
+                  agentName: entry.agentName,
+                  category: entry.category
+                })}
                 <div>
                   <p class="task-status-card__role">${entry.category}</p>
                   <h3>${entry.agentName}</h3>
@@ -54,16 +58,25 @@ export function renderAgentTasks({ renderAgentModal }) {
               </div>
               <span class="status-chip status-chip--${entry.state}">${entry.state}</span>
             </div>
-            <p class="task-status-card__body">${entry.nextTaskTitle}</p>
-            <p class="task-status-card__detail">${entry.nextTaskDetail}</p>
+            <div class="task-status-card__task">
+              <p class="task-status-card__label">${entry.taskLabel}</p>
+              <p class="task-status-card__body">${entry.primaryTaskTitle}</p>
+              <p class="task-status-card__detail">${entry.primaryTaskDetail}</p>
+              <p class="task-status-card__context">${entry.primaryTaskContext}</p>
+            </div>
             <div class="task-status-card__progress">
               <div class="task-status-card__progress-head">
-                <span>Workload</span>
+                <span>Execution load</span>
                 <strong>${entry.progress}%</strong>
               </div>
               <div class="task-status-card__progress-track" aria-hidden="true">
                 <span style="width: ${entry.progress}%"></span>
               </div>
+            </div>
+            <div class="task-status-card__next">
+              <span>Up next</span>
+              <strong>${entry.nextTaskTitle}</strong>
+              <small>${entry.nextTaskContext}</small>
             </div>
             <dl class="task-status-card__meta">
               <div>
@@ -71,26 +84,14 @@ export function renderAgentTasks({ renderAgentModal }) {
                 <dd>${entry.queuedCount}</dd>
               </div>
               <div>
-                <dt>Running</dt>
-                <dd>${entry.runningCount}</dd>
+                <dt>Workflows</dt>
+                <dd>${entry.workflowCount}</dd>
               </div>
               <div>
-                <dt>Blocked</dt>
-                <dd>${entry.blockedCount}</dd>
+                <dt>Workspaces</dt>
+                <dd>${entry.workspaceCount}</dd>
               </div>
             </dl>
-            <ol class="task-status-card__order">
-              ${entry.orderedTasks
-                .map(
-                  (task) => `
-                    <li>
-                      <span>${task.order}</span>
-                      <strong>${task.stepName}</strong>
-                    </li>
-                  `
-                )
-                .join("")}
-            </ol>
           </button>
         `
       )
@@ -128,7 +129,11 @@ export function renderAgentTasks({ renderAgentModal }) {
                     </td>
                     <td>
                       <span class="task-table__agent">
-                        ${agentAvatarMarkup("xs")}
+                        ${agentAvatarMarkup("xs", {
+                          agentId: task.agentId,
+                          agentName: task.agentName,
+                          category: task.category
+                        })}
                         <span>${task.agentName}</span>
                       </span>
                     </td>

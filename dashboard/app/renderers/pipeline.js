@@ -3,15 +3,6 @@ import { displayDate, nextPaint } from "../lib.js";
 import { loaderMarkup } from "../loaders.js";
 import { contentPipelineBoard } from "../model.js";
 
-function stageCountMarkup(stage) {
-  return `
-    <article class="pipeline-count pipeline-count--${stage.tone}">
-      <p>${stage.label}</p>
-      <strong>${stage.count}</strong>
-    </article>
-  `;
-}
-
 function laneCardMarkup(item, tone) {
   return `
     <button
@@ -39,10 +30,6 @@ function laneCardMarkup(item, tone) {
 export function renderContentPipeline({ renderWorkflowModal, renderRunList, renderRunDetail }) {
   const board = contentPipelineBoard();
 
-  nodes.pipelineSummary.innerHTML =
-    board.counts.map(stageCountMarkup).join("") ||
-    `<p class="empty">Pipeline counts will appear after content runs are generated.</p>`;
-
   nodes.pipelineBoard.innerHTML =
     board.lanes
       .map(
@@ -53,6 +40,9 @@ export function renderContentPipeline({ renderWorkflowModal, renderRunList, rend
                 <p class="eyebrow">${lane.label}</p>
                 <h3>${lane.count}</h3>
               </div>
+              <span class="pipeline-lane__badge">
+                ${lane.count} ${lane.count === 1 ? "item" : "items"}
+              </span>
             </div>
             <div class="pipeline-lane__stack">
               ${

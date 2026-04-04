@@ -1,0 +1,338 @@
+.research-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+  gap: 22px;
+  align-items: start;
+}
+
+.research-main,
+.research-rail {
+  min-width: 0;
+}
+
+.research-main {
+  display: grid;
+  gap: 22px;
+}
+
+.panel--research-idea-bank-sticky {
+  position: sticky;
+  top: 24px;
+}
+
+.research-table-wrap {
+  overflow: auto;
+}
+
+.research-table {
+  width: 100%;
+  min-width: 860px;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+.research-table th,
+.research-table td {
+  padding: 13px 14px;
+  text-align: left;
+}
+
+.research-table th {
+  color: var(--muted);
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.research-table tbody tr {
+  background: linear-gradient(180deg, rgba(25, 30, 37, 0.96), rgba(17, 21, 28, 0.96));
+}
+
+.research-table tbody td:first-child {
+  border-radius: 12px 0 0 12px;
+}
+
+.research-table tbody td:last-child {
+  border-radius: 0 12px 12px 0;
+}
+
+.research-table td strong,
+.research-table td small {
+  display: block;
+}
+
+.research-table td strong {
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.research-table td small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.research-platform-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.research-platform {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(143, 154, 168, 0.14);
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.research-platform--tt,
+.research-platform--tiktok {
+  color: #ff6ea8;
+  border-color: rgba(255, 110, 168, 0.22);
+  background: rgba(255, 110, 168, 0.08);
+}
+
+.research-platform--ig,
+.research-platform--instagram {
+  color: #af7dff;
+  border-color: rgba(175, 125, 255, 0.22);
+  background: rgba(175, 125, 255, 0.08);
+}
+
+.research-platform--yt,
+.research-platform--youtube {
+  color: #8ce8f7;
+  border-color: rgba(140, 232, 247, 0.22);
+  background: rgba(140, 232, 247, 0.08);
+}
+
+.research-potential {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.research-potential--high {
+  color: #ffb36b;
+  border: 1px solid rgba(255, 179, 107, 0.24);
+  background: rgba(255, 179, 107, 0.08);
+}
+
+.research-potential--medium {
+  color: #ffd75d;
+  border: 1px solid rgba(255, 215, 93, 0.22);
+  background: rgba(255, 215, 93, 0.08);
+}
+
+.research-potential--low {
+  color: #9adf82;
+  border: 1px solid rgba(154, 223, 130, 0.2);
+  background: rgba(154, 223, 130, 0.08);
+}
+
+.competitor-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.competitor-card,
+.idea-bank-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(143, 154, 168, 0.12);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(22, 27, 34, 0.96), rgba(14, 18, 24, 0.96));
+  box-shadow: var(--shadow-soft);
+}
+
+.competitor-card::before,
+.idea-bank-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 2px;
+  opacity: 0.9;
+}
+
+.competitor-card--instagram::before {
+  background: linear-gradient(90deg, #af7dff, rgba(175, 125, 255, 0));
+}
+
+.competitor-card--tiktok::before {
+  background: linear-gradient(90deg, #ff6ea8, rgba(255, 110, 168, 0));
+}
+
+.competitor-card--youtube::before {
+  background: linear-gradient(90deg, #8ce8f7, rgba(140, 232, 247, 0));
+}
+
+.competitor-card {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+}
+
+.competitor-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 12px;
+}
+
+.competitor-card__head h3,
+.idea-bank-card__title {
+  margin: 0;
+  font-family: "Bahnschrift SemiCondensed", "Arial Narrow", sans-serif;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.competitor-card__head h3 {
+  font-size: 1.15rem;
+}
+
+.competitor-card__head small {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.competitor-card__head strong {
+  color: var(--accent-alt);
+  font-family: "Bahnschrift SemiCondensed", "Arial Narrow", sans-serif;
+  font-size: 2rem;
+}
+
+.competitor-card__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.competitor-card__meta div,
+.competitor-card__formula {
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(143, 154, 168, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.competitor-card__meta dt,
+.competitor-card__angles p,
+.competitor-card__formula p,
+.idea-bank-card__badge,
+.idea-bank-card__foot small {
+  margin: 0;
+  color: var(--muted);
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.competitor-card__meta dd {
+  margin: 4px 0 0;
+  color: var(--ink);
+}
+
+.competitor-card__angles {
+  display: grid;
+  gap: 10px;
+}
+
+.competitor-card__angles ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.competitor-card__formula {
+  display: grid;
+  gap: 8px;
+}
+
+.competitor-card__formula strong {
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.idea-bank-card {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+}
+
+.idea-bank-card::before {
+  background: linear-gradient(90deg, rgba(140, 232, 247, 0.72), rgba(175, 125, 255, 0.42));
+}
+
+.idea-bank-card + .idea-bank-card {
+  margin-top: 12px;
+}
+
+.idea-bank-card__head,
+.idea-bank-card__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 12px;
+}
+
+.idea-bank-card__head small {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.idea-bank-card__title {
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--ink);
+  text-transform: none;
+}
+
+@media (max-width: 1360px) {
+  .competitor-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1200px) {
+  .research-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .panel--research-idea-bank-sticky {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .research-table {
+    min-width: 680px;
+  }
+
+  .competitor-card__meta {
+    grid-template-columns: 1fr;
+  }
+}

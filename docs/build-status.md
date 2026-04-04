@@ -32,27 +32,38 @@ The active build focus is not:
 - Root `index.html` redirects branch-based static hosting to `dashboard/`
 - Dashboard source split into smaller modules for state, loaders, renderers, and domain-specific model selectors
 - Dashboard CSS is now split into `dashboard/styles/base.css`, `dashboard/styles/shared.css`, `dashboard/styles/dashboard.css`, `dashboard/styles/platform.css`, `dashboard/styles/runs.css`, and `dashboard/styles/responsive.css`
+- Dashboard CSS now also includes a dedicated `dashboard/styles/kpi.css` module for the analytics surface
 - `dashboard/styles.css` is now a thin manifest instead of a 2k-line dump file
 - M1 UI changes still land in `dashboard/styles/m1-foundation.css` instead of bloating the base modules further
 - Dark cyber control-room visual theme
+- Theme now leans into a darker blue neon data-console style with colder panel surfaces, stronger blue-violet glow hierarchy, and reduced warm accent overuse
 - Visual system tightened toward a more restrained professional operator-console look
 - Dashboard styling now leans into a denser operations-board layout with darker matte surfaces, compact cards, and subtler accent hierarchy
 - Hero title scaled down so the interface reads like an operator console instead of a landing page
 - Layout grids, modal surfaces, and action rows now scale more cleanly across desktop, tablet, and phone sizes
 - Dashboard split into dedicated navigation surfaces for `Dashboard`, `Search`, `Workflows`, `Agents`, and `Orchestrators`
-- Dashboard navigation now also includes dedicated `Pipeline`, `Performance`, and `Tasks` surfaces for content operations
+- Dashboard navigation now also includes dedicated `Pipeline`, `Analytics`, and `Tasks` surfaces for content operations
+- Dashboard navigation now also includes a dedicated `Research` surface for runtime-backed topic discovery, competitor pulse, and idea-bank review
+- `Analytics` now contains internal `Performance` and `KPIs` tabs so content outcomes and control-plane metrics stay grouped in one page
 - Desktop navigation now uses an icon-led vertical sidebar rail, plus mobile drawer navigation
 - Shell now includes a compact application top bar for command-center context, sync state, refresh timestamp, and active view breadcrumb
+- Shell now includes a compact application top bar that shows the active tab name plus sync metadata without extra breadcrumb noise
 - Mobile drawer now has explicit open, close, backdrop-close, and escape-close behavior, with a utility-style close control that is visually separate from the tabs
 - Search, status filtering, and workspace scoping now live in a dedicated `Search` tab instead of bloating the dashboard surface
-- `Pipeline` tab now shows a staged content roadmap with runtime-backed `Ideas` and `Scripted` lanes, while later publication stages stay visibly empty until the runtime actually tracks them
-- `Performance` tab now shows simulated Instagram, TikTok, and YouTube performance derived from current content outputs, plus a sticky insights rail
+- `Pipeline` tab now uses a single auto-advancing board as the source of truth, with per-lane counts in the headers instead of a duplicated summary section
+- `Pipeline` lane cards now stretch more consistently so content and footers align from top to bottom within each lane
+- `Research` tab now shows runtime-derived topic rows, deterministic competitor pulse cards built from workspace competitor config, and a sticky idea-bank rail sourced from content research plus ideation outputs
+- `Analytics / Performance` shows simulated Instagram, TikTok, and YouTube performance derived from current content outputs, plus a sticky insights rail
+- `Analytics / KPIs` shows a dedicated analytics deck with execution trend charts, workflow health rings, platform signal cards, pipeline state bars, workspace throughput, agent load, and spotlight notes
 - `Tasks` tab now shows agent workload cards, a prioritized derived task queue, and a sticky recent task-activity rail
+- `Tasks` agent cards now focus on the current or next task plus a single up-next hint, instead of repeating queue internals and duplicated step names
 - Dashboard hero and mode cards were removed so the main dashboard stays focused on execution surfaces
 - Dashboard now centers on KPI cards, content-agent progress cards, and a right-side content activity feed instead of a workspace spotlight plus generic run list
 - Activity feed now lives in a dedicated sticky right rail on desktop so execution history stays visible while the main dashboard scrolls
-- Activity rail now defaults to a narrower width and exposes a desktop width control for operator preference
+- Activity rail now defaults to a narrower width and can be resized with a drag handle like a normal desktop panel
+- The activity rail resize handle is now integrated into the outer edge of the rail itself instead of living in a separate gutter between content and feed
 - Activity rail scrollbar chrome is hidden so the feed reads cleaner while staying scrollable
+- Activity feed now mixes step-level runtime events with a small set of explicit simulated ops events so the rail shows broader agent activity during M1
 - Activity feed run titles now use agent-specific color coding and stronger success/failure emphasis
 - Workflow, agent, and orchestrator tabs now use lighter scope summaries instead of reusing dashboard-heavy context blocks
 - Workflow cards keep a consistent width instead of stretching based on how many cards are visible
@@ -65,6 +76,7 @@ The active build focus is not:
 - Orchestrator surface now stays honest about GitHub Actions as the only M1 runtime route, with manual dispatch and cron schedule only
 - Shared SVG avatar icon for displayed agents across launch and trace surfaces
 - Agent avatar now uses a dedicated bot asset in `dashboard/assets/icons/`, while the previous person icon is preserved for future user identity surfaces
+- Agent avatar system now uses square role-based badges under `dashboard/assets/icons/agents/`, while the older generic bot and user avatar assets remain preserved for future identity surfaces
 - AI team header now shows the live count of visible agents in scope
 - Clickable agent chain inside the workflow popup plus popup-only agent detail instead of a fixed side rail
 - Color-coded workflow and agent activity states using `running`, `stopped`, and `error`

@@ -7,40 +7,9 @@
   height: 100vh;
 }
 
-.agent-avatar {
-  overflow: hidden;
-}
-
-.agent-avatar img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.agent-avatar--xs {
-  width: 24px;
-  height: 24px;
-}
-
-.agent-avatar--sm {
-  width: 34px;
-  height: 34px;
-}
-
-.agent-avatar--md {
-  width: 44px;
-  height: 44px;
-}
-
-.agent-avatar--lg {
-  width: 56px;
-  height: 56px;
-}
-
 .dashboard-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, var(--feed-rail-width, 340px));
+  grid-template-columns: minmax(0, 1fr) minmax(280px, var(--feed-rail-width, 340px));
   gap: 22px;
   align-items: start;
 }
@@ -52,6 +21,52 @@
 }
 
 .dashboard-rail {
+  position: relative;
+  min-width: 0;
+}
+
+.dashboard-rail-resize {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -14px;
+  width: 22px;
+  cursor: col-resize;
+  touch-action: none;
+  z-index: 3;
+}
+
+.dashboard-rail-resize::before {
+  content: "";
+  position: sticky;
+  top: 32px;
+  display: block;
+  width: 4px;
+  height: calc(100vh - 96px);
+  margin-left: 8px;
+  margin-right: auto;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(97, 214, 255, 0.2), rgba(138, 125, 255, 0.2));
+  opacity: 0;
+  transition: opacity 160ms ease, background 160ms ease;
+}
+
+.dashboard-rail-resize:hover::before,
+.dashboard-rail-resize:focus-visible::before,
+body.is-resizing-feed .dashboard-rail-resize::before {
+  opacity: 1;
+  background: linear-gradient(180deg, rgba(97, 214, 255, 0.48), rgba(138, 125, 255, 0.4));
+}
+
+.dashboard-rail-resize:focus-visible {
+  outline: none;
+}
+
+.dashboard-rail-resize:focus-visible::before {
+  box-shadow: 0 0 0 2px rgba(97, 214, 255, 0.18);
+}
+
+.panel--feed {
   min-width: 0;
 }
 
@@ -73,31 +88,9 @@
   height: 0;
 }
 
-.feed-width-control {
-  display: grid;
-  gap: 6px;
-  min-width: 132px;
-}
-
-.feed-width-control span,
-.feed-width-control strong {
-  font-family: "Cascadia Code", "Consolas", monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.feed-width-control span {
-  color: var(--muted);
-}
-
-.feed-width-control strong {
-  color: var(--ink-soft);
-}
-
-.feed-width-control input {
-  width: 100%;
-  accent-color: var(--accent);
+body.is-resizing-feed {
+  cursor: col-resize;
+  user-select: none;
 }
 
 .search-layout {
@@ -267,16 +260,16 @@
     grid-template-columns: 1fr;
   }
 
+  .dashboard-rail-resize {
+    display: none;
+  }
+
   .panel--feed-sticky {
     position: static;
   }
 
   .panel--feed-sticky .run-list {
     max-height: none;
-  }
-
-  .feed-width-control {
-    display: none;
   }
 
   .team-card__meta {

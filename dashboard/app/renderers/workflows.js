@@ -91,7 +91,11 @@ export function renderAgentModal() {
     <div class="agent-modal__card">
       <div class="agent-modal__head">
         <div class="agent-modal__identity">
-          ${agentAvatarMarkup("lg")}
+          ${agentAvatarMarkup("lg", {
+            agentId: node.agentId,
+            agentName: node.agentName,
+            category: template?.category
+          })}
           <div>
             <p class="eyebrow">Agent Focus</p>
             <h3 id="agent-modal-title">${node.agentName}</h3>
@@ -182,7 +186,10 @@ export function renderWorkflowModal({ renderRunList, renderRunDetail }) {
                 data-agent-selection="${selectionKey}"
                 type="button"
               >
-                ${agentAvatarMarkup("xs")}
+                ${agentAvatarMarkup("xs", {
+                  agentId: node.agentId,
+                  agentName: node.agentName
+                })}
                 <div>
                   <strong>${node.agentName}</strong>
                   <small>${node.name}</small>

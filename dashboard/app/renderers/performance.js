@@ -73,7 +73,7 @@ function postTable(posts) {
           <td><span class="performance-platform performance-platform--${post.platformTone}">${post.platformLabel}</span></td>
           <td>
             <strong>${post.title}</strong>
-            <small>${post.workflowName} · ${post.workspaceName}</small>
+            <small>${post.workflowName} / ${post.workspaceName}</small>
           </td>
           <td>${post.viewsLabel}</td>
           <td>${post.likes}</td>

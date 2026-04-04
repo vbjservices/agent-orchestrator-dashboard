@@ -98,7 +98,11 @@ export function renderAgentInstances({ renderAgentModal }) {
           >
             <div class="instance-card__head">
               <span class="instance-card__identity">
-                ${agentAvatarMarkup("sm")}
+                ${agentAvatarMarkup("sm", {
+                  agentId: instance.agentId,
+                  agentName: instance.agentName,
+                  category: instance.category
+                })}
                 <span>${instance.agentName}</span>
               </span>
               <span class="live-state live-state--${instance.state}">

@@ -1,7 +1,7 @@
 import { nodes, uiState } from "../context.js";
 import { agentAvatarMarkup, currency, displayDate, durationBetween, nextPaint } from "../lib.js";
 import { showSectionLoader } from "../loaders.js";
-import { filteredRuns, selectedRun } from "../model.js";
+import { activityEntries, selectedRun } from "../model.js";
 
 function agentTone(agentName) {
   const normalized = String(agentName ?? "").trim().toLowerCase();
@@ -42,33 +42,33 @@ function agentTone(agentName) {
 }
 
 export function renderRunList({ renderRunDetail }) {
-  const runs = filteredRuns();
+  const entries = activityEntries();
+  const selectedEntryId = entries.find((entry) => entry.runId === selectedRun()?.id)?.id ?? null;
 
   nodes.runList.innerHTML =
-    runs
-      .map((run) => {
-        const leadAgent = run.steps.at(-1)?.agentName ?? run.workflowName;
-        const tone = agentTone(leadAgent);
+    entries
+      .map((entry) => {
+        const tone = agentTone(entry.actor);
 
         return `
           <button
-            class="run-row run-row--${run.status} ${run.id === selectedRun()?.id ? "is-selected" : ""}"
-            data-run-id="${run.id}"
+            class="run-row run-row--${entry.status} ${entry.id === selectedEntryId ? "is-selected" : ""}"
+            data-run-id="${entry.runId}"
           >
             <div class="run-row__head">
-              <small>${displayDate(run.finishedAt)}</small>
-              <span class="status-chip status-chip--${run.status}">${run.status}</span>
+              <small>${displayDate(entry.finishedAt)}</small>
+              <span class="status-chip status-chip--${entry.status}">${entry.status}</span>
             </div>
-            <p class="run-row__title run-row__title--${tone}">${leadAgent}</p>
-            <p class="run-row__summary">${run.summary}</p>
+            <p class="run-row__title run-row__title--${tone}">${entry.actor}</p>
+            <p class="run-row__summary">${entry.summary}</p>
             <div class="run-row__foot">
-              <small>${run.workflowName}</small>
-              <small>${run.workspaceName}</small>
+              <small>${entry.workflowName}</small>
+              <small>${entry.workspaceName}</small>
             </div>
           </button>
         `;
       })
-      .join("") || `<p class="empty">No runs available for this scope.</p>`;
+      .join("") || `<p class="empty">No activity is available for this scope.</p>`;
 
   nodes.runList.querySelectorAll("[data-run-id]").forEach((button) => {
     button.addEventListener("click", async () => {
@@ -94,7 +94,7 @@ export function renderRunDetail() {
       (step) => `
         <span class="step-pill">
           <span class="step-pill__agent">
-            ${agentAvatarMarkup("xs")}
+            ${agentAvatarMarkup("xs", { agentName: step.agentName })}
             <span>${step.agentName}</span>
           </span>
           <small>${step.name}</small>
@@ -110,7 +110,7 @@ export function renderRunDetail() {
           <div class="step-card__head">
             <div class="step-card__identity">
               <p class="step-card__agent">
-                ${agentAvatarMarkup("sm")}
+                ${agentAvatarMarkup("sm", { agentName: step.agentName })}
                 <span>${step.agentName}</span>
               </p>
               <h3>${step.name}</h3>

@@ -20,7 +20,7 @@ export function renderAiTeam({ renderAgentModal }) {
           >
             <div class="team-card__head">
               <div class="team-card__identity">
-                ${agentAvatarMarkup("md")}
+                ${agentAvatarMarkup("md", { agentName: team.name, category: team.category })}
                 <div>
                   <p class="team-card__role">${team.category}</p>
                   <h3>${team.name}</h3>

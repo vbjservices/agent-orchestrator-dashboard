@@ -1,5 +1,5 @@
 window.__ORCHESTRATOR_STATE__ = {
-  "generatedAt": "2026-04-04T11:32:52.557Z",
+  "generatedAt": "2026-04-04T14:39:57.004Z",
   "mode": "file-backed-v1",
   "trigger": "manual",
   "stats": {
@@ -7,7 +7,7 @@ window.__ORCHESTRATOR_STATE__ = {
     "workflowCount": 4,
     "runCount": 30,
     "successRate": 100,
-    "totalCostEstimateUsd": 13.08
+    "totalCostEstimateUsd": 15.3
   },
   "agents": [
     {
@@ -199,15 +199,25 @@ window.__ORCHESTRATOR_STATE__ = {
       "timezone": "America/New_York",
       "vertical": "Short-form content studio",
       "idealCustomerProfile": "Founder-led B2B brands that need repeatable content output",
+      "painPoints": [
+        "Audience research is ad hoc",
+        "Hooks are repetitive",
+        "Sales follow-up is reactive instead of systematic"
+      ],
       "goals": [
         "Standardize research and scripting",
         "Turn inbound conversations into qualified opportunities",
         "Track workflow quality per client workspace"
       ],
+      "competitors": [
+        "In-house content teams",
+        "Freelance creator collectives",
+        "One-person AI content operations"
+      ],
       "activeWorkflowCount": 1,
       "totalRuns": 15,
       "successRate": 100,
-      "lastRunAt": "2026-04-04T11:32:52.556Z"
+      "lastRunAt": "2026-04-04T14:39:57.003Z"
     },
     {
       "id": "vbj-services",
@@ -216,15 +226,25 @@ window.__ORCHESTRATOR_STATE__ = {
       "timezone": "Europe/Amsterdam",
       "vertical": "AI automation consultancy",
       "idealCustomerProfile": "Agency owners and lean service businesses",
+      "painPoints": [
+        "Leads arrive through DMs with no qualification",
+        "Content production is inconsistent",
+        "Manual follow-up burns founder time"
+      ],
       "goals": [
         "Create a reliable content pipeline",
         "Pre-qualify inbound leads before sales time is spent",
         "Keep operators visible without founder bottlenecks"
       ],
+      "competitors": [
+        "Done-for-you automation agencies",
+        "DIY GTM tool stacks",
+        "Generic AI marketing assistants"
+      ],
       "activeWorkflowCount": 1,
       "totalRuns": 15,
       "successRate": 100,
-      "lastRunAt": "2026-04-04T11:32:52.556Z"
+      "lastRunAt": "2026-04-04T14:39:57.003Z"
     }
   ],
   "workflows": [
@@ -239,7 +259,7 @@ window.__ORCHESTRATOR_STATE__ = {
       "triggerMode": "manual_or_schedule",
       "schedule": "0 13 * * 1-5",
       "lastRunStatus": "succeeded",
-      "lastRunAt": "2026-04-04T11:32:52.556Z",
+      "lastRunAt": "2026-04-04T14:39:57.003Z",
       "stepCount": 3,
       "agentChain": [
         {
@@ -272,8 +292,8 @@ window.__ORCHESTRATOR_STATE__ = {
       "enabled": false,
       "triggerMode": "manual_only",
       "schedule": null,
-      "lastRunStatus": "succeeded",
-      "lastRunAt": "2026-04-04T09:39:27.907Z",
+      "lastRunStatus": "idle",
+      "lastRunAt": null,
       "stepCount": 2,
       "agentChain": [
         {
@@ -301,7 +321,7 @@ window.__ORCHESTRATOR_STATE__ = {
       "triggerMode": "manual_or_schedule",
       "schedule": "0 8 * * 1-5",
       "lastRunStatus": "succeeded",
-      "lastRunAt": "2026-04-04T11:32:52.556Z",
+      "lastRunAt": "2026-04-04T14:39:57.003Z",
       "stepCount": 3,
       "agentChain": [
         {
@@ -334,8 +354,8 @@ window.__ORCHESTRATOR_STATE__ = {
       "enabled": false,
       "triggerMode": "manual_only",
       "schedule": null,
-      "lastRunStatus": "succeeded",
-      "lastRunAt": "2026-04-04T09:39:27.907Z",
+      "lastRunStatus": "idle",
+      "lastRunAt": null,
       "stepCount": 2,
       "agentChain": [
         {
@@ -354,6 +374,1910 @@ window.__ORCHESTRATOR_STATE__ = {
     }
   ],
   "runs": [
+    {
+      "id": "run_e1c5a44f-e79d-4081-bca6-7cd77dd48a7a",
+      "workspaceId": "northstar-media",
+      "workspaceName": "Northstar Media",
+      "workflowInstanceId": "northstar-content-daily",
+      "workflowTemplateId": "content-pipeline",
+      "workflowName": "Client Content Assembly",
+      "trigger": "manual",
+      "status": "succeeded",
+      "startedAt": "2026-04-04T14:39:57.002Z",
+      "finishedAt": "2026-04-04T14:39:57.003Z",
+      "costEstimateUsd": 0.51,
+      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+      "primaryArtifact": {
+        "kind": "script",
+        "headline": "Client Content Assembly script draft",
+        "selectedAngle": {
+          "title": "The hidden ops tax",
+          "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+          "hook": "You do not need more leads. You need fewer leaks.",
+          "cta": "Request a 30-minute audit"
+        },
+        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
+      },
+      "steps": [
+        {
+          "id": "research-signals",
+          "name": "Research Signals",
+          "agentId": "content-researcher",
+          "agentName": "Content Researcher",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T14:39:57.003Z",
+          "finishedAt": "2026-04-04T14:39:57.003Z",
+          "summary": "Captured 3 positioning signals for Northstar Media.",
+          "artifact": {
+            "kind": "research-brief",
+            "headline": "Northstar Media research brief",
+            "bullets": [
+              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
+              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
+            ]
+          },
+          "logs": [
+            "[2026-04-04T14:39:57.003Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
+            "[2026-04-04T14:39:57.003Z] Evaluated campaign theme: Content ops for founder-led brands.",
+            "[2026-04-04T14:39:57.003Z] Flagged primary pain: Audience research is ad hoc."
+          ]
+        },
+        {
+          "id": "generate-angles",
+          "name": "Generate Angles",
+          "agentId": "idea-generator",
+          "agentName": "Idea Generator",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T14:39:57.003Z",
+          "finishedAt": "2026-04-04T14:39:57.003Z",
+          "summary": "Generated 3 usable content angles from the research brief.",
+          "artifact": {
+            "kind": "idea-pack",
+            "headline": "Client Content Assembly angles",
+            "sourceSignals": [
+              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
+              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
+            ],
+            "ideas": [
+              {
+                "title": "The hidden ops tax",
+                "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+                "hook": "You do not need more leads. You need fewer leaks.",
+                "cta": "Request a 30-minute audit"
+              },
+              {
+                "title": "Why content fails after 2 weeks",
+                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
+                "hook": "Consistency is not a discipline problem. It is a systems problem.",
+                "cta": "Request a 30-minute audit"
+              },
+              {
+                "title": "Tool stack theater",
+                "angle": "Short-form content studio buyers are tired of vendors selling fragments instead of working systems.",
+                "hook": "If your stack needs a human babysitter, it is not automation.",
+                "cta": "Request a 30-minute audit"
+              }
+            ]
+          },
+          "logs": [
+            "[2026-04-04T14:39:57.003Z] Promoted research signal into 3 angles.",
+            "[2026-04-04T14:39:57.003Z] Attached CTA: Request a 30-minute audit."
+          ]
+        },
+        {
+          "id": "draft-script",
+          "name": "Draft Script",
+          "agentId": "script-writer",
+          "agentName": "Script Writer",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T14:39:57.003Z",
+          "finishedAt": "2026-04-04T14:39:57.003Z",
+          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+          "artifact": {
+            "kind": "script",
+            "headline": "Client Content Assembly script draft",
+            "selectedAngle": {
+              "title": "The hidden ops tax",
+              "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+              "hook": "You do not need more leads. You need fewer leaks.",
+              "cta": "Request a 30-minute audit"
+            },
+            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
+          },
+          "logs": [
+            "[2026-04-04T14:39:57.003Z] Selected angle: The hidden ops tax.",
+            "[2026-04-04T14:39:57.003Z] Generated script CTA: Request a 30-minute audit."
+          ]
+        }
+      ],
+      "logs": [
+        "[2026-04-04T14:39:57.002Z] Workflow Client Content Assembly started for Northstar Media.",
+        "[2026-04-04T14:39:57.002Z] Trigger source: manual.",
+        "[2026-04-04T14:39:57.003Z] Content Researcher completed Research Signals.",
+        "[2026-04-04T14:39:57.003Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
+        "[2026-04-04T14:39:57.003Z] Evaluated campaign theme: Content ops for founder-led brands.",
+        "[2026-04-04T14:39:57.003Z] Flagged primary pain: Audience research is ad hoc.",
+        "[2026-04-04T14:39:57.003Z] Idea Generator completed Generate Angles.",
+        "[2026-04-04T14:39:57.003Z] Promoted research signal into 3 angles.",
+        "[2026-04-04T14:39:57.003Z] Attached CTA: Request a 30-minute audit.",
+        "[2026-04-04T14:39:57.003Z] Script Writer completed Draft Script.",
+        "[2026-04-04T14:39:57.003Z] Selected angle: The hidden ops tax.",
+        "[2026-04-04T14:39:57.003Z] Generated script CTA: Request a 30-minute audit."
+      ]
+    },
+    {
+      "id": "run_d3198b4d-2b2c-4c93-9225-d99aac362d90",
+      "workspaceId": "vbj-services",
+      "workspaceName": "VBJ Services",
+      "workflowInstanceId": "vbj-content-daily",
+      "workflowTemplateId": "content-pipeline",
+      "workflowName": "Daily Content Sprint",
+      "trigger": "manual",
+      "status": "succeeded",
+      "startedAt": "2026-04-04T14:39:57.002Z",
+      "finishedAt": "2026-04-04T14:39:57.003Z",
+      "costEstimateUsd": 0.51,
+      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+      "primaryArtifact": {
+        "kind": "script",
+        "headline": "Daily Content Sprint script draft",
+        "selectedAngle": {
+          "title": "The hidden ops tax",
+          "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+          "hook": "You do not need more leads. You need fewer leaks.",
+          "cta": "Book a workflow teardown"
+        },
+        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
+      },
+      "steps": [
+        {
+          "id": "research-signals",
+          "name": "Research Signals",
+          "agentId": "content-researcher",
+          "agentName": "Content Researcher",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T14:39:57.003Z",
+          "finishedAt": "2026-04-04T14:39:57.003Z",
+          "summary": "Captured 3 positioning signals for VBJ Services.",
+          "artifact": {
+            "kind": "research-brief",
+            "headline": "VBJ Services research brief",
+            "bullets": [
+              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
+              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
+            ]
+          },
+          "logs": [
+            "[2026-04-04T14:39:57.003Z] Scanned ICP: Agency owners and lean service businesses.",
+            "[2026-04-04T14:39:57.003Z] Evaluated campaign theme: AI orchestration for lean operators.",
+            "[2026-04-04T14:39:57.003Z] Flagged primary pain: Leads arrive through DMs with no qualification."
+          ]
+        },
+        {
+          "id": "generate-angles",
+          "name": "Generate Angles",
+          "agentId": "idea-generator",
+          "agentName": "Idea Generator",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T14:39:57.003Z",
+          "finishedAt": "2026-04-04T14:39:57.003Z",
+          "summary": "Generated 3 usable content angles from the research brief.",
+          "artifact": {
+            "kind": "idea-pack",
+            "headline": "Daily Content Sprint angles",
+            "sourceSignals": [
+              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
+              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
+            ],
+            "ideas": [
+              {
+                "title": "The hidden ops tax",
+                "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+                "hook": "You do not need more leads. You need fewer leaks.",
+                "cta": "Book a workflow teardown"
+              },
+              {
+                "title": "Why content fails after 2 weeks",
+                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
+                "hook": "Consistency is not a discipline problem. It is a systems problem.",
+                "cta": "Book a workflow teardown"
+              },
+              {
+                "title": "Tool stack theater",
+                "angle": "AI automation consultancy buyers are tired of vendors selling fragments instead of working systems.",
+                "hook": "If your stack needs a human babysitter, it is not automation.",
+                "cta": "Book a workflow teardown"
+              }
+            ]
+          },
+          "logs": [
+            "[2026-04-04T14:39:57.003Z] Promoted research signal into 3 angles.",
+            "[2026-04-04T14:39:57.003Z] Attached CTA: Book a workflow teardown."
+          ]
+        },
+        {
+          "id": "draft-script",
+          "name": "Draft Script",
+          "agentId": "script-writer",
+          "agentName": "Script Writer",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T14:39:57.003Z",
+          "finishedAt": "2026-04-04T14:39:57.003Z",
+          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+          "artifact": {
+            "kind": "script",
+            "headline": "Daily Content Sprint script draft",
+            "selectedAngle": {
+              "title": "The hidden ops tax",
+              "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+              "hook": "You do not need more leads. You need fewer leaks.",
+              "cta": "Book a workflow teardown"
+            },
+            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
+          },
+          "logs": [
+            "[2026-04-04T14:39:57.003Z] Selected angle: The hidden ops tax.",
+            "[2026-04-04T14:39:57.003Z] Generated script CTA: Book a workflow teardown."
+          ]
+        }
+      ],
+      "logs": [
+        "[2026-04-04T14:39:57.002Z] Workflow Daily Content Sprint started for VBJ Services.",
+        "[2026-04-04T14:39:57.002Z] Trigger source: manual.",
+        "[2026-04-04T14:39:57.003Z] Content Researcher completed Research Signals.",
+        "[2026-04-04T14:39:57.003Z] Scanned ICP: Agency owners and lean service businesses.",
+        "[2026-04-04T14:39:57.003Z] Evaluated campaign theme: AI orchestration for lean operators.",
+        "[2026-04-04T14:39:57.003Z] Flagged primary pain: Leads arrive through DMs with no qualification.",
+        "[2026-04-04T14:39:57.003Z] Idea Generator completed Generate Angles.",
+        "[2026-04-04T14:39:57.003Z] Promoted research signal into 3 angles.",
+        "[2026-04-04T14:39:57.003Z] Attached CTA: Book a workflow teardown.",
+        "[2026-04-04T14:39:57.003Z] Script Writer completed Draft Script.",
+        "[2026-04-04T14:39:57.003Z] Selected angle: The hidden ops tax.",
+        "[2026-04-04T14:39:57.003Z] Generated script CTA: Book a workflow teardown."
+      ]
+    },
+    {
+      "id": "run_710d30ed-154e-4bc3-bd9f-7813053be1a5",
+      "workspaceId": "northstar-media",
+      "workspaceName": "Northstar Media",
+      "workflowInstanceId": "northstar-content-daily",
+      "workflowTemplateId": "content-pipeline",
+      "workflowName": "Client Content Assembly",
+      "trigger": "manual",
+      "status": "succeeded",
+      "startedAt": "2026-04-04T14:24:12.598Z",
+      "finishedAt": "2026-04-04T14:24:12.599Z",
+      "costEstimateUsd": 0.51,
+      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+      "primaryArtifact": {
+        "kind": "script",
+        "headline": "Client Content Assembly script draft",
+        "selectedAngle": {
+          "title": "The hidden ops tax",
+          "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+          "hook": "You do not need more leads. You need fewer leaks.",
+          "cta": "Request a 30-minute audit"
+        },
+        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
+      },
+      "steps": [
+        {
+          "id": "research-signals",
+          "name": "Research Signals",
+          "agentId": "content-researcher",
+          "agentName": "Content Researcher",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T14:24:12.599Z",
+          "finishedAt": "2026-04-04T14:24:12.599Z",
+          "summary": "Captured 3 positioning signals for Northstar Media.",
+          "artifact": {
+            "kind": "research-brief",
+            "headline": "Northstar Media research brief",
+            "bullets": [
+              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
+              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
+            ]
+          },
+          "logs": [
+            "[2026-04-04T14:24:12.599Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
+            "[2026-04-04T14:24:12.599Z] Evaluated campaign theme: Content ops for founder-led brands.",
+            "[2026-04-04T14:24:12.599Z] Flagged primary pain: Audience research is ad hoc."
+          ]
+        },
+        {
+          "id": "generate-angles",
+          "name": "Generate Angles",
+          "agentId": "idea-generator",
+          "agentName": "Idea Generator",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T14:24:12.599Z",
+          "finishedAt": "2026-04-04T14:24:12.599Z",
+          "summary": "Generated 3 usable content angles from the research brief.",
+          "artifact": {
+            "kind": "idea-pack",
+            "headline": "Client Content Assembly angles",
+            "sourceSignals": [
+              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
+              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
+            ],
+            "ideas": [
+              {
+                "title": "The hidden ops tax",
+                "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+                "hook": "You do not need more leads. You need fewer leaks.",
+                "cta": "Request a 30-minute audit"
+              },
+              {
+                "title": "Why content fails after 2 weeks",
+                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
+                "hook": "Consistency is not a discipline problem. It is a systems problem.",
+                "cta": "Request a 30-minute audit"
+              },
+              {
+                "title": "Tool stack theater",
+                "angle": "Short-form content studio buyers are tired of vendors selling fragments instead of working systems.",
+                "hook": "If your stack needs a human babysitter, it is not automation.",
+                "cta": "Request a 30-minute audit"
+              }
+            ]
+          },
+          "logs": [
+            "[2026-04-04T14:24:12.599Z] Promoted research signal into 3 angles.",
+            "[2026-04-04T14:24:12.599Z] Attached CTA: Request a 30-minute audit."
+          ]
+        },
+        {
+          "id": "draft-script",
+          "name": "Draft Script",
+          "agentId": "script-writer",
+          "agentName": "Script Writer",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T14:24:12.599Z",
+          "finishedAt": "2026-04-04T14:24:12.599Z",
+          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+          "artifact": {
+            "kind": "script",
+            "headline": "Client Content Assembly script draft",
+            "selectedAngle": {
+              "title": "The hidden ops tax",
+              "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+              "hook": "You do not need more leads. You need fewer leaks.",
+              "cta": "Request a 30-minute audit"
+            },
+            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
+          },
+          "logs": [
+            "[2026-04-04T14:24:12.599Z] Selected angle: The hidden ops tax.",
+            "[2026-04-04T14:24:12.599Z] Generated script CTA: Request a 30-minute audit."
+          ]
+        }
+      ],
+      "logs": [
+        "[2026-04-04T14:24:12.598Z] Workflow Client Content Assembly started for Northstar Media.",
+        "[2026-04-04T14:24:12.598Z] Trigger source: manual.",
+        "[2026-04-04T14:24:12.599Z] Content Researcher completed Research Signals.",
+        "[2026-04-04T14:24:12.599Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
+        "[2026-04-04T14:24:12.599Z] Evaluated campaign theme: Content ops for founder-led brands.",
+        "[2026-04-04T14:24:12.599Z] Flagged primary pain: Audience research is ad hoc.",
+        "[2026-04-04T14:24:12.599Z] Idea Generator completed Generate Angles.",
+        "[2026-04-04T14:24:12.599Z] Promoted research signal into 3 angles.",
+        "[2026-04-04T14:24:12.599Z] Attached CTA: Request a 30-minute audit.",
+        "[2026-04-04T14:24:12.599Z] Script Writer completed Draft Script.",
+        "[2026-04-04T14:24:12.599Z] Selected angle: The hidden ops tax.",
+        "[2026-04-04T14:24:12.599Z] Generated script CTA: Request a 30-minute audit."
+      ]
+    },
+    {
+      "id": "run_c087611d-1962-4bfc-9c9f-ba9b03bc0740",
+      "workspaceId": "vbj-services",
+      "workspaceName": "VBJ Services",
+      "workflowInstanceId": "vbj-content-daily",
+      "workflowTemplateId": "content-pipeline",
+      "workflowName": "Daily Content Sprint",
+      "trigger": "manual",
+      "status": "succeeded",
+      "startedAt": "2026-04-04T14:24:12.598Z",
+      "finishedAt": "2026-04-04T14:24:12.599Z",
+      "costEstimateUsd": 0.51,
+      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+      "primaryArtifact": {
+        "kind": "script",
+        "headline": "Daily Content Sprint script draft",
+        "selectedAngle": {
+          "title": "The hidden ops tax",
+          "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+          "hook": "You do not need more leads. You need fewer leaks.",
+          "cta": "Book a workflow teardown"
+        },
+        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
+      },
+      "steps": [
+        {
+          "id": "research-signals",
+          "name": "Research Signals",
+          "agentId": "content-researcher",
+          "agentName": "Content Researcher",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T14:24:12.599Z",
+          "finishedAt": "2026-04-04T14:24:12.599Z",
+          "summary": "Captured 3 positioning signals for VBJ Services.",
+          "artifact": {
+            "kind": "research-brief",
+            "headline": "VBJ Services research brief",
+            "bullets": [
+              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
+              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
+            ]
+          },
+          "logs": [
+            "[2026-04-04T14:24:12.599Z] Scanned ICP: Agency owners and lean service businesses.",
+            "[2026-04-04T14:24:12.599Z] Evaluated campaign theme: AI orchestration for lean operators.",
+            "[2026-04-04T14:24:12.599Z] Flagged primary pain: Leads arrive through DMs with no qualification."
+          ]
+        },
+        {
+          "id": "generate-angles",
+          "name": "Generate Angles",
+          "agentId": "idea-generator",
+          "agentName": "Idea Generator",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T14:24:12.599Z",
+          "finishedAt": "2026-04-04T14:24:12.599Z",
+          "summary": "Generated 3 usable content angles from the research brief.",
+          "artifact": {
+            "kind": "idea-pack",
+            "headline": "Daily Content Sprint angles",
+            "sourceSignals": [
+              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
+              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
+            ],
+            "ideas": [
+              {
+                "title": "The hidden ops tax",
+                "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+                "hook": "You do not need more leads. You need fewer leaks.",
+                "cta": "Book a workflow teardown"
+              },
+              {
+                "title": "Why content fails after 2 weeks",
+                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
+                "hook": "Consistency is not a discipline problem. It is a systems problem.",
+                "cta": "Book a workflow teardown"
+              },
+              {
+                "title": "Tool stack theater",
+                "angle": "AI automation consultancy buyers are tired of vendors selling fragments instead of working systems.",
+                "hook": "If your stack needs a human babysitter, it is not automation.",
+                "cta": "Book a workflow teardown"
+              }
+            ]
+          },
+          "logs": [
+            "[2026-04-04T14:24:12.599Z] Promoted research signal into 3 angles.",
+            "[2026-04-04T14:24:12.599Z] Attached CTA: Book a workflow teardown."
+          ]
+        },
+        {
+          "id": "draft-script",
+          "name": "Draft Script",
+          "agentId": "script-writer",
+          "agentName": "Script Writer",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T14:24:12.599Z",
+          "finishedAt": "2026-04-04T14:24:12.599Z",
+          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+          "artifact": {
+            "kind": "script",
+            "headline": "Daily Content Sprint script draft",
+            "selectedAngle": {
+              "title": "The hidden ops tax",
+              "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+              "hook": "You do not need more leads. You need fewer leaks.",
+              "cta": "Book a workflow teardown"
+            },
+            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
+          },
+          "logs": [
+            "[2026-04-04T14:24:12.599Z] Selected angle: The hidden ops tax.",
+            "[2026-04-04T14:24:12.599Z] Generated script CTA: Book a workflow teardown."
+          ]
+        }
+      ],
+      "logs": [
+        "[2026-04-04T14:24:12.598Z] Workflow Daily Content Sprint started for VBJ Services.",
+        "[2026-04-04T14:24:12.598Z] Trigger source: manual.",
+        "[2026-04-04T14:24:12.599Z] Content Researcher completed Research Signals.",
+        "[2026-04-04T14:24:12.599Z] Scanned ICP: Agency owners and lean service businesses.",
+        "[2026-04-04T14:24:12.599Z] Evaluated campaign theme: AI orchestration for lean operators.",
+        "[2026-04-04T14:24:12.599Z] Flagged primary pain: Leads arrive through DMs with no qualification.",
+        "[2026-04-04T14:24:12.599Z] Idea Generator completed Generate Angles.",
+        "[2026-04-04T14:24:12.599Z] Promoted research signal into 3 angles.",
+        "[2026-04-04T14:24:12.599Z] Attached CTA: Book a workflow teardown.",
+        "[2026-04-04T14:24:12.599Z] Script Writer completed Draft Script.",
+        "[2026-04-04T14:24:12.599Z] Selected angle: The hidden ops tax.",
+        "[2026-04-04T14:24:12.599Z] Generated script CTA: Book a workflow teardown."
+      ]
+    },
+    {
+      "id": "run_8b03739f-5748-44a5-ba1a-9d663f5a3b00",
+      "workspaceId": "northstar-media",
+      "workspaceName": "Northstar Media",
+      "workflowInstanceId": "northstar-content-daily",
+      "workflowTemplateId": "content-pipeline",
+      "workflowName": "Client Content Assembly",
+      "trigger": "manual",
+      "status": "succeeded",
+      "startedAt": "2026-04-04T13:56:54.611Z",
+      "finishedAt": "2026-04-04T13:56:54.612Z",
+      "costEstimateUsd": 0.51,
+      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+      "primaryArtifact": {
+        "kind": "script",
+        "headline": "Client Content Assembly script draft",
+        "selectedAngle": {
+          "title": "The hidden ops tax",
+          "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+          "hook": "You do not need more leads. You need fewer leaks.",
+          "cta": "Request a 30-minute audit"
+        },
+        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
+      },
+      "steps": [
+        {
+          "id": "research-signals",
+          "name": "Research Signals",
+          "agentId": "content-researcher",
+          "agentName": "Content Researcher",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T13:56:54.612Z",
+          "finishedAt": "2026-04-04T13:56:54.612Z",
+          "summary": "Captured 3 positioning signals for Northstar Media.",
+          "artifact": {
+            "kind": "research-brief",
+            "headline": "Northstar Media research brief",
+            "bullets": [
+              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
+              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
+            ]
+          },
+          "logs": [
+            "[2026-04-04T13:56:54.612Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
+            "[2026-04-04T13:56:54.612Z] Evaluated campaign theme: Content ops for founder-led brands.",
+            "[2026-04-04T13:56:54.612Z] Flagged primary pain: Audience research is ad hoc."
+          ]
+        },
+        {
+          "id": "generate-angles",
+          "name": "Generate Angles",
+          "agentId": "idea-generator",
+          "agentName": "Idea Generator",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T13:56:54.612Z",
+          "finishedAt": "2026-04-04T13:56:54.612Z",
+          "summary": "Generated 3 usable content angles from the research brief.",
+          "artifact": {
+            "kind": "idea-pack",
+            "headline": "Client Content Assembly angles",
+            "sourceSignals": [
+              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
+              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
+            ],
+            "ideas": [
+              {
+                "title": "The hidden ops tax",
+                "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+                "hook": "You do not need more leads. You need fewer leaks.",
+                "cta": "Request a 30-minute audit"
+              },
+              {
+                "title": "Why content fails after 2 weeks",
+                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
+                "hook": "Consistency is not a discipline problem. It is a systems problem.",
+                "cta": "Request a 30-minute audit"
+              },
+              {
+                "title": "Tool stack theater",
+                "angle": "Short-form content studio buyers are tired of vendors selling fragments instead of working systems.",
+                "hook": "If your stack needs a human babysitter, it is not automation.",
+                "cta": "Request a 30-minute audit"
+              }
+            ]
+          },
+          "logs": [
+            "[2026-04-04T13:56:54.612Z] Promoted research signal into 3 angles.",
+            "[2026-04-04T13:56:54.612Z] Attached CTA: Request a 30-minute audit."
+          ]
+        },
+        {
+          "id": "draft-script",
+          "name": "Draft Script",
+          "agentId": "script-writer",
+          "agentName": "Script Writer",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T13:56:54.612Z",
+          "finishedAt": "2026-04-04T13:56:54.612Z",
+          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+          "artifact": {
+            "kind": "script",
+            "headline": "Client Content Assembly script draft",
+            "selectedAngle": {
+              "title": "The hidden ops tax",
+              "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+              "hook": "You do not need more leads. You need fewer leaks.",
+              "cta": "Request a 30-minute audit"
+            },
+            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
+          },
+          "logs": [
+            "[2026-04-04T13:56:54.612Z] Selected angle: The hidden ops tax.",
+            "[2026-04-04T13:56:54.612Z] Generated script CTA: Request a 30-minute audit."
+          ]
+        }
+      ],
+      "logs": [
+        "[2026-04-04T13:56:54.611Z] Workflow Client Content Assembly started for Northstar Media.",
+        "[2026-04-04T13:56:54.611Z] Trigger source: manual.",
+        "[2026-04-04T13:56:54.612Z] Content Researcher completed Research Signals.",
+        "[2026-04-04T13:56:54.612Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
+        "[2026-04-04T13:56:54.612Z] Evaluated campaign theme: Content ops for founder-led brands.",
+        "[2026-04-04T13:56:54.612Z] Flagged primary pain: Audience research is ad hoc.",
+        "[2026-04-04T13:56:54.612Z] Idea Generator completed Generate Angles.",
+        "[2026-04-04T13:56:54.612Z] Promoted research signal into 3 angles.",
+        "[2026-04-04T13:56:54.612Z] Attached CTA: Request a 30-minute audit.",
+        "[2026-04-04T13:56:54.612Z] Script Writer completed Draft Script.",
+        "[2026-04-04T13:56:54.612Z] Selected angle: The hidden ops tax.",
+        "[2026-04-04T13:56:54.612Z] Generated script CTA: Request a 30-minute audit."
+      ]
+    },
+    {
+      "id": "run_a4ef6fdd-6e73-4c3d-8dbd-7c03b4dbc6dc",
+      "workspaceId": "vbj-services",
+      "workspaceName": "VBJ Services",
+      "workflowInstanceId": "vbj-content-daily",
+      "workflowTemplateId": "content-pipeline",
+      "workflowName": "Daily Content Sprint",
+      "trigger": "manual",
+      "status": "succeeded",
+      "startedAt": "2026-04-04T13:56:54.611Z",
+      "finishedAt": "2026-04-04T13:56:54.612Z",
+      "costEstimateUsd": 0.51,
+      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+      "primaryArtifact": {
+        "kind": "script",
+        "headline": "Daily Content Sprint script draft",
+        "selectedAngle": {
+          "title": "The hidden ops tax",
+          "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+          "hook": "You do not need more leads. You need fewer leaks.",
+          "cta": "Book a workflow teardown"
+        },
+        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
+      },
+      "steps": [
+        {
+          "id": "research-signals",
+          "name": "Research Signals",
+          "agentId": "content-researcher",
+          "agentName": "Content Researcher",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T13:56:54.612Z",
+          "finishedAt": "2026-04-04T13:56:54.612Z",
+          "summary": "Captured 3 positioning signals for VBJ Services.",
+          "artifact": {
+            "kind": "research-brief",
+            "headline": "VBJ Services research brief",
+            "bullets": [
+              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
+              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
+            ]
+          },
+          "logs": [
+            "[2026-04-04T13:56:54.612Z] Scanned ICP: Agency owners and lean service businesses.",
+            "[2026-04-04T13:56:54.612Z] Evaluated campaign theme: AI orchestration for lean operators.",
+            "[2026-04-04T13:56:54.612Z] Flagged primary pain: Leads arrive through DMs with no qualification."
+          ]
+        },
+        {
+          "id": "generate-angles",
+          "name": "Generate Angles",
+          "agentId": "idea-generator",
+          "agentName": "Idea Generator",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T13:56:54.612Z",
+          "finishedAt": "2026-04-04T13:56:54.612Z",
+          "summary": "Generated 3 usable content angles from the research brief.",
+          "artifact": {
+            "kind": "idea-pack",
+            "headline": "Daily Content Sprint angles",
+            "sourceSignals": [
+              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
+              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
+            ],
+            "ideas": [
+              {
+                "title": "The hidden ops tax",
+                "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+                "hook": "You do not need more leads. You need fewer leaks.",
+                "cta": "Book a workflow teardown"
+              },
+              {
+                "title": "Why content fails after 2 weeks",
+                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
+                "hook": "Consistency is not a discipline problem. It is a systems problem.",
+                "cta": "Book a workflow teardown"
+              },
+              {
+                "title": "Tool stack theater",
+                "angle": "AI automation consultancy buyers are tired of vendors selling fragments instead of working systems.",
+                "hook": "If your stack needs a human babysitter, it is not automation.",
+                "cta": "Book a workflow teardown"
+              }
+            ]
+          },
+          "logs": [
+            "[2026-04-04T13:56:54.612Z] Promoted research signal into 3 angles.",
+            "[2026-04-04T13:56:54.612Z] Attached CTA: Book a workflow teardown."
+          ]
+        },
+        {
+          "id": "draft-script",
+          "name": "Draft Script",
+          "agentId": "script-writer",
+          "agentName": "Script Writer",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T13:56:54.612Z",
+          "finishedAt": "2026-04-04T13:56:54.612Z",
+          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+          "artifact": {
+            "kind": "script",
+            "headline": "Daily Content Sprint script draft",
+            "selectedAngle": {
+              "title": "The hidden ops tax",
+              "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+              "hook": "You do not need more leads. You need fewer leaks.",
+              "cta": "Book a workflow teardown"
+            },
+            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
+          },
+          "logs": [
+            "[2026-04-04T13:56:54.612Z] Selected angle: The hidden ops tax.",
+            "[2026-04-04T13:56:54.612Z] Generated script CTA: Book a workflow teardown."
+          ]
+        }
+      ],
+      "logs": [
+        "[2026-04-04T13:56:54.611Z] Workflow Daily Content Sprint started for VBJ Services.",
+        "[2026-04-04T13:56:54.611Z] Trigger source: manual.",
+        "[2026-04-04T13:56:54.612Z] Content Researcher completed Research Signals.",
+        "[2026-04-04T13:56:54.612Z] Scanned ICP: Agency owners and lean service businesses.",
+        "[2026-04-04T13:56:54.612Z] Evaluated campaign theme: AI orchestration for lean operators.",
+        "[2026-04-04T13:56:54.612Z] Flagged primary pain: Leads arrive through DMs with no qualification.",
+        "[2026-04-04T13:56:54.612Z] Idea Generator completed Generate Angles.",
+        "[2026-04-04T13:56:54.612Z] Promoted research signal into 3 angles.",
+        "[2026-04-04T13:56:54.612Z] Attached CTA: Book a workflow teardown.",
+        "[2026-04-04T13:56:54.612Z] Script Writer completed Draft Script.",
+        "[2026-04-04T13:56:54.612Z] Selected angle: The hidden ops tax.",
+        "[2026-04-04T13:56:54.612Z] Generated script CTA: Book a workflow teardown."
+      ]
+    },
+    {
+      "id": "run_c9f5b0ed-98f7-4832-bdf0-3bc164f5df23",
+      "workspaceId": "northstar-media",
+      "workspaceName": "Northstar Media",
+      "workflowInstanceId": "northstar-content-daily",
+      "workflowTemplateId": "content-pipeline",
+      "workflowName": "Client Content Assembly",
+      "trigger": "manual",
+      "status": "succeeded",
+      "startedAt": "2026-04-04T12:01:57.468Z",
+      "finishedAt": "2026-04-04T12:01:57.470Z",
+      "costEstimateUsd": 0.51,
+      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+      "primaryArtifact": {
+        "kind": "script",
+        "headline": "Client Content Assembly script draft",
+        "selectedAngle": {
+          "title": "The hidden ops tax",
+          "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+          "hook": "You do not need more leads. You need fewer leaks.",
+          "cta": "Request a 30-minute audit"
+        },
+        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
+      },
+      "steps": [
+        {
+          "id": "research-signals",
+          "name": "Research Signals",
+          "agentId": "content-researcher",
+          "agentName": "Content Researcher",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T12:01:57.469Z",
+          "finishedAt": "2026-04-04T12:01:57.469Z",
+          "summary": "Captured 3 positioning signals for Northstar Media.",
+          "artifact": {
+            "kind": "research-brief",
+            "headline": "Northstar Media research brief",
+            "bullets": [
+              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
+              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
+            ]
+          },
+          "logs": [
+            "[2026-04-04T12:01:57.469Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
+            "[2026-04-04T12:01:57.469Z] Evaluated campaign theme: Content ops for founder-led brands.",
+            "[2026-04-04T12:01:57.469Z] Flagged primary pain: Audience research is ad hoc."
+          ]
+        },
+        {
+          "id": "generate-angles",
+          "name": "Generate Angles",
+          "agentId": "idea-generator",
+          "agentName": "Idea Generator",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T12:01:57.469Z",
+          "finishedAt": "2026-04-04T12:01:57.470Z",
+          "summary": "Generated 3 usable content angles from the research brief.",
+          "artifact": {
+            "kind": "idea-pack",
+            "headline": "Client Content Assembly angles",
+            "sourceSignals": [
+              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
+              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
+            ],
+            "ideas": [
+              {
+                "title": "The hidden ops tax",
+                "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+                "hook": "You do not need more leads. You need fewer leaks.",
+                "cta": "Request a 30-minute audit"
+              },
+              {
+                "title": "Why content fails after 2 weeks",
+                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
+                "hook": "Consistency is not a discipline problem. It is a systems problem.",
+                "cta": "Request a 30-minute audit"
+              },
+              {
+                "title": "Tool stack theater",
+                "angle": "Short-form content studio buyers are tired of vendors selling fragments instead of working systems.",
+                "hook": "If your stack needs a human babysitter, it is not automation.",
+                "cta": "Request a 30-minute audit"
+              }
+            ]
+          },
+          "logs": [
+            "[2026-04-04T12:01:57.470Z] Promoted research signal into 3 angles.",
+            "[2026-04-04T12:01:57.470Z] Attached CTA: Request a 30-minute audit."
+          ]
+        },
+        {
+          "id": "draft-script",
+          "name": "Draft Script",
+          "agentId": "script-writer",
+          "agentName": "Script Writer",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T12:01:57.470Z",
+          "finishedAt": "2026-04-04T12:01:57.470Z",
+          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+          "artifact": {
+            "kind": "script",
+            "headline": "Client Content Assembly script draft",
+            "selectedAngle": {
+              "title": "The hidden ops tax",
+              "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+              "hook": "You do not need more leads. You need fewer leaks.",
+              "cta": "Request a 30-minute audit"
+            },
+            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
+          },
+          "logs": [
+            "[2026-04-04T12:01:57.470Z] Selected angle: The hidden ops tax.",
+            "[2026-04-04T12:01:57.470Z] Generated script CTA: Request a 30-minute audit."
+          ]
+        }
+      ],
+      "logs": [
+        "[2026-04-04T12:01:57.468Z] Workflow Client Content Assembly started for Northstar Media.",
+        "[2026-04-04T12:01:57.468Z] Trigger source: manual.",
+        "[2026-04-04T12:01:57.469Z] Content Researcher completed Research Signals.",
+        "[2026-04-04T12:01:57.469Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
+        "[2026-04-04T12:01:57.469Z] Evaluated campaign theme: Content ops for founder-led brands.",
+        "[2026-04-04T12:01:57.469Z] Flagged primary pain: Audience research is ad hoc.",
+        "[2026-04-04T12:01:57.470Z] Idea Generator completed Generate Angles.",
+        "[2026-04-04T12:01:57.470Z] Promoted research signal into 3 angles.",
+        "[2026-04-04T12:01:57.470Z] Attached CTA: Request a 30-minute audit.",
+        "[2026-04-04T12:01:57.470Z] Script Writer completed Draft Script.",
+        "[2026-04-04T12:01:57.470Z] Selected angle: The hidden ops tax.",
+        "[2026-04-04T12:01:57.470Z] Generated script CTA: Request a 30-minute audit."
+      ]
+    },
+    {
+      "id": "run_eaa27e36-8040-48b9-ac18-c35cf76f0fd9",
+      "workspaceId": "vbj-services",
+      "workspaceName": "VBJ Services",
+      "workflowInstanceId": "vbj-content-daily",
+      "workflowTemplateId": "content-pipeline",
+      "workflowName": "Daily Content Sprint",
+      "trigger": "manual",
+      "status": "succeeded",
+      "startedAt": "2026-04-04T12:01:57.468Z",
+      "finishedAt": "2026-04-04T12:01:57.471Z",
+      "costEstimateUsd": 0.51,
+      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+      "primaryArtifact": {
+        "kind": "script",
+        "headline": "Daily Content Sprint script draft",
+        "selectedAngle": {
+          "title": "The hidden ops tax",
+          "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+          "hook": "You do not need more leads. You need fewer leaks.",
+          "cta": "Book a workflow teardown"
+        },
+        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
+      },
+      "steps": [
+        {
+          "id": "research-signals",
+          "name": "Research Signals",
+          "agentId": "content-researcher",
+          "agentName": "Content Researcher",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T12:01:57.470Z",
+          "finishedAt": "2026-04-04T12:01:57.471Z",
+          "summary": "Captured 3 positioning signals for VBJ Services.",
+          "artifact": {
+            "kind": "research-brief",
+            "headline": "VBJ Services research brief",
+            "bullets": [
+              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
+              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
+            ]
+          },
+          "logs": [
+            "[2026-04-04T12:01:57.471Z] Scanned ICP: Agency owners and lean service businesses.",
+            "[2026-04-04T12:01:57.471Z] Evaluated campaign theme: AI orchestration for lean operators.",
+            "[2026-04-04T12:01:57.471Z] Flagged primary pain: Leads arrive through DMs with no qualification."
+          ]
+        },
+        {
+          "id": "generate-angles",
+          "name": "Generate Angles",
+          "agentId": "idea-generator",
+          "agentName": "Idea Generator",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T12:01:57.471Z",
+          "finishedAt": "2026-04-04T12:01:57.471Z",
+          "summary": "Generated 3 usable content angles from the research brief.",
+          "artifact": {
+            "kind": "idea-pack",
+            "headline": "Daily Content Sprint angles",
+            "sourceSignals": [
+              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
+              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
+            ],
+            "ideas": [
+              {
+                "title": "The hidden ops tax",
+                "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+                "hook": "You do not need more leads. You need fewer leaks.",
+                "cta": "Book a workflow teardown"
+              },
+              {
+                "title": "Why content fails after 2 weeks",
+                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
+                "hook": "Consistency is not a discipline problem. It is a systems problem.",
+                "cta": "Book a workflow teardown"
+              },
+              {
+                "title": "Tool stack theater",
+                "angle": "AI automation consultancy buyers are tired of vendors selling fragments instead of working systems.",
+                "hook": "If your stack needs a human babysitter, it is not automation.",
+                "cta": "Book a workflow teardown"
+              }
+            ]
+          },
+          "logs": [
+            "[2026-04-04T12:01:57.471Z] Promoted research signal into 3 angles.",
+            "[2026-04-04T12:01:57.471Z] Attached CTA: Book a workflow teardown."
+          ]
+        },
+        {
+          "id": "draft-script",
+          "name": "Draft Script",
+          "agentId": "script-writer",
+          "agentName": "Script Writer",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T12:01:57.471Z",
+          "finishedAt": "2026-04-04T12:01:57.471Z",
+          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+          "artifact": {
+            "kind": "script",
+            "headline": "Daily Content Sprint script draft",
+            "selectedAngle": {
+              "title": "The hidden ops tax",
+              "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+              "hook": "You do not need more leads. You need fewer leaks.",
+              "cta": "Book a workflow teardown"
+            },
+            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
+          },
+          "logs": [
+            "[2026-04-04T12:01:57.471Z] Selected angle: The hidden ops tax.",
+            "[2026-04-04T12:01:57.471Z] Generated script CTA: Book a workflow teardown."
+          ]
+        }
+      ],
+      "logs": [
+        "[2026-04-04T12:01:57.468Z] Workflow Daily Content Sprint started for VBJ Services.",
+        "[2026-04-04T12:01:57.468Z] Trigger source: manual.",
+        "[2026-04-04T12:01:57.471Z] Content Researcher completed Research Signals.",
+        "[2026-04-04T12:01:57.471Z] Scanned ICP: Agency owners and lean service businesses.",
+        "[2026-04-04T12:01:57.471Z] Evaluated campaign theme: AI orchestration for lean operators.",
+        "[2026-04-04T12:01:57.471Z] Flagged primary pain: Leads arrive through DMs with no qualification.",
+        "[2026-04-04T12:01:57.471Z] Idea Generator completed Generate Angles.",
+        "[2026-04-04T12:01:57.471Z] Promoted research signal into 3 angles.",
+        "[2026-04-04T12:01:57.471Z] Attached CTA: Book a workflow teardown.",
+        "[2026-04-04T12:01:57.471Z] Script Writer completed Draft Script.",
+        "[2026-04-04T12:01:57.471Z] Selected angle: The hidden ops tax.",
+        "[2026-04-04T12:01:57.471Z] Generated script CTA: Book a workflow teardown."
+      ]
+    },
+    {
+      "id": "run_aa402887-40e8-4aea-a229-635002feb9d8",
+      "workspaceId": "northstar-media",
+      "workspaceName": "Northstar Media",
+      "workflowInstanceId": "northstar-content-daily",
+      "workflowTemplateId": "content-pipeline",
+      "workflowName": "Client Content Assembly",
+      "trigger": "manual",
+      "status": "succeeded",
+      "startedAt": "2026-04-04T12:00:46.782Z",
+      "finishedAt": "2026-04-04T12:00:46.784Z",
+      "costEstimateUsd": 0.51,
+      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+      "primaryArtifact": {
+        "kind": "script",
+        "headline": "Client Content Assembly script draft",
+        "selectedAngle": {
+          "title": "The hidden ops tax",
+          "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+          "hook": "You do not need more leads. You need fewer leaks.",
+          "cta": "Request a 30-minute audit"
+        },
+        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
+      },
+      "steps": [
+        {
+          "id": "research-signals",
+          "name": "Research Signals",
+          "agentId": "content-researcher",
+          "agentName": "Content Researcher",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T12:00:46.784Z",
+          "finishedAt": "2026-04-04T12:00:46.784Z",
+          "summary": "Captured 3 positioning signals for Northstar Media.",
+          "artifact": {
+            "kind": "research-brief",
+            "headline": "Northstar Media research brief",
+            "bullets": [
+              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
+              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
+            ]
+          },
+          "logs": [
+            "[2026-04-04T12:00:46.784Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
+            "[2026-04-04T12:00:46.784Z] Evaluated campaign theme: Content ops for founder-led brands.",
+            "[2026-04-04T12:00:46.784Z] Flagged primary pain: Audience research is ad hoc."
+          ]
+        },
+        {
+          "id": "generate-angles",
+          "name": "Generate Angles",
+          "agentId": "idea-generator",
+          "agentName": "Idea Generator",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T12:00:46.784Z",
+          "finishedAt": "2026-04-04T12:00:46.784Z",
+          "summary": "Generated 3 usable content angles from the research brief.",
+          "artifact": {
+            "kind": "idea-pack",
+            "headline": "Client Content Assembly angles",
+            "sourceSignals": [
+              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
+              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
+            ],
+            "ideas": [
+              {
+                "title": "The hidden ops tax",
+                "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+                "hook": "You do not need more leads. You need fewer leaks.",
+                "cta": "Request a 30-minute audit"
+              },
+              {
+                "title": "Why content fails after 2 weeks",
+                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
+                "hook": "Consistency is not a discipline problem. It is a systems problem.",
+                "cta": "Request a 30-minute audit"
+              },
+              {
+                "title": "Tool stack theater",
+                "angle": "Short-form content studio buyers are tired of vendors selling fragments instead of working systems.",
+                "hook": "If your stack needs a human babysitter, it is not automation.",
+                "cta": "Request a 30-minute audit"
+              }
+            ]
+          },
+          "logs": [
+            "[2026-04-04T12:00:46.784Z] Promoted research signal into 3 angles.",
+            "[2026-04-04T12:00:46.784Z] Attached CTA: Request a 30-minute audit."
+          ]
+        },
+        {
+          "id": "draft-script",
+          "name": "Draft Script",
+          "agentId": "script-writer",
+          "agentName": "Script Writer",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T12:00:46.784Z",
+          "finishedAt": "2026-04-04T12:00:46.784Z",
+          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+          "artifact": {
+            "kind": "script",
+            "headline": "Client Content Assembly script draft",
+            "selectedAngle": {
+              "title": "The hidden ops tax",
+              "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+              "hook": "You do not need more leads. You need fewer leaks.",
+              "cta": "Request a 30-minute audit"
+            },
+            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
+          },
+          "logs": [
+            "[2026-04-04T12:00:46.784Z] Selected angle: The hidden ops tax.",
+            "[2026-04-04T12:00:46.784Z] Generated script CTA: Request a 30-minute audit."
+          ]
+        }
+      ],
+      "logs": [
+        "[2026-04-04T12:00:46.782Z] Workflow Client Content Assembly started for Northstar Media.",
+        "[2026-04-04T12:00:46.782Z] Trigger source: manual.",
+        "[2026-04-04T12:00:46.784Z] Content Researcher completed Research Signals.",
+        "[2026-04-04T12:00:46.784Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
+        "[2026-04-04T12:00:46.784Z] Evaluated campaign theme: Content ops for founder-led brands.",
+        "[2026-04-04T12:00:46.784Z] Flagged primary pain: Audience research is ad hoc.",
+        "[2026-04-04T12:00:46.784Z] Idea Generator completed Generate Angles.",
+        "[2026-04-04T12:00:46.784Z] Promoted research signal into 3 angles.",
+        "[2026-04-04T12:00:46.784Z] Attached CTA: Request a 30-minute audit.",
+        "[2026-04-04T12:00:46.784Z] Script Writer completed Draft Script.",
+        "[2026-04-04T12:00:46.784Z] Selected angle: The hidden ops tax.",
+        "[2026-04-04T12:00:46.784Z] Generated script CTA: Request a 30-minute audit."
+      ]
+    },
+    {
+      "id": "run_fdf17a01-7c29-4b35-8c23-13e5f173b97a",
+      "workspaceId": "vbj-services",
+      "workspaceName": "VBJ Services",
+      "workflowInstanceId": "vbj-content-daily",
+      "workflowTemplateId": "content-pipeline",
+      "workflowName": "Daily Content Sprint",
+      "trigger": "manual",
+      "status": "succeeded",
+      "startedAt": "2026-04-04T12:00:46.782Z",
+      "finishedAt": "2026-04-04T12:00:46.785Z",
+      "costEstimateUsd": 0.51,
+      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+      "primaryArtifact": {
+        "kind": "script",
+        "headline": "Daily Content Sprint script draft",
+        "selectedAngle": {
+          "title": "The hidden ops tax",
+          "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+          "hook": "You do not need more leads. You need fewer leaks.",
+          "cta": "Book a workflow teardown"
+        },
+        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
+      },
+      "steps": [
+        {
+          "id": "research-signals",
+          "name": "Research Signals",
+          "agentId": "content-researcher",
+          "agentName": "Content Researcher",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T12:00:46.785Z",
+          "finishedAt": "2026-04-04T12:00:46.785Z",
+          "summary": "Captured 3 positioning signals for VBJ Services.",
+          "artifact": {
+            "kind": "research-brief",
+            "headline": "VBJ Services research brief",
+            "bullets": [
+              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
+              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
+            ]
+          },
+          "logs": [
+            "[2026-04-04T12:00:46.785Z] Scanned ICP: Agency owners and lean service businesses.",
+            "[2026-04-04T12:00:46.785Z] Evaluated campaign theme: AI orchestration for lean operators.",
+            "[2026-04-04T12:00:46.785Z] Flagged primary pain: Leads arrive through DMs with no qualification."
+          ]
+        },
+        {
+          "id": "generate-angles",
+          "name": "Generate Angles",
+          "agentId": "idea-generator",
+          "agentName": "Idea Generator",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T12:00:46.785Z",
+          "finishedAt": "2026-04-04T12:00:46.785Z",
+          "summary": "Generated 3 usable content angles from the research brief.",
+          "artifact": {
+            "kind": "idea-pack",
+            "headline": "Daily Content Sprint angles",
+            "sourceSignals": [
+              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
+              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
+            ],
+            "ideas": [
+              {
+                "title": "The hidden ops tax",
+                "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+                "hook": "You do not need more leads. You need fewer leaks.",
+                "cta": "Book a workflow teardown"
+              },
+              {
+                "title": "Why content fails after 2 weeks",
+                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
+                "hook": "Consistency is not a discipline problem. It is a systems problem.",
+                "cta": "Book a workflow teardown"
+              },
+              {
+                "title": "Tool stack theater",
+                "angle": "AI automation consultancy buyers are tired of vendors selling fragments instead of working systems.",
+                "hook": "If your stack needs a human babysitter, it is not automation.",
+                "cta": "Book a workflow teardown"
+              }
+            ]
+          },
+          "logs": [
+            "[2026-04-04T12:00:46.785Z] Promoted research signal into 3 angles.",
+            "[2026-04-04T12:00:46.785Z] Attached CTA: Book a workflow teardown."
+          ]
+        },
+        {
+          "id": "draft-script",
+          "name": "Draft Script",
+          "agentId": "script-writer",
+          "agentName": "Script Writer",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T12:00:46.785Z",
+          "finishedAt": "2026-04-04T12:00:46.785Z",
+          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+          "artifact": {
+            "kind": "script",
+            "headline": "Daily Content Sprint script draft",
+            "selectedAngle": {
+              "title": "The hidden ops tax",
+              "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+              "hook": "You do not need more leads. You need fewer leaks.",
+              "cta": "Book a workflow teardown"
+            },
+            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
+          },
+          "logs": [
+            "[2026-04-04T12:00:46.785Z] Selected angle: The hidden ops tax.",
+            "[2026-04-04T12:00:46.785Z] Generated script CTA: Book a workflow teardown."
+          ]
+        }
+      ],
+      "logs": [
+        "[2026-04-04T12:00:46.782Z] Workflow Daily Content Sprint started for VBJ Services.",
+        "[2026-04-04T12:00:46.782Z] Trigger source: manual.",
+        "[2026-04-04T12:00:46.785Z] Content Researcher completed Research Signals.",
+        "[2026-04-04T12:00:46.785Z] Scanned ICP: Agency owners and lean service businesses.",
+        "[2026-04-04T12:00:46.785Z] Evaluated campaign theme: AI orchestration for lean operators.",
+        "[2026-04-04T12:00:46.785Z] Flagged primary pain: Leads arrive through DMs with no qualification.",
+        "[2026-04-04T12:00:46.785Z] Idea Generator completed Generate Angles.",
+        "[2026-04-04T12:00:46.785Z] Promoted research signal into 3 angles.",
+        "[2026-04-04T12:00:46.785Z] Attached CTA: Book a workflow teardown.",
+        "[2026-04-04T12:00:46.785Z] Script Writer completed Draft Script.",
+        "[2026-04-04T12:00:46.785Z] Selected angle: The hidden ops tax.",
+        "[2026-04-04T12:00:46.785Z] Generated script CTA: Book a workflow teardown."
+      ]
+    },
+    {
+      "id": "run_e69de721-ee29-40cd-b31a-22cb49a13991",
+      "workspaceId": "northstar-media",
+      "workspaceName": "Northstar Media",
+      "workflowInstanceId": "northstar-content-daily",
+      "workflowTemplateId": "content-pipeline",
+      "workflowName": "Client Content Assembly",
+      "trigger": "manual",
+      "status": "succeeded",
+      "startedAt": "2026-04-04T11:53:52.065Z",
+      "finishedAt": "2026-04-04T11:53:52.070Z",
+      "costEstimateUsd": 0.51,
+      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+      "primaryArtifact": {
+        "kind": "script",
+        "headline": "Client Content Assembly script draft",
+        "selectedAngle": {
+          "title": "The hidden ops tax",
+          "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+          "hook": "You do not need more leads. You need fewer leaks.",
+          "cta": "Request a 30-minute audit"
+        },
+        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
+      },
+      "steps": [
+        {
+          "id": "research-signals",
+          "name": "Research Signals",
+          "agentId": "content-researcher",
+          "agentName": "Content Researcher",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T11:53:52.069Z",
+          "finishedAt": "2026-04-04T11:53:52.069Z",
+          "summary": "Captured 3 positioning signals for Northstar Media.",
+          "artifact": {
+            "kind": "research-brief",
+            "headline": "Northstar Media research brief",
+            "bullets": [
+              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
+              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
+            ]
+          },
+          "logs": [
+            "[2026-04-04T11:53:52.069Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
+            "[2026-04-04T11:53:52.069Z] Evaluated campaign theme: Content ops for founder-led brands.",
+            "[2026-04-04T11:53:52.069Z] Flagged primary pain: Audience research is ad hoc."
+          ]
+        },
+        {
+          "id": "generate-angles",
+          "name": "Generate Angles",
+          "agentId": "idea-generator",
+          "agentName": "Idea Generator",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T11:53:52.069Z",
+          "finishedAt": "2026-04-04T11:53:52.070Z",
+          "summary": "Generated 3 usable content angles from the research brief.",
+          "artifact": {
+            "kind": "idea-pack",
+            "headline": "Client Content Assembly angles",
+            "sourceSignals": [
+              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
+              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
+            ],
+            "ideas": [
+              {
+                "title": "The hidden ops tax",
+                "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+                "hook": "You do not need more leads. You need fewer leaks.",
+                "cta": "Request a 30-minute audit"
+              },
+              {
+                "title": "Why content fails after 2 weeks",
+                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
+                "hook": "Consistency is not a discipline problem. It is a systems problem.",
+                "cta": "Request a 30-minute audit"
+              },
+              {
+                "title": "Tool stack theater",
+                "angle": "Short-form content studio buyers are tired of vendors selling fragments instead of working systems.",
+                "hook": "If your stack needs a human babysitter, it is not automation.",
+                "cta": "Request a 30-minute audit"
+              }
+            ]
+          },
+          "logs": [
+            "[2026-04-04T11:53:52.070Z] Promoted research signal into 3 angles.",
+            "[2026-04-04T11:53:52.070Z] Attached CTA: Request a 30-minute audit."
+          ]
+        },
+        {
+          "id": "draft-script",
+          "name": "Draft Script",
+          "agentId": "script-writer",
+          "agentName": "Script Writer",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T11:53:52.070Z",
+          "finishedAt": "2026-04-04T11:53:52.070Z",
+          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+          "artifact": {
+            "kind": "script",
+            "headline": "Client Content Assembly script draft",
+            "selectedAngle": {
+              "title": "The hidden ops tax",
+              "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+              "hook": "You do not need more leads. You need fewer leaks.",
+              "cta": "Request a 30-minute audit"
+            },
+            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
+          },
+          "logs": [
+            "[2026-04-04T11:53:52.070Z] Selected angle: The hidden ops tax.",
+            "[2026-04-04T11:53:52.070Z] Generated script CTA: Request a 30-minute audit."
+          ]
+        }
+      ],
+      "logs": [
+        "[2026-04-04T11:53:52.065Z] Workflow Client Content Assembly started for Northstar Media.",
+        "[2026-04-04T11:53:52.065Z] Trigger source: manual.",
+        "[2026-04-04T11:53:52.069Z] Content Researcher completed Research Signals.",
+        "[2026-04-04T11:53:52.069Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
+        "[2026-04-04T11:53:52.069Z] Evaluated campaign theme: Content ops for founder-led brands.",
+        "[2026-04-04T11:53:52.069Z] Flagged primary pain: Audience research is ad hoc.",
+        "[2026-04-04T11:53:52.070Z] Idea Generator completed Generate Angles.",
+        "[2026-04-04T11:53:52.070Z] Promoted research signal into 3 angles.",
+        "[2026-04-04T11:53:52.070Z] Attached CTA: Request a 30-minute audit.",
+        "[2026-04-04T11:53:52.070Z] Script Writer completed Draft Script.",
+        "[2026-04-04T11:53:52.070Z] Selected angle: The hidden ops tax.",
+        "[2026-04-04T11:53:52.070Z] Generated script CTA: Request a 30-minute audit."
+      ]
+    },
+    {
+      "id": "run_14a3bb44-ac6f-49ae-b95f-c8c871d8c61a",
+      "workspaceId": "vbj-services",
+      "workspaceName": "VBJ Services",
+      "workflowInstanceId": "vbj-content-daily",
+      "workflowTemplateId": "content-pipeline",
+      "workflowName": "Daily Content Sprint",
+      "trigger": "manual",
+      "status": "succeeded",
+      "startedAt": "2026-04-04T11:53:52.065Z",
+      "finishedAt": "2026-04-04T11:53:52.070Z",
+      "costEstimateUsd": 0.51,
+      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+      "primaryArtifact": {
+        "kind": "script",
+        "headline": "Daily Content Sprint script draft",
+        "selectedAngle": {
+          "title": "The hidden ops tax",
+          "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+          "hook": "You do not need more leads. You need fewer leaks.",
+          "cta": "Book a workflow teardown"
+        },
+        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
+      },
+      "steps": [
+        {
+          "id": "research-signals",
+          "name": "Research Signals",
+          "agentId": "content-researcher",
+          "agentName": "Content Researcher",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T11:53:52.070Z",
+          "finishedAt": "2026-04-04T11:53:52.070Z",
+          "summary": "Captured 3 positioning signals for VBJ Services.",
+          "artifact": {
+            "kind": "research-brief",
+            "headline": "VBJ Services research brief",
+            "bullets": [
+              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
+              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
+            ]
+          },
+          "logs": [
+            "[2026-04-04T11:53:52.070Z] Scanned ICP: Agency owners and lean service businesses.",
+            "[2026-04-04T11:53:52.070Z] Evaluated campaign theme: AI orchestration for lean operators.",
+            "[2026-04-04T11:53:52.070Z] Flagged primary pain: Leads arrive through DMs with no qualification."
+          ]
+        },
+        {
+          "id": "generate-angles",
+          "name": "Generate Angles",
+          "agentId": "idea-generator",
+          "agentName": "Idea Generator",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T11:53:52.070Z",
+          "finishedAt": "2026-04-04T11:53:52.070Z",
+          "summary": "Generated 3 usable content angles from the research brief.",
+          "artifact": {
+            "kind": "idea-pack",
+            "headline": "Daily Content Sprint angles",
+            "sourceSignals": [
+              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
+              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
+            ],
+            "ideas": [
+              {
+                "title": "The hidden ops tax",
+                "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+                "hook": "You do not need more leads. You need fewer leaks.",
+                "cta": "Book a workflow teardown"
+              },
+              {
+                "title": "Why content fails after 2 weeks",
+                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
+                "hook": "Consistency is not a discipline problem. It is a systems problem.",
+                "cta": "Book a workflow teardown"
+              },
+              {
+                "title": "Tool stack theater",
+                "angle": "AI automation consultancy buyers are tired of vendors selling fragments instead of working systems.",
+                "hook": "If your stack needs a human babysitter, it is not automation.",
+                "cta": "Book a workflow teardown"
+              }
+            ]
+          },
+          "logs": [
+            "[2026-04-04T11:53:52.070Z] Promoted research signal into 3 angles.",
+            "[2026-04-04T11:53:52.070Z] Attached CTA: Book a workflow teardown."
+          ]
+        },
+        {
+          "id": "draft-script",
+          "name": "Draft Script",
+          "agentId": "script-writer",
+          "agentName": "Script Writer",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T11:53:52.070Z",
+          "finishedAt": "2026-04-04T11:53:52.070Z",
+          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+          "artifact": {
+            "kind": "script",
+            "headline": "Daily Content Sprint script draft",
+            "selectedAngle": {
+              "title": "The hidden ops tax",
+              "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+              "hook": "You do not need more leads. You need fewer leaks.",
+              "cta": "Book a workflow teardown"
+            },
+            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
+          },
+          "logs": [
+            "[2026-04-04T11:53:52.070Z] Selected angle: The hidden ops tax.",
+            "[2026-04-04T11:53:52.070Z] Generated script CTA: Book a workflow teardown."
+          ]
+        }
+      ],
+      "logs": [
+        "[2026-04-04T11:53:52.065Z] Workflow Daily Content Sprint started for VBJ Services.",
+        "[2026-04-04T11:53:52.065Z] Trigger source: manual.",
+        "[2026-04-04T11:53:52.070Z] Content Researcher completed Research Signals.",
+        "[2026-04-04T11:53:52.070Z] Scanned ICP: Agency owners and lean service businesses.",
+        "[2026-04-04T11:53:52.070Z] Evaluated campaign theme: AI orchestration for lean operators.",
+        "[2026-04-04T11:53:52.070Z] Flagged primary pain: Leads arrive through DMs with no qualification.",
+        "[2026-04-04T11:53:52.070Z] Idea Generator completed Generate Angles.",
+        "[2026-04-04T11:53:52.070Z] Promoted research signal into 3 angles.",
+        "[2026-04-04T11:53:52.070Z] Attached CTA: Book a workflow teardown.",
+        "[2026-04-04T11:53:52.070Z] Script Writer completed Draft Script.",
+        "[2026-04-04T11:53:52.070Z] Selected angle: The hidden ops tax.",
+        "[2026-04-04T11:53:52.070Z] Generated script CTA: Book a workflow teardown."
+      ]
+    },
+    {
+      "id": "run_e378e587-0684-4419-8d45-1c67dcd886a8",
+      "workspaceId": "northstar-media",
+      "workspaceName": "Northstar Media",
+      "workflowInstanceId": "northstar-content-daily",
+      "workflowTemplateId": "content-pipeline",
+      "workflowName": "Client Content Assembly",
+      "trigger": "manual",
+      "status": "succeeded",
+      "startedAt": "2026-04-04T11:45:15.841Z",
+      "finishedAt": "2026-04-04T11:45:15.843Z",
+      "costEstimateUsd": 0.51,
+      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+      "primaryArtifact": {
+        "kind": "script",
+        "headline": "Client Content Assembly script draft",
+        "selectedAngle": {
+          "title": "The hidden ops tax",
+          "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+          "hook": "You do not need more leads. You need fewer leaks.",
+          "cta": "Request a 30-minute audit"
+        },
+        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
+      },
+      "steps": [
+        {
+          "id": "research-signals",
+          "name": "Research Signals",
+          "agentId": "content-researcher",
+          "agentName": "Content Researcher",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T11:45:15.842Z",
+          "finishedAt": "2026-04-04T11:45:15.843Z",
+          "summary": "Captured 3 positioning signals for Northstar Media.",
+          "artifact": {
+            "kind": "research-brief",
+            "headline": "Northstar Media research brief",
+            "bullets": [
+              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
+              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
+            ]
+          },
+          "logs": [
+            "[2026-04-04T11:45:15.843Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
+            "[2026-04-04T11:45:15.843Z] Evaluated campaign theme: Content ops for founder-led brands.",
+            "[2026-04-04T11:45:15.843Z] Flagged primary pain: Audience research is ad hoc."
+          ]
+        },
+        {
+          "id": "generate-angles",
+          "name": "Generate Angles",
+          "agentId": "idea-generator",
+          "agentName": "Idea Generator",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T11:45:15.843Z",
+          "finishedAt": "2026-04-04T11:45:15.843Z",
+          "summary": "Generated 3 usable content angles from the research brief.",
+          "artifact": {
+            "kind": "idea-pack",
+            "headline": "Client Content Assembly angles",
+            "sourceSignals": [
+              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
+              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
+            ],
+            "ideas": [
+              {
+                "title": "The hidden ops tax",
+                "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+                "hook": "You do not need more leads. You need fewer leaks.",
+                "cta": "Request a 30-minute audit"
+              },
+              {
+                "title": "Why content fails after 2 weeks",
+                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
+                "hook": "Consistency is not a discipline problem. It is a systems problem.",
+                "cta": "Request a 30-minute audit"
+              },
+              {
+                "title": "Tool stack theater",
+                "angle": "Short-form content studio buyers are tired of vendors selling fragments instead of working systems.",
+                "hook": "If your stack needs a human babysitter, it is not automation.",
+                "cta": "Request a 30-minute audit"
+              }
+            ]
+          },
+          "logs": [
+            "[2026-04-04T11:45:15.843Z] Promoted research signal into 3 angles.",
+            "[2026-04-04T11:45:15.843Z] Attached CTA: Request a 30-minute audit."
+          ]
+        },
+        {
+          "id": "draft-script",
+          "name": "Draft Script",
+          "agentId": "script-writer",
+          "agentName": "Script Writer",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T11:45:15.843Z",
+          "finishedAt": "2026-04-04T11:45:15.843Z",
+          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+          "artifact": {
+            "kind": "script",
+            "headline": "Client Content Assembly script draft",
+            "selectedAngle": {
+              "title": "The hidden ops tax",
+              "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
+              "hook": "You do not need more leads. You need fewer leaks.",
+              "cta": "Request a 30-minute audit"
+            },
+            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
+          },
+          "logs": [
+            "[2026-04-04T11:45:15.843Z] Selected angle: The hidden ops tax.",
+            "[2026-04-04T11:45:15.843Z] Generated script CTA: Request a 30-minute audit."
+          ]
+        }
+      ],
+      "logs": [
+        "[2026-04-04T11:45:15.841Z] Workflow Client Content Assembly started for Northstar Media.",
+        "[2026-04-04T11:45:15.841Z] Trigger source: manual.",
+        "[2026-04-04T11:45:15.843Z] Content Researcher completed Research Signals.",
+        "[2026-04-04T11:45:15.843Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
+        "[2026-04-04T11:45:15.843Z] Evaluated campaign theme: Content ops for founder-led brands.",
+        "[2026-04-04T11:45:15.843Z] Flagged primary pain: Audience research is ad hoc.",
+        "[2026-04-04T11:45:15.843Z] Idea Generator completed Generate Angles.",
+        "[2026-04-04T11:45:15.843Z] Promoted research signal into 3 angles.",
+        "[2026-04-04T11:45:15.843Z] Attached CTA: Request a 30-minute audit.",
+        "[2026-04-04T11:45:15.843Z] Script Writer completed Draft Script.",
+        "[2026-04-04T11:45:15.843Z] Selected angle: The hidden ops tax.",
+        "[2026-04-04T11:45:15.843Z] Generated script CTA: Request a 30-minute audit."
+      ]
+    },
+    {
+      "id": "run_d6c61bf2-794d-469d-9f67-bb4a5c54a44d",
+      "workspaceId": "vbj-services",
+      "workspaceName": "VBJ Services",
+      "workflowInstanceId": "vbj-content-daily",
+      "workflowTemplateId": "content-pipeline",
+      "workflowName": "Daily Content Sprint",
+      "trigger": "manual",
+      "status": "succeeded",
+      "startedAt": "2026-04-04T11:45:15.841Z",
+      "finishedAt": "2026-04-04T11:45:15.843Z",
+      "costEstimateUsd": 0.51,
+      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+      "primaryArtifact": {
+        "kind": "script",
+        "headline": "Daily Content Sprint script draft",
+        "selectedAngle": {
+          "title": "The hidden ops tax",
+          "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+          "hook": "You do not need more leads. You need fewer leaks.",
+          "cta": "Book a workflow teardown"
+        },
+        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
+      },
+      "steps": [
+        {
+          "id": "research-signals",
+          "name": "Research Signals",
+          "agentId": "content-researcher",
+          "agentName": "Content Researcher",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T11:45:15.843Z",
+          "finishedAt": "2026-04-04T11:45:15.843Z",
+          "summary": "Captured 3 positioning signals for VBJ Services.",
+          "artifact": {
+            "kind": "research-brief",
+            "headline": "VBJ Services research brief",
+            "bullets": [
+              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
+              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
+            ]
+          },
+          "logs": [
+            "[2026-04-04T11:45:15.843Z] Scanned ICP: Agency owners and lean service businesses.",
+            "[2026-04-04T11:45:15.843Z] Evaluated campaign theme: AI orchestration for lean operators.",
+            "[2026-04-04T11:45:15.843Z] Flagged primary pain: Leads arrive through DMs with no qualification."
+          ]
+        },
+        {
+          "id": "generate-angles",
+          "name": "Generate Angles",
+          "agentId": "idea-generator",
+          "agentName": "Idea Generator",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T11:45:15.843Z",
+          "finishedAt": "2026-04-04T11:45:15.843Z",
+          "summary": "Generated 3 usable content angles from the research brief.",
+          "artifact": {
+            "kind": "idea-pack",
+            "headline": "Daily Content Sprint angles",
+            "sourceSignals": [
+              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
+              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
+              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
+            ],
+            "ideas": [
+              {
+                "title": "The hidden ops tax",
+                "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+                "hook": "You do not need more leads. You need fewer leaks.",
+                "cta": "Book a workflow teardown"
+              },
+              {
+                "title": "Why content fails after 2 weeks",
+                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
+                "hook": "Consistency is not a discipline problem. It is a systems problem.",
+                "cta": "Book a workflow teardown"
+              },
+              {
+                "title": "Tool stack theater",
+                "angle": "AI automation consultancy buyers are tired of vendors selling fragments instead of working systems.",
+                "hook": "If your stack needs a human babysitter, it is not automation.",
+                "cta": "Book a workflow teardown"
+              }
+            ]
+          },
+          "logs": [
+            "[2026-04-04T11:45:15.843Z] Promoted research signal into 3 angles.",
+            "[2026-04-04T11:45:15.843Z] Attached CTA: Book a workflow teardown."
+          ]
+        },
+        {
+          "id": "draft-script",
+          "name": "Draft Script",
+          "agentId": "script-writer",
+          "agentName": "Script Writer",
+          "executor": "simulated-codex",
+          "status": "succeeded",
+          "startedAt": "2026-04-04T11:45:15.843Z",
+          "finishedAt": "2026-04-04T11:45:15.843Z",
+          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
+          "artifact": {
+            "kind": "script",
+            "headline": "Daily Content Sprint script draft",
+            "selectedAngle": {
+              "title": "The hidden ops tax",
+              "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
+              "hook": "You do not need more leads. You need fewer leaks.",
+              "cta": "Book a workflow teardown"
+            },
+            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
+          },
+          "logs": [
+            "[2026-04-04T11:45:15.843Z] Selected angle: The hidden ops tax.",
+            "[2026-04-04T11:45:15.843Z] Generated script CTA: Book a workflow teardown."
+          ]
+        }
+      ],
+      "logs": [
+        "[2026-04-04T11:45:15.841Z] Workflow Daily Content Sprint started for VBJ Services.",
+        "[2026-04-04T11:45:15.841Z] Trigger source: manual.",
+        "[2026-04-04T11:45:15.843Z] Content Researcher completed Research Signals.",
+        "[2026-04-04T11:45:15.843Z] Scanned ICP: Agency owners and lean service businesses.",
+        "[2026-04-04T11:45:15.843Z] Evaluated campaign theme: AI orchestration for lean operators.",
+        "[2026-04-04T11:45:15.843Z] Flagged primary pain: Leads arrive through DMs with no qualification.",
+        "[2026-04-04T11:45:15.843Z] Idea Generator completed Generate Angles.",
+        "[2026-04-04T11:45:15.843Z] Promoted research signal into 3 angles.",
+        "[2026-04-04T11:45:15.843Z] Attached CTA: Book a workflow teardown.",
+        "[2026-04-04T11:45:15.843Z] Script Writer completed Draft Script.",
+        "[2026-04-04T11:45:15.843Z] Selected angle: The hidden ops tax.",
+        "[2026-04-04T11:45:15.843Z] Generated script CTA: Book a workflow teardown."
+      ]
+    },
     {
       "id": "run_aef61dbb-de52-4faa-93b3-967947c003ea",
       "workspaceId": "northstar-media",
@@ -2528,1598 +4452,6 @@ window.__ORCHESTRATOR_STATE__ = {
         "[2026-04-04T09:57:39.352Z] Script Writer completed Draft Script.",
         "[2026-04-04T09:57:39.352Z] Selected angle: The hidden ops tax.",
         "[2026-04-04T09:57:39.352Z] Generated script CTA: Book a workflow teardown."
-      ]
-    },
-    {
-      "id": "run_a7b12a24-34ae-4a70-bf5e-1efb5dce99bd",
-      "workspaceId": "northstar-media",
-      "workspaceName": "Northstar Media",
-      "workflowInstanceId": "northstar-content-daily",
-      "workflowTemplateId": "content-pipeline",
-      "workflowName": "Client Content Assembly",
-      "trigger": "manual",
-      "status": "succeeded",
-      "startedAt": "2026-04-04T09:56:21.656Z",
-      "finishedAt": "2026-04-04T09:56:21.658Z",
-      "costEstimateUsd": 0.51,
-      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
-      "primaryArtifact": {
-        "kind": "script",
-        "headline": "Client Content Assembly script draft",
-        "selectedAngle": {
-          "title": "The hidden ops tax",
-          "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
-          "hook": "You do not need more leads. You need fewer leaks.",
-          "cta": "Request a 30-minute audit"
-        },
-        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
-      },
-      "steps": [
-        {
-          "id": "research-signals",
-          "name": "Research Signals",
-          "agentId": "content-researcher",
-          "agentName": "Content Researcher",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:56:21.657Z",
-          "finishedAt": "2026-04-04T09:56:21.657Z",
-          "summary": "Captured 3 positioning signals for Northstar Media.",
-          "artifact": {
-            "kind": "research-brief",
-            "headline": "Northstar Media research brief",
-            "bullets": [
-              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
-              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
-              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
-            ]
-          },
-          "logs": [
-            "[2026-04-04T09:56:21.657Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
-            "[2026-04-04T09:56:21.657Z] Evaluated campaign theme: Content ops for founder-led brands.",
-            "[2026-04-04T09:56:21.657Z] Flagged primary pain: Audience research is ad hoc."
-          ]
-        },
-        {
-          "id": "generate-angles",
-          "name": "Generate Angles",
-          "agentId": "idea-generator",
-          "agentName": "Idea Generator",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:56:21.657Z",
-          "finishedAt": "2026-04-04T09:56:21.658Z",
-          "summary": "Generated 3 usable content angles from the research brief.",
-          "artifact": {
-            "kind": "idea-pack",
-            "headline": "Client Content Assembly angles",
-            "sourceSignals": [
-              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
-              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
-              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
-            ],
-            "ideas": [
-              {
-                "title": "The hidden ops tax",
-                "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
-                "hook": "You do not need more leads. You need fewer leaks.",
-                "cta": "Request a 30-minute audit"
-              },
-              {
-                "title": "Why content fails after 2 weeks",
-                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
-                "hook": "Consistency is not a discipline problem. It is a systems problem.",
-                "cta": "Request a 30-minute audit"
-              },
-              {
-                "title": "Tool stack theater",
-                "angle": "Short-form content studio buyers are tired of vendors selling fragments instead of working systems.",
-                "hook": "If your stack needs a human babysitter, it is not automation.",
-                "cta": "Request a 30-minute audit"
-              }
-            ]
-          },
-          "logs": [
-            "[2026-04-04T09:56:21.658Z] Promoted research signal into 3 angles.",
-            "[2026-04-04T09:56:21.658Z] Attached CTA: Request a 30-minute audit."
-          ]
-        },
-        {
-          "id": "draft-script",
-          "name": "Draft Script",
-          "agentId": "script-writer",
-          "agentName": "Script Writer",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:56:21.658Z",
-          "finishedAt": "2026-04-04T09:56:21.658Z",
-          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
-          "artifact": {
-            "kind": "script",
-            "headline": "Client Content Assembly script draft",
-            "selectedAngle": {
-              "title": "The hidden ops tax",
-              "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
-              "hook": "You do not need more leads. You need fewer leaks.",
-              "cta": "Request a 30-minute audit"
-            },
-            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
-          },
-          "logs": [
-            "[2026-04-04T09:56:21.658Z] Selected angle: The hidden ops tax.",
-            "[2026-04-04T09:56:21.658Z] Generated script CTA: Request a 30-minute audit."
-          ]
-        }
-      ],
-      "logs": [
-        "[2026-04-04T09:56:21.656Z] Workflow Client Content Assembly started for Northstar Media.",
-        "[2026-04-04T09:56:21.656Z] Trigger source: manual.",
-        "[2026-04-04T09:56:21.657Z] Content Researcher completed Research Signals.",
-        "[2026-04-04T09:56:21.657Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
-        "[2026-04-04T09:56:21.657Z] Evaluated campaign theme: Content ops for founder-led brands.",
-        "[2026-04-04T09:56:21.657Z] Flagged primary pain: Audience research is ad hoc.",
-        "[2026-04-04T09:56:21.658Z] Idea Generator completed Generate Angles.",
-        "[2026-04-04T09:56:21.658Z] Promoted research signal into 3 angles.",
-        "[2026-04-04T09:56:21.658Z] Attached CTA: Request a 30-minute audit.",
-        "[2026-04-04T09:56:21.658Z] Script Writer completed Draft Script.",
-        "[2026-04-04T09:56:21.658Z] Selected angle: The hidden ops tax.",
-        "[2026-04-04T09:56:21.658Z] Generated script CTA: Request a 30-minute audit."
-      ]
-    },
-    {
-      "id": "run_8f85b4b4-1a28-4872-9d38-2f38e8d7f634",
-      "workspaceId": "vbj-services",
-      "workspaceName": "VBJ Services",
-      "workflowInstanceId": "vbj-content-daily",
-      "workflowTemplateId": "content-pipeline",
-      "workflowName": "Daily Content Sprint",
-      "trigger": "manual",
-      "status": "succeeded",
-      "startedAt": "2026-04-04T09:56:21.656Z",
-      "finishedAt": "2026-04-04T09:56:21.658Z",
-      "costEstimateUsd": 0.51,
-      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
-      "primaryArtifact": {
-        "kind": "script",
-        "headline": "Daily Content Sprint script draft",
-        "selectedAngle": {
-          "title": "The hidden ops tax",
-          "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
-          "hook": "You do not need more leads. You need fewer leaks.",
-          "cta": "Book a workflow teardown"
-        },
-        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
-      },
-      "steps": [
-        {
-          "id": "research-signals",
-          "name": "Research Signals",
-          "agentId": "content-researcher",
-          "agentName": "Content Researcher",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:56:21.658Z",
-          "finishedAt": "2026-04-04T09:56:21.658Z",
-          "summary": "Captured 3 positioning signals for VBJ Services.",
-          "artifact": {
-            "kind": "research-brief",
-            "headline": "VBJ Services research brief",
-            "bullets": [
-              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
-              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
-              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
-            ]
-          },
-          "logs": [
-            "[2026-04-04T09:56:21.658Z] Scanned ICP: Agency owners and lean service businesses.",
-            "[2026-04-04T09:56:21.658Z] Evaluated campaign theme: AI orchestration for lean operators.",
-            "[2026-04-04T09:56:21.658Z] Flagged primary pain: Leads arrive through DMs with no qualification."
-          ]
-        },
-        {
-          "id": "generate-angles",
-          "name": "Generate Angles",
-          "agentId": "idea-generator",
-          "agentName": "Idea Generator",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:56:21.658Z",
-          "finishedAt": "2026-04-04T09:56:21.658Z",
-          "summary": "Generated 3 usable content angles from the research brief.",
-          "artifact": {
-            "kind": "idea-pack",
-            "headline": "Daily Content Sprint angles",
-            "sourceSignals": [
-              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
-              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
-              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
-            ],
-            "ideas": [
-              {
-                "title": "The hidden ops tax",
-                "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
-                "hook": "You do not need more leads. You need fewer leaks.",
-                "cta": "Book a workflow teardown"
-              },
-              {
-                "title": "Why content fails after 2 weeks",
-                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
-                "hook": "Consistency is not a discipline problem. It is a systems problem.",
-                "cta": "Book a workflow teardown"
-              },
-              {
-                "title": "Tool stack theater",
-                "angle": "AI automation consultancy buyers are tired of vendors selling fragments instead of working systems.",
-                "hook": "If your stack needs a human babysitter, it is not automation.",
-                "cta": "Book a workflow teardown"
-              }
-            ]
-          },
-          "logs": [
-            "[2026-04-04T09:56:21.658Z] Promoted research signal into 3 angles.",
-            "[2026-04-04T09:56:21.658Z] Attached CTA: Book a workflow teardown."
-          ]
-        },
-        {
-          "id": "draft-script",
-          "name": "Draft Script",
-          "agentId": "script-writer",
-          "agentName": "Script Writer",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:56:21.658Z",
-          "finishedAt": "2026-04-04T09:56:21.658Z",
-          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
-          "artifact": {
-            "kind": "script",
-            "headline": "Daily Content Sprint script draft",
-            "selectedAngle": {
-              "title": "The hidden ops tax",
-              "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
-              "hook": "You do not need more leads. You need fewer leaks.",
-              "cta": "Book a workflow teardown"
-            },
-            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
-          },
-          "logs": [
-            "[2026-04-04T09:56:21.658Z] Selected angle: The hidden ops tax.",
-            "[2026-04-04T09:56:21.658Z] Generated script CTA: Book a workflow teardown."
-          ]
-        }
-      ],
-      "logs": [
-        "[2026-04-04T09:56:21.656Z] Workflow Daily Content Sprint started for VBJ Services.",
-        "[2026-04-04T09:56:21.656Z] Trigger source: manual.",
-        "[2026-04-04T09:56:21.658Z] Content Researcher completed Research Signals.",
-        "[2026-04-04T09:56:21.658Z] Scanned ICP: Agency owners and lean service businesses.",
-        "[2026-04-04T09:56:21.658Z] Evaluated campaign theme: AI orchestration for lean operators.",
-        "[2026-04-04T09:56:21.658Z] Flagged primary pain: Leads arrive through DMs with no qualification.",
-        "[2026-04-04T09:56:21.658Z] Idea Generator completed Generate Angles.",
-        "[2026-04-04T09:56:21.658Z] Promoted research signal into 3 angles.",
-        "[2026-04-04T09:56:21.658Z] Attached CTA: Book a workflow teardown.",
-        "[2026-04-04T09:56:21.658Z] Script Writer completed Draft Script.",
-        "[2026-04-04T09:56:21.658Z] Selected angle: The hidden ops tax.",
-        "[2026-04-04T09:56:21.658Z] Generated script CTA: Book a workflow teardown."
-      ]
-    },
-    {
-      "id": "run_40e7458e-f7ec-457d-9279-6f8fee72f17c",
-      "workspaceId": "northstar-media",
-      "workspaceName": "Northstar Media",
-      "workflowInstanceId": "northstar-content-daily",
-      "workflowTemplateId": "content-pipeline",
-      "workflowName": "Client Content Assembly",
-      "trigger": "manual",
-      "status": "succeeded",
-      "startedAt": "2026-04-04T09:39:27.900Z",
-      "finishedAt": "2026-04-04T09:39:27.906Z",
-      "costEstimateUsd": 0.51,
-      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
-      "primaryArtifact": {
-        "kind": "script",
-        "headline": "Client Content Assembly script draft",
-        "selectedAngle": {
-          "title": "The hidden ops tax",
-          "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
-          "hook": "You do not need more leads. You need fewer leaks.",
-          "cta": "Request a 30-minute audit"
-        },
-        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
-      },
-      "steps": [
-        {
-          "id": "research-signals",
-          "name": "Research Signals",
-          "agentId": "content-researcher",
-          "agentName": "Content Researcher",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:39:27.906Z",
-          "finishedAt": "2026-04-04T09:39:27.906Z",
-          "summary": "Captured 3 positioning signals for Northstar Media.",
-          "artifact": {
-            "kind": "research-brief",
-            "headline": "Northstar Media research brief",
-            "bullets": [
-              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
-              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
-              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
-            ]
-          },
-          "logs": [
-            "[2026-04-04T09:39:27.906Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
-            "[2026-04-04T09:39:27.906Z] Evaluated campaign theme: Content ops for founder-led brands.",
-            "[2026-04-04T09:39:27.906Z] Flagged primary pain: Audience research is ad hoc."
-          ]
-        },
-        {
-          "id": "generate-angles",
-          "name": "Generate Angles",
-          "agentId": "idea-generator",
-          "agentName": "Idea Generator",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:39:27.906Z",
-          "finishedAt": "2026-04-04T09:39:27.906Z",
-          "summary": "Generated 3 usable content angles from the research brief.",
-          "artifact": {
-            "kind": "idea-pack",
-            "headline": "Client Content Assembly angles",
-            "sourceSignals": [
-              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
-              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
-              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
-            ],
-            "ideas": [
-              {
-                "title": "The hidden ops tax",
-                "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
-                "hook": "You do not need more leads. You need fewer leaks.",
-                "cta": "Request a 30-minute audit"
-              },
-              {
-                "title": "Why content fails after 2 weeks",
-                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
-                "hook": "Consistency is not a discipline problem. It is a systems problem.",
-                "cta": "Request a 30-minute audit"
-              },
-              {
-                "title": "Tool stack theater",
-                "angle": "Short-form content studio buyers are tired of vendors selling fragments instead of working systems.",
-                "hook": "If your stack needs a human babysitter, it is not automation.",
-                "cta": "Request a 30-minute audit"
-              }
-            ]
-          },
-          "logs": [
-            "[2026-04-04T09:39:27.906Z] Promoted research signal into 3 angles.",
-            "[2026-04-04T09:39:27.906Z] Attached CTA: Request a 30-minute audit."
-          ]
-        },
-        {
-          "id": "draft-script",
-          "name": "Draft Script",
-          "agentId": "script-writer",
-          "agentName": "Script Writer",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:39:27.906Z",
-          "finishedAt": "2026-04-04T09:39:27.906Z",
-          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
-          "artifact": {
-            "kind": "script",
-            "headline": "Client Content Assembly script draft",
-            "selectedAngle": {
-              "title": "The hidden ops tax",
-              "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
-              "hook": "You do not need more leads. You need fewer leaks.",
-              "cta": "Request a 30-minute audit"
-            },
-            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
-          },
-          "logs": [
-            "[2026-04-04T09:39:27.906Z] Selected angle: The hidden ops tax.",
-            "[2026-04-04T09:39:27.906Z] Generated script CTA: Request a 30-minute audit."
-          ]
-        }
-      ],
-      "logs": [
-        "[2026-04-04T09:39:27.900Z] Workflow Client Content Assembly started for Northstar Media.",
-        "[2026-04-04T09:39:27.900Z] Trigger source: manual.",
-        "[2026-04-04T09:39:27.906Z] Content Researcher completed Research Signals.",
-        "[2026-04-04T09:39:27.906Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
-        "[2026-04-04T09:39:27.906Z] Evaluated campaign theme: Content ops for founder-led brands.",
-        "[2026-04-04T09:39:27.906Z] Flagged primary pain: Audience research is ad hoc.",
-        "[2026-04-04T09:39:27.906Z] Idea Generator completed Generate Angles.",
-        "[2026-04-04T09:39:27.906Z] Promoted research signal into 3 angles.",
-        "[2026-04-04T09:39:27.906Z] Attached CTA: Request a 30-minute audit.",
-        "[2026-04-04T09:39:27.906Z] Script Writer completed Draft Script.",
-        "[2026-04-04T09:39:27.906Z] Selected angle: The hidden ops tax.",
-        "[2026-04-04T09:39:27.906Z] Generated script CTA: Request a 30-minute audit."
-      ]
-    },
-    {
-      "id": "run_9cf7af2d-289d-4a3f-baf0-94ef28e1679f",
-      "workspaceId": "northstar-media",
-      "workspaceName": "Northstar Media",
-      "workflowInstanceId": "northstar-lead-triage",
-      "workflowTemplateId": "lead-qualification",
-      "workflowName": "Client Lead Intake",
-      "trigger": "manual",
-      "status": "succeeded",
-      "startedAt": "2026-04-04T09:39:27.900Z",
-      "finishedAt": "2026-04-04T09:39:27.907Z",
-      "costEstimateUsd": 0.14,
-      "summary": "Drafted a nurture DM response for Operator Atlas.",
-      "primaryArtifact": {
-        "kind": "dm-draft",
-        "headline": "DM reply for Operator Atlas",
-        "response": "Thanks for reaching out, Operator Atlas. You are early for a systems engagement, so the right next step is a lighter audit and a follow-up when the demand volume is higher.",
-        "disposition": "nurture"
-      },
-      "steps": [
-        {
-          "id": "score-lead",
-          "name": "Score Lead",
-          "agentId": "lead-qualifier",
-          "agentName": "Lead Qualifier",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:39:27.907Z",
-          "finishedAt": "2026-04-04T09:39:27.907Z",
-          "summary": "Lead scored 60/76 and was classified as nurture.",
-          "artifact": {
-            "kind": "lead-score",
-            "headline": "Operator Atlas qualification",
-            "lead": {
-              "company": "Operator Atlas",
-              "teamSize": 4,
-              "monthlyRevenueBand": "10k-50k",
-              "painLevel": "medium",
-              "source": "LinkedIn DM"
-            },
-            "threshold": 76,
-            "score": 60,
-            "disposition": "nurture"
-          },
-          "logs": [
-            "[2026-04-04T09:39:27.907Z] Lead source: LinkedIn DM.",
-            "[2026-04-04T09:39:27.907Z] Team size score applied for 4 seats.",
-            "[2026-04-04T09:39:27.907Z] Revenue band 10k-50k and pain medium mapped into qualification score."
-          ]
-        },
-        {
-          "id": "draft-response",
-          "name": "Draft Response",
-          "agentId": "dm-automation",
-          "agentName": "DM Automation",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:39:27.907Z",
-          "finishedAt": "2026-04-04T09:39:27.907Z",
-          "summary": "Drafted a nurture DM response for Operator Atlas.",
-          "artifact": {
-            "kind": "dm-draft",
-            "headline": "DM reply for Operator Atlas",
-            "response": "Thanks for reaching out, Operator Atlas. You are early for a systems engagement, so the right next step is a lighter audit and a follow-up when the demand volume is higher.",
-            "disposition": "nurture"
-          },
-          "logs": [
-            "[2026-04-04T09:39:27.907Z] Disposition carried forward: nurture.",
-            "[2026-04-04T09:39:27.907Z] Drafted follow-up response for Operator Atlas."
-          ]
-        }
-      ],
-      "logs": [
-        "[2026-04-04T09:39:27.900Z] Workflow Client Lead Intake started for Northstar Media.",
-        "[2026-04-04T09:39:27.900Z] Trigger source: manual.",
-        "[2026-04-04T09:39:27.907Z] Lead Qualifier completed Score Lead.",
-        "[2026-04-04T09:39:27.907Z] Lead source: LinkedIn DM.",
-        "[2026-04-04T09:39:27.907Z] Team size score applied for 4 seats.",
-        "[2026-04-04T09:39:27.907Z] Revenue band 10k-50k and pain medium mapped into qualification score.",
-        "[2026-04-04T09:39:27.907Z] DM Automation completed Draft Response.",
-        "[2026-04-04T09:39:27.907Z] Disposition carried forward: nurture.",
-        "[2026-04-04T09:39:27.907Z] Drafted follow-up response for Operator Atlas."
-      ]
-    },
-    {
-      "id": "run_75e21e3f-8048-42f7-8ade-4ca8560c1224",
-      "workspaceId": "vbj-services",
-      "workspaceName": "VBJ Services",
-      "workflowInstanceId": "vbj-content-daily",
-      "workflowTemplateId": "content-pipeline",
-      "workflowName": "Daily Content Sprint",
-      "trigger": "manual",
-      "status": "succeeded",
-      "startedAt": "2026-04-04T09:39:27.900Z",
-      "finishedAt": "2026-04-04T09:39:27.907Z",
-      "costEstimateUsd": 0.51,
-      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
-      "primaryArtifact": {
-        "kind": "script",
-        "headline": "Daily Content Sprint script draft",
-        "selectedAngle": {
-          "title": "The hidden ops tax",
-          "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
-          "hook": "You do not need more leads. You need fewer leaks.",
-          "cta": "Book a workflow teardown"
-        },
-        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
-      },
-      "steps": [
-        {
-          "id": "research-signals",
-          "name": "Research Signals",
-          "agentId": "content-researcher",
-          "agentName": "Content Researcher",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:39:27.907Z",
-          "finishedAt": "2026-04-04T09:39:27.907Z",
-          "summary": "Captured 3 positioning signals for VBJ Services.",
-          "artifact": {
-            "kind": "research-brief",
-            "headline": "VBJ Services research brief",
-            "bullets": [
-              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
-              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
-              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
-            ]
-          },
-          "logs": [
-            "[2026-04-04T09:39:27.907Z] Scanned ICP: Agency owners and lean service businesses.",
-            "[2026-04-04T09:39:27.907Z] Evaluated campaign theme: AI orchestration for lean operators.",
-            "[2026-04-04T09:39:27.907Z] Flagged primary pain: Leads arrive through DMs with no qualification."
-          ]
-        },
-        {
-          "id": "generate-angles",
-          "name": "Generate Angles",
-          "agentId": "idea-generator",
-          "agentName": "Idea Generator",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:39:27.907Z",
-          "finishedAt": "2026-04-04T09:39:27.907Z",
-          "summary": "Generated 3 usable content angles from the research brief.",
-          "artifact": {
-            "kind": "idea-pack",
-            "headline": "Daily Content Sprint angles",
-            "sourceSignals": [
-              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
-              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
-              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
-            ],
-            "ideas": [
-              {
-                "title": "The hidden ops tax",
-                "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
-                "hook": "You do not need more leads. You need fewer leaks.",
-                "cta": "Book a workflow teardown"
-              },
-              {
-                "title": "Why content fails after 2 weeks",
-                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
-                "hook": "Consistency is not a discipline problem. It is a systems problem.",
-                "cta": "Book a workflow teardown"
-              },
-              {
-                "title": "Tool stack theater",
-                "angle": "AI automation consultancy buyers are tired of vendors selling fragments instead of working systems.",
-                "hook": "If your stack needs a human babysitter, it is not automation.",
-                "cta": "Book a workflow teardown"
-              }
-            ]
-          },
-          "logs": [
-            "[2026-04-04T09:39:27.907Z] Promoted research signal into 3 angles.",
-            "[2026-04-04T09:39:27.907Z] Attached CTA: Book a workflow teardown."
-          ]
-        },
-        {
-          "id": "draft-script",
-          "name": "Draft Script",
-          "agentId": "script-writer",
-          "agentName": "Script Writer",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:39:27.907Z",
-          "finishedAt": "2026-04-04T09:39:27.907Z",
-          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
-          "artifact": {
-            "kind": "script",
-            "headline": "Daily Content Sprint script draft",
-            "selectedAngle": {
-              "title": "The hidden ops tax",
-              "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
-              "hook": "You do not need more leads. You need fewer leaks.",
-              "cta": "Book a workflow teardown"
-            },
-            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
-          },
-          "logs": [
-            "[2026-04-04T09:39:27.907Z] Selected angle: The hidden ops tax.",
-            "[2026-04-04T09:39:27.907Z] Generated script CTA: Book a workflow teardown."
-          ]
-        }
-      ],
-      "logs": [
-        "[2026-04-04T09:39:27.900Z] Workflow Daily Content Sprint started for VBJ Services.",
-        "[2026-04-04T09:39:27.900Z] Trigger source: manual.",
-        "[2026-04-04T09:39:27.907Z] Content Researcher completed Research Signals.",
-        "[2026-04-04T09:39:27.907Z] Scanned ICP: Agency owners and lean service businesses.",
-        "[2026-04-04T09:39:27.907Z] Evaluated campaign theme: AI orchestration for lean operators.",
-        "[2026-04-04T09:39:27.907Z] Flagged primary pain: Leads arrive through DMs with no qualification.",
-        "[2026-04-04T09:39:27.907Z] Idea Generator completed Generate Angles.",
-        "[2026-04-04T09:39:27.907Z] Promoted research signal into 3 angles.",
-        "[2026-04-04T09:39:27.907Z] Attached CTA: Book a workflow teardown.",
-        "[2026-04-04T09:39:27.907Z] Script Writer completed Draft Script.",
-        "[2026-04-04T09:39:27.907Z] Selected angle: The hidden ops tax.",
-        "[2026-04-04T09:39:27.907Z] Generated script CTA: Book a workflow teardown."
-      ]
-    },
-    {
-      "id": "run_ca5182f9-e51a-4160-bf27-d000da822804",
-      "workspaceId": "vbj-services",
-      "workspaceName": "VBJ Services",
-      "workflowInstanceId": "vbj-lead-triage",
-      "workflowTemplateId": "lead-qualification",
-      "workflowName": "Inbound Lead Triage",
-      "trigger": "manual",
-      "status": "succeeded",
-      "startedAt": "2026-04-04T09:39:27.900Z",
-      "finishedAt": "2026-04-04T09:39:27.907Z",
-      "costEstimateUsd": 0.14,
-      "summary": "Drafted a qualified DM response for Northflow Studio.",
-      "primaryArtifact": {
-        "kind": "dm-draft",
-        "headline": "DM reply for Northflow Studio",
-        "response": "Thanks for reaching out, Northflow Studio. You look like a fit. Next step is a short diagnostic call so we can map your current workflow leaks and automation opportunities.",
-        "disposition": "qualified"
-      },
-      "steps": [
-        {
-          "id": "score-lead",
-          "name": "Score Lead",
-          "agentId": "lead-qualifier",
-          "agentName": "Lead Qualifier",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:39:27.907Z",
-          "finishedAt": "2026-04-04T09:39:27.907Z",
-          "summary": "Lead scored 90/72 and was classified as qualified.",
-          "artifact": {
-            "kind": "lead-score",
-            "headline": "Northflow Studio qualification",
-            "lead": {
-              "company": "Northflow Studio",
-              "teamSize": 9,
-              "monthlyRevenueBand": "50k-100k",
-              "painLevel": "high",
-              "source": "Instagram DM"
-            },
-            "threshold": 72,
-            "score": 90,
-            "disposition": "qualified"
-          },
-          "logs": [
-            "[2026-04-04T09:39:27.907Z] Lead source: Instagram DM.",
-            "[2026-04-04T09:39:27.907Z] Team size score applied for 9 seats.",
-            "[2026-04-04T09:39:27.907Z] Revenue band 50k-100k and pain high mapped into qualification score."
-          ]
-        },
-        {
-          "id": "draft-response",
-          "name": "Draft Response",
-          "agentId": "dm-automation",
-          "agentName": "DM Automation",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:39:27.907Z",
-          "finishedAt": "2026-04-04T09:39:27.907Z",
-          "summary": "Drafted a qualified DM response for Northflow Studio.",
-          "artifact": {
-            "kind": "dm-draft",
-            "headline": "DM reply for Northflow Studio",
-            "response": "Thanks for reaching out, Northflow Studio. You look like a fit. Next step is a short diagnostic call so we can map your current workflow leaks and automation opportunities.",
-            "disposition": "qualified"
-          },
-          "logs": [
-            "[2026-04-04T09:39:27.907Z] Disposition carried forward: qualified.",
-            "[2026-04-04T09:39:27.907Z] Drafted follow-up response for Northflow Studio."
-          ]
-        }
-      ],
-      "logs": [
-        "[2026-04-04T09:39:27.900Z] Workflow Inbound Lead Triage started for VBJ Services.",
-        "[2026-04-04T09:39:27.900Z] Trigger source: manual.",
-        "[2026-04-04T09:39:27.907Z] Lead Qualifier completed Score Lead.",
-        "[2026-04-04T09:39:27.907Z] Lead source: Instagram DM.",
-        "[2026-04-04T09:39:27.907Z] Team size score applied for 9 seats.",
-        "[2026-04-04T09:39:27.907Z] Revenue band 50k-100k and pain high mapped into qualification score.",
-        "[2026-04-04T09:39:27.907Z] DM Automation completed Draft Response.",
-        "[2026-04-04T09:39:27.907Z] Disposition carried forward: qualified.",
-        "[2026-04-04T09:39:27.907Z] Drafted follow-up response for Northflow Studio."
-      ]
-    },
-    {
-      "id": "run_4935616f-a4ae-4c37-844f-29c3265ff07a",
-      "workspaceId": "northstar-media",
-      "workspaceName": "Northstar Media",
-      "workflowInstanceId": "northstar-content-daily",
-      "workflowTemplateId": "content-pipeline",
-      "workflowName": "Client Content Assembly",
-      "trigger": "manual",
-      "status": "succeeded",
-      "startedAt": "2026-04-04T09:34:54.924Z",
-      "finishedAt": "2026-04-04T09:34:54.928Z",
-      "costEstimateUsd": 0.51,
-      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
-      "primaryArtifact": {
-        "kind": "script",
-        "headline": "Client Content Assembly script draft",
-        "selectedAngle": {
-          "title": "The hidden ops tax",
-          "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
-          "hook": "You do not need more leads. You need fewer leaks.",
-          "cta": "Request a 30-minute audit"
-        },
-        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
-      },
-      "steps": [
-        {
-          "id": "research-signals",
-          "name": "Research Signals",
-          "agentId": "content-researcher",
-          "agentName": "Content Researcher",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:34:54.927Z",
-          "finishedAt": "2026-04-04T09:34:54.928Z",
-          "summary": "Captured 3 positioning signals for Northstar Media.",
-          "artifact": {
-            "kind": "research-brief",
-            "headline": "Northstar Media research brief",
-            "bullets": [
-              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
-              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
-              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
-            ]
-          },
-          "logs": [
-            "[2026-04-04T09:34:54.928Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
-            "[2026-04-04T09:34:54.928Z] Evaluated campaign theme: Content ops for founder-led brands.",
-            "[2026-04-04T09:34:54.928Z] Flagged primary pain: Audience research is ad hoc."
-          ]
-        },
-        {
-          "id": "generate-angles",
-          "name": "Generate Angles",
-          "agentId": "idea-generator",
-          "agentName": "Idea Generator",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:34:54.928Z",
-          "finishedAt": "2026-04-04T09:34:54.928Z",
-          "summary": "Generated 3 usable content angles from the research brief.",
-          "artifact": {
-            "kind": "idea-pack",
-            "headline": "Client Content Assembly angles",
-            "sourceSignals": [
-              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
-              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
-              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
-            ],
-            "ideas": [
-              {
-                "title": "The hidden ops tax",
-                "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
-                "hook": "You do not need more leads. You need fewer leaks.",
-                "cta": "Request a 30-minute audit"
-              },
-              {
-                "title": "Why content fails after 2 weeks",
-                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
-                "hook": "Consistency is not a discipline problem. It is a systems problem.",
-                "cta": "Request a 30-minute audit"
-              },
-              {
-                "title": "Tool stack theater",
-                "angle": "Short-form content studio buyers are tired of vendors selling fragments instead of working systems.",
-                "hook": "If your stack needs a human babysitter, it is not automation.",
-                "cta": "Request a 30-minute audit"
-              }
-            ]
-          },
-          "logs": [
-            "[2026-04-04T09:34:54.928Z] Promoted research signal into 3 angles.",
-            "[2026-04-04T09:34:54.928Z] Attached CTA: Request a 30-minute audit."
-          ]
-        },
-        {
-          "id": "draft-script",
-          "name": "Draft Script",
-          "agentId": "script-writer",
-          "agentName": "Script Writer",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:34:54.928Z",
-          "finishedAt": "2026-04-04T09:34:54.928Z",
-          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
-          "artifact": {
-            "kind": "script",
-            "headline": "Client Content Assembly script draft",
-            "selectedAngle": {
-              "title": "The hidden ops tax",
-              "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
-              "hook": "You do not need more leads. You need fewer leaks.",
-              "cta": "Request a 30-minute audit"
-            },
-            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
-          },
-          "logs": [
-            "[2026-04-04T09:34:54.928Z] Selected angle: The hidden ops tax.",
-            "[2026-04-04T09:34:54.928Z] Generated script CTA: Request a 30-minute audit."
-          ]
-        }
-      ],
-      "logs": [
-        "[2026-04-04T09:34:54.924Z] Workflow Client Content Assembly started for Northstar Media.",
-        "[2026-04-04T09:34:54.924Z] Trigger source: manual.",
-        "[2026-04-04T09:34:54.928Z] Content Researcher completed Research Signals.",
-        "[2026-04-04T09:34:54.928Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
-        "[2026-04-04T09:34:54.928Z] Evaluated campaign theme: Content ops for founder-led brands.",
-        "[2026-04-04T09:34:54.928Z] Flagged primary pain: Audience research is ad hoc.",
-        "[2026-04-04T09:34:54.928Z] Idea Generator completed Generate Angles.",
-        "[2026-04-04T09:34:54.928Z] Promoted research signal into 3 angles.",
-        "[2026-04-04T09:34:54.928Z] Attached CTA: Request a 30-minute audit.",
-        "[2026-04-04T09:34:54.928Z] Script Writer completed Draft Script.",
-        "[2026-04-04T09:34:54.928Z] Selected angle: The hidden ops tax.",
-        "[2026-04-04T09:34:54.928Z] Generated script CTA: Request a 30-minute audit."
-      ]
-    },
-    {
-      "id": "run_2861c782-2d6a-466b-96bb-c973923baf05",
-      "workspaceId": "northstar-media",
-      "workspaceName": "Northstar Media",
-      "workflowInstanceId": "northstar-lead-triage",
-      "workflowTemplateId": "lead-qualification",
-      "workflowName": "Client Lead Intake",
-      "trigger": "manual",
-      "status": "succeeded",
-      "startedAt": "2026-04-04T09:34:54.924Z",
-      "finishedAt": "2026-04-04T09:34:54.928Z",
-      "costEstimateUsd": 0.14,
-      "summary": "Drafted a nurture DM response for Operator Atlas.",
-      "primaryArtifact": {
-        "kind": "dm-draft",
-        "headline": "DM reply for Operator Atlas",
-        "response": "Thanks for reaching out, Operator Atlas. You are early for a systems engagement, so the right next step is a lighter audit and a follow-up when the demand volume is higher.",
-        "disposition": "nurture"
-      },
-      "steps": [
-        {
-          "id": "score-lead",
-          "name": "Score Lead",
-          "agentId": "lead-qualifier",
-          "agentName": "Lead Qualifier",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:34:54.928Z",
-          "finishedAt": "2026-04-04T09:34:54.928Z",
-          "summary": "Lead scored 60/76 and was classified as nurture.",
-          "artifact": {
-            "kind": "lead-score",
-            "headline": "Operator Atlas qualification",
-            "lead": {
-              "company": "Operator Atlas",
-              "teamSize": 4,
-              "monthlyRevenueBand": "10k-50k",
-              "painLevel": "medium",
-              "source": "LinkedIn DM"
-            },
-            "threshold": 76,
-            "score": 60,
-            "disposition": "nurture"
-          },
-          "logs": [
-            "[2026-04-04T09:34:54.928Z] Lead source: LinkedIn DM.",
-            "[2026-04-04T09:34:54.928Z] Team size score applied for 4 seats.",
-            "[2026-04-04T09:34:54.928Z] Revenue band 10k-50k and pain medium mapped into qualification score."
-          ]
-        },
-        {
-          "id": "draft-response",
-          "name": "Draft Response",
-          "agentId": "dm-automation",
-          "agentName": "DM Automation",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:34:54.928Z",
-          "finishedAt": "2026-04-04T09:34:54.928Z",
-          "summary": "Drafted a nurture DM response for Operator Atlas.",
-          "artifact": {
-            "kind": "dm-draft",
-            "headline": "DM reply for Operator Atlas",
-            "response": "Thanks for reaching out, Operator Atlas. You are early for a systems engagement, so the right next step is a lighter audit and a follow-up when the demand volume is higher.",
-            "disposition": "nurture"
-          },
-          "logs": [
-            "[2026-04-04T09:34:54.928Z] Disposition carried forward: nurture.",
-            "[2026-04-04T09:34:54.928Z] Drafted follow-up response for Operator Atlas."
-          ]
-        }
-      ],
-      "logs": [
-        "[2026-04-04T09:34:54.924Z] Workflow Client Lead Intake started for Northstar Media.",
-        "[2026-04-04T09:34:54.924Z] Trigger source: manual.",
-        "[2026-04-04T09:34:54.928Z] Lead Qualifier completed Score Lead.",
-        "[2026-04-04T09:34:54.928Z] Lead source: LinkedIn DM.",
-        "[2026-04-04T09:34:54.928Z] Team size score applied for 4 seats.",
-        "[2026-04-04T09:34:54.928Z] Revenue band 10k-50k and pain medium mapped into qualification score.",
-        "[2026-04-04T09:34:54.928Z] DM Automation completed Draft Response.",
-        "[2026-04-04T09:34:54.928Z] Disposition carried forward: nurture.",
-        "[2026-04-04T09:34:54.928Z] Drafted follow-up response for Operator Atlas."
-      ]
-    },
-    {
-      "id": "run_87dee74e-92fc-4be0-a617-c9fec7a80a10",
-      "workspaceId": "vbj-services",
-      "workspaceName": "VBJ Services",
-      "workflowInstanceId": "vbj-content-daily",
-      "workflowTemplateId": "content-pipeline",
-      "workflowName": "Daily Content Sprint",
-      "trigger": "manual",
-      "status": "succeeded",
-      "startedAt": "2026-04-04T09:34:54.924Z",
-      "finishedAt": "2026-04-04T09:34:54.928Z",
-      "costEstimateUsd": 0.51,
-      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
-      "primaryArtifact": {
-        "kind": "script",
-        "headline": "Daily Content Sprint script draft",
-        "selectedAngle": {
-          "title": "The hidden ops tax",
-          "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
-          "hook": "You do not need more leads. You need fewer leaks.",
-          "cta": "Book a workflow teardown"
-        },
-        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
-      },
-      "steps": [
-        {
-          "id": "research-signals",
-          "name": "Research Signals",
-          "agentId": "content-researcher",
-          "agentName": "Content Researcher",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:34:54.928Z",
-          "finishedAt": "2026-04-04T09:34:54.928Z",
-          "summary": "Captured 3 positioning signals for VBJ Services.",
-          "artifact": {
-            "kind": "research-brief",
-            "headline": "VBJ Services research brief",
-            "bullets": [
-              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
-              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
-              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
-            ]
-          },
-          "logs": [
-            "[2026-04-04T09:34:54.928Z] Scanned ICP: Agency owners and lean service businesses.",
-            "[2026-04-04T09:34:54.928Z] Evaluated campaign theme: AI orchestration for lean operators.",
-            "[2026-04-04T09:34:54.928Z] Flagged primary pain: Leads arrive through DMs with no qualification."
-          ]
-        },
-        {
-          "id": "generate-angles",
-          "name": "Generate Angles",
-          "agentId": "idea-generator",
-          "agentName": "Idea Generator",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:34:54.928Z",
-          "finishedAt": "2026-04-04T09:34:54.928Z",
-          "summary": "Generated 3 usable content angles from the research brief.",
-          "artifact": {
-            "kind": "idea-pack",
-            "headline": "Daily Content Sprint angles",
-            "sourceSignals": [
-              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
-              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
-              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
-            ],
-            "ideas": [
-              {
-                "title": "The hidden ops tax",
-                "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
-                "hook": "You do not need more leads. You need fewer leaks.",
-                "cta": "Book a workflow teardown"
-              },
-              {
-                "title": "Why content fails after 2 weeks",
-                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
-                "hook": "Consistency is not a discipline problem. It is a systems problem.",
-                "cta": "Book a workflow teardown"
-              },
-              {
-                "title": "Tool stack theater",
-                "angle": "AI automation consultancy buyers are tired of vendors selling fragments instead of working systems.",
-                "hook": "If your stack needs a human babysitter, it is not automation.",
-                "cta": "Book a workflow teardown"
-              }
-            ]
-          },
-          "logs": [
-            "[2026-04-04T09:34:54.928Z] Promoted research signal into 3 angles.",
-            "[2026-04-04T09:34:54.928Z] Attached CTA: Book a workflow teardown."
-          ]
-        },
-        {
-          "id": "draft-script",
-          "name": "Draft Script",
-          "agentId": "script-writer",
-          "agentName": "Script Writer",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:34:54.928Z",
-          "finishedAt": "2026-04-04T09:34:54.928Z",
-          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
-          "artifact": {
-            "kind": "script",
-            "headline": "Daily Content Sprint script draft",
-            "selectedAngle": {
-              "title": "The hidden ops tax",
-              "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
-              "hook": "You do not need more leads. You need fewer leaks.",
-              "cta": "Book a workflow teardown"
-            },
-            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
-          },
-          "logs": [
-            "[2026-04-04T09:34:54.928Z] Selected angle: The hidden ops tax.",
-            "[2026-04-04T09:34:54.928Z] Generated script CTA: Book a workflow teardown."
-          ]
-        }
-      ],
-      "logs": [
-        "[2026-04-04T09:34:54.924Z] Workflow Daily Content Sprint started for VBJ Services.",
-        "[2026-04-04T09:34:54.924Z] Trigger source: manual.",
-        "[2026-04-04T09:34:54.928Z] Content Researcher completed Research Signals.",
-        "[2026-04-04T09:34:54.928Z] Scanned ICP: Agency owners and lean service businesses.",
-        "[2026-04-04T09:34:54.928Z] Evaluated campaign theme: AI orchestration for lean operators.",
-        "[2026-04-04T09:34:54.928Z] Flagged primary pain: Leads arrive through DMs with no qualification.",
-        "[2026-04-04T09:34:54.928Z] Idea Generator completed Generate Angles.",
-        "[2026-04-04T09:34:54.928Z] Promoted research signal into 3 angles.",
-        "[2026-04-04T09:34:54.928Z] Attached CTA: Book a workflow teardown.",
-        "[2026-04-04T09:34:54.928Z] Script Writer completed Draft Script.",
-        "[2026-04-04T09:34:54.928Z] Selected angle: The hidden ops tax.",
-        "[2026-04-04T09:34:54.928Z] Generated script CTA: Book a workflow teardown."
-      ]
-    },
-    {
-      "id": "run_6038ba43-e2d6-48a2-96b8-3e14d758475d",
-      "workspaceId": "vbj-services",
-      "workspaceName": "VBJ Services",
-      "workflowInstanceId": "vbj-lead-triage",
-      "workflowTemplateId": "lead-qualification",
-      "workflowName": "Inbound Lead Triage",
-      "trigger": "manual",
-      "status": "succeeded",
-      "startedAt": "2026-04-04T09:34:54.924Z",
-      "finishedAt": "2026-04-04T09:34:54.928Z",
-      "costEstimateUsd": 0.14,
-      "summary": "Drafted a qualified DM response for Northflow Studio.",
-      "primaryArtifact": {
-        "kind": "dm-draft",
-        "headline": "DM reply for Northflow Studio",
-        "response": "Thanks for reaching out, Northflow Studio. You look like a fit. Next step is a short diagnostic call so we can map your current workflow leaks and automation opportunities.",
-        "disposition": "qualified"
-      },
-      "steps": [
-        {
-          "id": "score-lead",
-          "name": "Score Lead",
-          "agentId": "lead-qualifier",
-          "agentName": "Lead Qualifier",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:34:54.928Z",
-          "finishedAt": "2026-04-04T09:34:54.928Z",
-          "summary": "Lead scored 90/72 and was classified as qualified.",
-          "artifact": {
-            "kind": "lead-score",
-            "headline": "Northflow Studio qualification",
-            "lead": {
-              "company": "Northflow Studio",
-              "teamSize": 9,
-              "monthlyRevenueBand": "50k-100k",
-              "painLevel": "high",
-              "source": "Instagram DM"
-            },
-            "threshold": 72,
-            "score": 90,
-            "disposition": "qualified"
-          },
-          "logs": [
-            "[2026-04-04T09:34:54.928Z] Lead source: Instagram DM.",
-            "[2026-04-04T09:34:54.928Z] Team size score applied for 9 seats.",
-            "[2026-04-04T09:34:54.928Z] Revenue band 50k-100k and pain high mapped into qualification score."
-          ]
-        },
-        {
-          "id": "draft-response",
-          "name": "Draft Response",
-          "agentId": "dm-automation",
-          "agentName": "DM Automation",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-04T09:34:54.928Z",
-          "finishedAt": "2026-04-04T09:34:54.928Z",
-          "summary": "Drafted a qualified DM response for Northflow Studio.",
-          "artifact": {
-            "kind": "dm-draft",
-            "headline": "DM reply for Northflow Studio",
-            "response": "Thanks for reaching out, Northflow Studio. You look like a fit. Next step is a short diagnostic call so we can map your current workflow leaks and automation opportunities.",
-            "disposition": "qualified"
-          },
-          "logs": [
-            "[2026-04-04T09:34:54.928Z] Disposition carried forward: qualified.",
-            "[2026-04-04T09:34:54.928Z] Drafted follow-up response for Northflow Studio."
-          ]
-        }
-      ],
-      "logs": [
-        "[2026-04-04T09:34:54.924Z] Workflow Inbound Lead Triage started for VBJ Services.",
-        "[2026-04-04T09:34:54.924Z] Trigger source: manual.",
-        "[2026-04-04T09:34:54.928Z] Lead Qualifier completed Score Lead.",
-        "[2026-04-04T09:34:54.928Z] Lead source: Instagram DM.",
-        "[2026-04-04T09:34:54.928Z] Team size score applied for 9 seats.",
-        "[2026-04-04T09:34:54.928Z] Revenue band 50k-100k and pain high mapped into qualification score.",
-        "[2026-04-04T09:34:54.928Z] DM Automation completed Draft Response.",
-        "[2026-04-04T09:34:54.928Z] Disposition carried forward: qualified.",
-        "[2026-04-04T09:34:54.928Z] Drafted follow-up response for Northflow Studio."
-      ]
-    },
-    {
-      "id": "run_1b8fd5c9-e1f8-4fc2-8ae2-dab450d59918",
-      "workspaceId": "northstar-media",
-      "workspaceName": "Northstar Media",
-      "workflowInstanceId": "northstar-content-daily",
-      "workflowTemplateId": "content-pipeline",
-      "workflowName": "Client Content Assembly",
-      "trigger": "schedule",
-      "status": "succeeded",
-      "startedAt": "2026-04-02T07:16:46.348Z",
-      "finishedAt": "2026-04-02T07:16:46.349Z",
-      "costEstimateUsd": 0.51,
-      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
-      "primaryArtifact": {
-        "kind": "script",
-        "headline": "Client Content Assembly script draft",
-        "selectedAngle": {
-          "title": "The hidden ops tax",
-          "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
-          "hook": "You do not need more leads. You need fewer leaks.",
-          "cta": "Request a 30-minute audit"
-        },
-        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
-      },
-      "steps": [
-        {
-          "id": "research-signals",
-          "name": "Research Signals",
-          "agentId": "content-researcher",
-          "agentName": "Content Researcher",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-02T07:16:46.349Z",
-          "finishedAt": "2026-04-02T07:16:46.349Z",
-          "summary": "Captured 3 positioning signals for Northstar Media.",
-          "artifact": {
-            "kind": "research-brief",
-            "headline": "Northstar Media research brief",
-            "bullets": [
-              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
-              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
-              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
-            ]
-          },
-          "logs": [
-            "[2026-04-02T07:16:46.349Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
-            "[2026-04-02T07:16:46.349Z] Evaluated campaign theme: Content ops for founder-led brands.",
-            "[2026-04-02T07:16:46.349Z] Flagged primary pain: Audience research is ad hoc."
-          ]
-        },
-        {
-          "id": "generate-angles",
-          "name": "Generate Angles",
-          "agentId": "idea-generator",
-          "agentName": "Idea Generator",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-02T07:16:46.349Z",
-          "finishedAt": "2026-04-02T07:16:46.349Z",
-          "summary": "Generated 3 usable content angles from the research brief.",
-          "artifact": {
-            "kind": "idea-pack",
-            "headline": "Client Content Assembly angles",
-            "sourceSignals": [
-              "Founder-led B2B brands that need repeatable content output care about predictable pipeline, not another shiny tool stack.",
-              "The strongest hook for Content ops for founder-led brands is operational relief, because audience research is ad hoc.",
-              "Competitor pressure is coming from In-house content teams and Freelance creator collectives, but most of them still sell isolated tools instead of orchestrated systems."
-            ],
-            "ideas": [
-              {
-                "title": "The hidden ops tax",
-                "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
-                "hook": "You do not need more leads. You need fewer leaks.",
-                "cta": "Request a 30-minute audit"
-              },
-              {
-                "title": "Why content fails after 2 weeks",
-                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
-                "hook": "Consistency is not a discipline problem. It is a systems problem.",
-                "cta": "Request a 30-minute audit"
-              },
-              {
-                "title": "Tool stack theater",
-                "angle": "Short-form content studio buyers are tired of vendors selling fragments instead of working systems.",
-                "hook": "If your stack needs a human babysitter, it is not automation.",
-                "cta": "Request a 30-minute audit"
-              }
-            ]
-          },
-          "logs": [
-            "[2026-04-02T07:16:46.349Z] Promoted research signal into 3 angles.",
-            "[2026-04-02T07:16:46.349Z] Attached CTA: Request a 30-minute audit."
-          ]
-        },
-        {
-          "id": "draft-script",
-          "name": "Draft Script",
-          "agentId": "script-writer",
-          "agentName": "Script Writer",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-02T07:16:46.349Z",
-          "finishedAt": "2026-04-02T07:16:46.349Z",
-          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
-          "artifact": {
-            "kind": "script",
-            "headline": "Client Content Assembly script draft",
-            "selectedAngle": {
-              "title": "The hidden ops tax",
-              "angle": "Founder-led B2B brands that need repeatable content output lose margin every week because their follow-up path is manual.",
-              "hook": "You do not need more leads. You need fewer leaks.",
-              "cta": "Request a 30-minute audit"
-            },
-            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. Northstar Media uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Request a 30-minute audit."
-          },
-          "logs": [
-            "[2026-04-02T07:16:46.349Z] Selected angle: The hidden ops tax.",
-            "[2026-04-02T07:16:46.349Z] Generated script CTA: Request a 30-minute audit."
-          ]
-        }
-      ],
-      "logs": [
-        "[2026-04-02T07:16:46.348Z] Workflow Client Content Assembly started for Northstar Media.",
-        "[2026-04-02T07:16:46.348Z] Trigger source: schedule.",
-        "[2026-04-02T07:16:46.349Z] Content Researcher completed Research Signals.",
-        "[2026-04-02T07:16:46.349Z] Scanned ICP: Founder-led B2B brands that need repeatable content output.",
-        "[2026-04-02T07:16:46.349Z] Evaluated campaign theme: Content ops for founder-led brands.",
-        "[2026-04-02T07:16:46.349Z] Flagged primary pain: Audience research is ad hoc.",
-        "[2026-04-02T07:16:46.349Z] Idea Generator completed Generate Angles.",
-        "[2026-04-02T07:16:46.349Z] Promoted research signal into 3 angles.",
-        "[2026-04-02T07:16:46.349Z] Attached CTA: Request a 30-minute audit.",
-        "[2026-04-02T07:16:46.349Z] Script Writer completed Draft Script.",
-        "[2026-04-02T07:16:46.349Z] Selected angle: The hidden ops tax.",
-        "[2026-04-02T07:16:46.349Z] Generated script CTA: Request a 30-minute audit."
-      ]
-    },
-    {
-      "id": "run_52ef9367-1cbd-458c-a339-a79d8a39fdf5",
-      "workspaceId": "northstar-media",
-      "workspaceName": "Northstar Media",
-      "workflowInstanceId": "northstar-lead-triage",
-      "workflowTemplateId": "lead-qualification",
-      "workflowName": "Client Lead Intake",
-      "trigger": "schedule",
-      "status": "succeeded",
-      "startedAt": "2026-04-02T07:16:46.348Z",
-      "finishedAt": "2026-04-02T07:16:46.350Z",
-      "costEstimateUsd": 0.14,
-      "summary": "Drafted a nurture DM response for Operator Atlas.",
-      "primaryArtifact": {
-        "kind": "dm-draft",
-        "headline": "DM reply for Operator Atlas",
-        "response": "Thanks for reaching out, Operator Atlas. You are early for a systems engagement, so the right next step is a lighter audit and a follow-up when the demand volume is higher.",
-        "disposition": "nurture"
-      },
-      "steps": [
-        {
-          "id": "score-lead",
-          "name": "Score Lead",
-          "agentId": "lead-qualifier",
-          "agentName": "Lead Qualifier",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-02T07:16:46.349Z",
-          "finishedAt": "2026-04-02T07:16:46.349Z",
-          "summary": "Lead scored 60/76 and was classified as nurture.",
-          "artifact": {
-            "kind": "lead-score",
-            "headline": "Operator Atlas qualification",
-            "lead": {
-              "company": "Operator Atlas",
-              "teamSize": 4,
-              "monthlyRevenueBand": "10k-50k",
-              "painLevel": "medium",
-              "source": "LinkedIn DM"
-            },
-            "threshold": 76,
-            "score": 60,
-            "disposition": "nurture"
-          },
-          "logs": [
-            "[2026-04-02T07:16:46.349Z] Lead source: LinkedIn DM.",
-            "[2026-04-02T07:16:46.349Z] Team size score applied for 4 seats.",
-            "[2026-04-02T07:16:46.349Z] Revenue band 10k-50k and pain medium mapped into qualification score."
-          ]
-        },
-        {
-          "id": "draft-response",
-          "name": "Draft Response",
-          "agentId": "dm-automation",
-          "agentName": "DM Automation",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-02T07:16:46.349Z",
-          "finishedAt": "2026-04-02T07:16:46.350Z",
-          "summary": "Drafted a nurture DM response for Operator Atlas.",
-          "artifact": {
-            "kind": "dm-draft",
-            "headline": "DM reply for Operator Atlas",
-            "response": "Thanks for reaching out, Operator Atlas. You are early for a systems engagement, so the right next step is a lighter audit and a follow-up when the demand volume is higher.",
-            "disposition": "nurture"
-          },
-          "logs": [
-            "[2026-04-02T07:16:46.350Z] Disposition carried forward: nurture.",
-            "[2026-04-02T07:16:46.350Z] Drafted follow-up response for Operator Atlas."
-          ]
-        }
-      ],
-      "logs": [
-        "[2026-04-02T07:16:46.348Z] Workflow Client Lead Intake started for Northstar Media.",
-        "[2026-04-02T07:16:46.348Z] Trigger source: schedule.",
-        "[2026-04-02T07:16:46.349Z] Lead Qualifier completed Score Lead.",
-        "[2026-04-02T07:16:46.349Z] Lead source: LinkedIn DM.",
-        "[2026-04-02T07:16:46.349Z] Team size score applied for 4 seats.",
-        "[2026-04-02T07:16:46.349Z] Revenue band 10k-50k and pain medium mapped into qualification score.",
-        "[2026-04-02T07:16:46.350Z] DM Automation completed Draft Response.",
-        "[2026-04-02T07:16:46.350Z] Disposition carried forward: nurture.",
-        "[2026-04-02T07:16:46.350Z] Drafted follow-up response for Operator Atlas."
-      ]
-    },
-    {
-      "id": "run_53902f4c-c214-454a-b0d2-fd1cd5e75506",
-      "workspaceId": "vbj-services",
-      "workspaceName": "VBJ Services",
-      "workflowInstanceId": "vbj-content-daily",
-      "workflowTemplateId": "content-pipeline",
-      "workflowName": "Daily Content Sprint",
-      "trigger": "schedule",
-      "status": "succeeded",
-      "startedAt": "2026-04-02T07:16:46.348Z",
-      "finishedAt": "2026-04-02T07:16:46.350Z",
-      "costEstimateUsd": 0.51,
-      "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
-      "primaryArtifact": {
-        "kind": "script",
-        "headline": "Daily Content Sprint script draft",
-        "selectedAngle": {
-          "title": "The hidden ops tax",
-          "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
-          "hook": "You do not need more leads. You need fewer leaks.",
-          "cta": "Book a workflow teardown"
-        },
-        "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
-      },
-      "steps": [
-        {
-          "id": "research-signals",
-          "name": "Research Signals",
-          "agentId": "content-researcher",
-          "agentName": "Content Researcher",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-02T07:16:46.350Z",
-          "finishedAt": "2026-04-02T07:16:46.350Z",
-          "summary": "Captured 3 positioning signals for VBJ Services.",
-          "artifact": {
-            "kind": "research-brief",
-            "headline": "VBJ Services research brief",
-            "bullets": [
-              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
-              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
-              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
-            ]
-          },
-          "logs": [
-            "[2026-04-02T07:16:46.350Z] Scanned ICP: Agency owners and lean service businesses.",
-            "[2026-04-02T07:16:46.350Z] Evaluated campaign theme: AI orchestration for lean operators.",
-            "[2026-04-02T07:16:46.350Z] Flagged primary pain: Leads arrive through DMs with no qualification."
-          ]
-        },
-        {
-          "id": "generate-angles",
-          "name": "Generate Angles",
-          "agentId": "idea-generator",
-          "agentName": "Idea Generator",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-02T07:16:46.350Z",
-          "finishedAt": "2026-04-02T07:16:46.350Z",
-          "summary": "Generated 3 usable content angles from the research brief.",
-          "artifact": {
-            "kind": "idea-pack",
-            "headline": "Daily Content Sprint angles",
-            "sourceSignals": [
-              "Agency owners and lean service businesses care about predictable pipeline, not another shiny tool stack.",
-              "The strongest hook for AI orchestration for lean operators is operational relief, because leads arrive through dms with no qualification.",
-              "Competitor pressure is coming from Done-for-you automation agencies and DIY GTM tool stacks, but most of them still sell isolated tools instead of orchestrated systems."
-            ],
-            "ideas": [
-              {
-                "title": "The hidden ops tax",
-                "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
-                "hook": "You do not need more leads. You need fewer leaks.",
-                "cta": "Book a workflow teardown"
-              },
-              {
-                "title": "Why content fails after 2 weeks",
-                "angle": "Most teams have ideas, but no orchestration layer to turn them into repeatable output.",
-                "hook": "Consistency is not a discipline problem. It is a systems problem.",
-                "cta": "Book a workflow teardown"
-              },
-              {
-                "title": "Tool stack theater",
-                "angle": "AI automation consultancy buyers are tired of vendors selling fragments instead of working systems.",
-                "hook": "If your stack needs a human babysitter, it is not automation.",
-                "cta": "Book a workflow teardown"
-              }
-            ]
-          },
-          "logs": [
-            "[2026-04-02T07:16:46.350Z] Promoted research signal into 3 angles.",
-            "[2026-04-02T07:16:46.350Z] Attached CTA: Book a workflow teardown."
-          ]
-        },
-        {
-          "id": "draft-script",
-          "name": "Draft Script",
-          "agentId": "script-writer",
-          "agentName": "Script Writer",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-02T07:16:46.350Z",
-          "finishedAt": "2026-04-02T07:16:46.350Z",
-          "summary": "Drafted a short-form script around the angle \"The hidden ops tax\".",
-          "artifact": {
-            "kind": "script",
-            "headline": "Daily Content Sprint script draft",
-            "selectedAngle": {
-              "title": "The hidden ops tax",
-              "angle": "Agency owners and lean service businesses lose margin every week because their follow-up path is manual.",
-              "hook": "You do not need more leads. You need fewer leaks.",
-              "cta": "Book a workflow teardown"
-            },
-            "script": "Stop calling your problem a lead-gen issue. If you are still routing inbound demand by hand, your pipeline is leaking before sales even starts. VBJ Services uses orchestrated agents to research, qualify, and follow up without founder babysitting. The point is not more AI noise. The point is a system that actually ships. Book a workflow teardown."
-          },
-          "logs": [
-            "[2026-04-02T07:16:46.350Z] Selected angle: The hidden ops tax.",
-            "[2026-04-02T07:16:46.350Z] Generated script CTA: Book a workflow teardown."
-          ]
-        }
-      ],
-      "logs": [
-        "[2026-04-02T07:16:46.348Z] Workflow Daily Content Sprint started for VBJ Services.",
-        "[2026-04-02T07:16:46.348Z] Trigger source: schedule.",
-        "[2026-04-02T07:16:46.350Z] Content Researcher completed Research Signals.",
-        "[2026-04-02T07:16:46.350Z] Scanned ICP: Agency owners and lean service businesses.",
-        "[2026-04-02T07:16:46.350Z] Evaluated campaign theme: AI orchestration for lean operators.",
-        "[2026-04-02T07:16:46.350Z] Flagged primary pain: Leads arrive through DMs with no qualification.",
-        "[2026-04-02T07:16:46.350Z] Idea Generator completed Generate Angles.",
-        "[2026-04-02T07:16:46.350Z] Promoted research signal into 3 angles.",
-        "[2026-04-02T07:16:46.350Z] Attached CTA: Book a workflow teardown.",
-        "[2026-04-02T07:16:46.350Z] Script Writer completed Draft Script.",
-        "[2026-04-02T07:16:46.350Z] Selected angle: The hidden ops tax.",
-        "[2026-04-02T07:16:46.350Z] Generated script CTA: Book a workflow teardown."
-      ]
-    },
-    {
-      "id": "run_f2ddcda4-ef63-4057-bbc0-96fe65fc79ff",
-      "workspaceId": "vbj-services",
-      "workspaceName": "VBJ Services",
-      "workflowInstanceId": "vbj-lead-triage",
-      "workflowTemplateId": "lead-qualification",
-      "workflowName": "Inbound Lead Triage",
-      "trigger": "schedule",
-      "status": "succeeded",
-      "startedAt": "2026-04-02T07:16:46.348Z",
-      "finishedAt": "2026-04-02T07:16:46.350Z",
-      "costEstimateUsd": 0.14,
-      "summary": "Drafted a qualified DM response for Northflow Studio.",
-      "primaryArtifact": {
-        "kind": "dm-draft",
-        "headline": "DM reply for Northflow Studio",
-        "response": "Thanks for reaching out, Northflow Studio. You look like a fit. Next step is a short diagnostic call so we can map your current workflow leaks and automation opportunities.",
-        "disposition": "qualified"
-      },
-      "steps": [
-        {
-          "id": "score-lead",
-          "name": "Score Lead",
-          "agentId": "lead-qualifier",
-          "agentName": "Lead Qualifier",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-02T07:16:46.350Z",
-          "finishedAt": "2026-04-02T07:16:46.350Z",
-          "summary": "Lead scored 90/72 and was classified as qualified.",
-          "artifact": {
-            "kind": "lead-score",
-            "headline": "Northflow Studio qualification",
-            "lead": {
-              "company": "Northflow Studio",
-              "teamSize": 9,
-              "monthlyRevenueBand": "50k-100k",
-              "painLevel": "high",
-              "source": "Instagram DM"
-            },
-            "threshold": 72,
-            "score": 90,
-            "disposition": "qualified"
-          },
-          "logs": [
-            "[2026-04-02T07:16:46.350Z] Lead source: Instagram DM.",
-            "[2026-04-02T07:16:46.350Z] Team size score applied for 9 seats.",
-            "[2026-04-02T07:16:46.350Z] Revenue band 50k-100k and pain high mapped into qualification score."
-          ]
-        },
-        {
-          "id": "draft-response",
-          "name": "Draft Response",
-          "agentId": "dm-automation",
-          "agentName": "DM Automation",
-          "executor": "simulated-codex",
-          "status": "succeeded",
-          "startedAt": "2026-04-02T07:16:46.350Z",
-          "finishedAt": "2026-04-02T07:16:46.350Z",
-          "summary": "Drafted a qualified DM response for Northflow Studio.",
-          "artifact": {
-            "kind": "dm-draft",
-            "headline": "DM reply for Northflow Studio",
-            "response": "Thanks for reaching out, Northflow Studio. You look like a fit. Next step is a short diagnostic call so we can map your current workflow leaks and automation opportunities.",
-            "disposition": "qualified"
-          },
-          "logs": [
-            "[2026-04-02T07:16:46.350Z] Disposition carried forward: qualified.",
-            "[2026-04-02T07:16:46.350Z] Drafted follow-up response for Northflow Studio."
-          ]
-        }
-      ],
-      "logs": [
-        "[2026-04-02T07:16:46.348Z] Workflow Inbound Lead Triage started for VBJ Services.",
-        "[2026-04-02T07:16:46.348Z] Trigger source: schedule.",
-        "[2026-04-02T07:16:46.350Z] Lead Qualifier completed Score Lead.",
-        "[2026-04-02T07:16:46.350Z] Lead source: Instagram DM.",
-        "[2026-04-02T07:16:46.350Z] Team size score applied for 9 seats.",
-        "[2026-04-02T07:16:46.350Z] Revenue band 50k-100k and pain high mapped into qualification score.",
-        "[2026-04-02T07:16:46.350Z] DM Automation completed Draft Response.",
-        "[2026-04-02T07:16:46.350Z] Disposition carried forward: qualified.",
-        "[2026-04-02T07:16:46.350Z] Drafted follow-up response for Northflow Studio."
       ]
     }
   ]

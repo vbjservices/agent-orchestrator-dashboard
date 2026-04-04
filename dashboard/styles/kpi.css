@@ -1,0 +1,521 @@
+.kpi-surface {
+  min-width: 0;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.kpi-card {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(122, 152, 227, 0.16);
+  background:
+    linear-gradient(180deg, rgba(10, 17, 35, 0.96), rgba(7, 12, 25, 0.98));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 14px 34px rgba(3, 8, 22, 0.48),
+    0 0 22px rgba(64, 104, 255, 0.06);
+}
+
+.kpi-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(97, 214, 255, 0.95), rgba(138, 125, 255, 0.42), transparent 88%);
+}
+
+.kpi-card--metric {
+  display: grid;
+  gap: 12px;
+}
+
+.kpi-card--metric-cyan::before {
+  background: linear-gradient(90deg, rgba(97, 214, 255, 0.95), rgba(97, 214, 255, 0), transparent 88%);
+}
+
+.kpi-card--metric-violet::before {
+  background: linear-gradient(90deg, rgba(138, 125, 255, 0.95), rgba(138, 125, 255, 0), transparent 88%);
+}
+
+.kpi-card--metric-pink::before {
+  background: linear-gradient(90deg, rgba(255, 95, 177, 0.95), rgba(255, 95, 177, 0), transparent 88%);
+}
+
+.kpi-card--metric-green::before {
+  background: linear-gradient(90deg, rgba(118, 243, 183, 0.95), rgba(118, 243, 183, 0), transparent 88%);
+}
+
+.kpi-card--trend {
+  grid-column: span 3;
+  display: grid;
+  gap: 18px;
+}
+
+.kpi-card--status,
+.kpi-card--pipeline,
+.kpi-card--workspace,
+.kpi-card--spotlight {
+  display: grid;
+  gap: 16px;
+}
+
+.kpi-card--status {
+  grid-column: span 1;
+}
+
+.kpi-card--platforms,
+.kpi-card--agents {
+  grid-column: span 2;
+  display: grid;
+  gap: 18px;
+}
+
+.kpi-card--workspace,
+.kpi-card--spotlight {
+  grid-column: span 2;
+}
+
+.kpi-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 14px;
+}
+
+.kpi-card__head h2,
+.kpi-card__value,
+.kpi-ring__copy strong,
+.kpi-stage strong,
+.kpi-list-row strong,
+.kpi-agent-row strong,
+.kpi-note strong {
+  margin: 0;
+  font-family: "Bahnschrift SemiCondensed", "Arial Narrow", sans-serif;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.kpi-card__head h2 {
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+}
+
+.kpi-card__value {
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  line-height: 1;
+}
+
+.kpi-card__meta,
+.kpi-card__meta-stack span,
+.kpi-chart__labels span,
+.kpi-platform small,
+.kpi-list-row small,
+.kpi-agent-row small,
+.kpi-note p,
+.kpi-stage span,
+.kpi-ring__copy span {
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.kpi-card__meta-stack {
+  display: grid;
+  gap: 6px;
+  justify-items: end;
+}
+
+.kpi-card__meta-stack span,
+.kpi-chart__labels span,
+.kpi-platform small,
+.kpi-ring__copy span,
+.kpi-stage span,
+.kpi-list-row small {
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.kpi-chart {
+  min-width: 0;
+  border-radius: 16px;
+  border: 1px solid rgba(122, 152, 227, 0.14);
+  background:
+    linear-gradient(180deg, rgba(5, 11, 23, 0.92), rgba(4, 8, 18, 0.96));
+  padding: 12px;
+}
+
+.kpi-chart svg {
+  width: 100%;
+  height: auto;
+}
+
+.kpi-chart__grid {
+  fill: none;
+  stroke: rgba(122, 152, 227, 0.14);
+  stroke-width: 1;
+}
+
+.kpi-chart__bar {
+  opacity: 0.82;
+}
+
+.kpi-chart__bar--violet {
+  fill: rgba(138, 125, 255, 0.72);
+}
+
+.kpi-chart__line {
+  fill: none;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.kpi-chart__line--cyan {
+  stroke: var(--accent);
+}
+
+.kpi-chart__line--tone-1 {
+  stroke: var(--accent);
+}
+
+.kpi-chart__line--tone-2 {
+  stroke: var(--accent-violet);
+}
+
+.kpi-chart__line--tone-3 {
+  stroke: var(--accent-pink);
+}
+
+.kpi-chart__area {
+  opacity: 0.95;
+}
+
+.kpi-chart__labels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+  gap: 8px;
+}
+
+.kpi-ring-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.kpi-ring {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 14px 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(122, 152, 227, 0.12);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.kpi-ring svg {
+  width: 72px;
+  height: 72px;
+  transform: rotate(-90deg);
+}
+
+.kpi-ring__track,
+.kpi-ring__value {
+  fill: none;
+  stroke-width: 8;
+}
+
+.kpi-ring__track {
+  stroke: rgba(122, 152, 227, 0.14);
+}
+
+.kpi-ring__value {
+  stroke-linecap: round;
+}
+
+.kpi-ring--cyan .kpi-ring__value {
+  stroke: var(--accent);
+}
+
+.kpi-ring--violet .kpi-ring__value {
+  stroke: var(--accent-violet);
+}
+
+.kpi-ring--pink .kpi-ring__value {
+  stroke: var(--accent-pink);
+}
+
+.kpi-ring--green .kpi-ring__value {
+  stroke: var(--success);
+}
+
+.kpi-ring__copy {
+  display: grid;
+  gap: 4px;
+  justify-items: center;
+}
+
+.kpi-ring__copy strong {
+  font-size: 1.35rem;
+}
+
+.kpi-platform-grid,
+.kpi-agent-list,
+.kpi-note-list,
+.kpi-list {
+  display: grid;
+  gap: 12px;
+}
+
+.kpi-platform-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.kpi-platform {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(122, 152, 227, 0.12);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.kpi-platform__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.kpi-platform__head strong,
+.kpi-stage strong,
+.kpi-agent-row strong,
+.kpi-list-row strong,
+.kpi-note strong {
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.kpi-platform__head span {
+  color: var(--ink);
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.kpi-stage-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: end;
+  gap: 14px;
+  min-height: 180px;
+}
+
+.kpi-stage {
+  display: grid;
+  justify-items: center;
+  align-content: end;
+  gap: 10px;
+}
+
+.kpi-stage__bar {
+  width: 100%;
+  min-height: 14px;
+  border-radius: 16px 16px 6px 6px;
+  background: linear-gradient(180deg, rgba(97, 214, 255, 0.92), rgba(138, 125, 255, 0.3));
+  box-shadow: 0 0 18px rgba(95, 112, 255, 0.18);
+}
+
+.kpi-stage--ideas .kpi-stage__bar {
+  background: linear-gradient(180deg, rgba(175, 125, 255, 0.96), rgba(175, 125, 255, 0.22));
+}
+
+.kpi-stage--scripted .kpi-stage__bar {
+  background: linear-gradient(180deg, rgba(97, 214, 255, 0.96), rgba(97, 214, 255, 0.22));
+}
+
+.kpi-stage--editing .kpi-stage__bar {
+  background: linear-gradient(180deg, rgba(255, 159, 111, 0.96), rgba(255, 159, 111, 0.22));
+}
+
+.kpi-stage--scheduled .kpi-stage__bar {
+  background: linear-gradient(180deg, rgba(118, 243, 183, 0.96), rgba(118, 243, 183, 0.22));
+}
+
+.kpi-stage--published .kpi-stage__bar {
+  background: linear-gradient(180deg, rgba(214, 224, 240, 0.96), rgba(214, 224, 240, 0.22));
+}
+
+.kpi-list-row,
+.kpi-agent-row,
+.kpi-note {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(122, 152, 227, 0.12);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.kpi-list-row {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.kpi-list-row__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.kpi-list-row__meta span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(122, 152, 227, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--ink-soft);
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.kpi-agent-row {
+  grid-template-columns: minmax(0, 1fr) minmax(120px, 148px);
+  align-items: center;
+}
+
+.kpi-agent-row__identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.kpi-agent-row__progress {
+  display: grid;
+  gap: 8px;
+}
+
+.kpi-agent-row__value {
+  justify-self: end;
+  color: var(--ink);
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.kpi-agent-row__track {
+  position: relative;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.kpi-agent-row__track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(97, 214, 255, 0.96), rgba(138, 125, 255, 0.9), rgba(255, 95, 177, 0.84));
+}
+
+.kpi-note {
+  gap: 8px;
+}
+
+.kpi-note p {
+  margin: 0;
+}
+
+.kpi-note--cyan::before,
+.kpi-note--violet::before,
+.kpi-note--pink::before,
+.kpi-note--green::before {
+  content: "";
+  width: 36px;
+  height: 2px;
+  border-radius: 999px;
+}
+
+.kpi-note--cyan::before {
+  background: var(--accent);
+}
+
+.kpi-note--violet::before {
+  background: var(--accent-violet);
+}
+
+.kpi-note--pink::before {
+  background: var(--accent-pink);
+}
+
+.kpi-note--green::before {
+  background: var(--success);
+}
+
+@media (max-width: 1360px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .kpi-card--trend,
+  .kpi-card--platforms,
+  .kpi-card--workspace,
+  .kpi-card--agents,
+  .kpi-card--spotlight {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .kpi-platform-grid,
+  .kpi-ring-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-stage-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .kpi-grid,
+  .kpi-card--trend,
+  .kpi-card--platforms,
+  .kpi-card--workspace,
+  .kpi-card--agents,
+  .kpi-card--spotlight {
+    grid-template-columns: 1fr;
+    grid-column: span 1;
+  }
+
+  .kpi-platform-grid,
+  .kpi-stage-grid,
+  .kpi-ring-grid,
+  .kpi-list-row,
+  .kpi-agent-row {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-list-row__meta {
+    justify-content: flex-start;
+  }
+
+  .kpi-card__head {
+    flex-direction: column;
+    align-items: start;
+  }
+}

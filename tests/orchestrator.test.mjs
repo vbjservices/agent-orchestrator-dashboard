@@ -32,6 +32,12 @@ test("runOrchestrator writes a dashboard state file for one workspace", async ()
 
   assert.equal(state.mode, "file-backed-v1");
   assert.equal(state.workspaces.some((workspace) => workspace.id === "vbj-services"), true);
+  assert.equal(
+    state.workspaces.every(
+      (workspace) => Array.isArray(workspace.painPoints) && Array.isArray(workspace.competitors)
+    ),
+    true
+  );
   assert.equal(state.runs.every((run) => run.status === "succeeded"), true);
   assert.equal(state.runs.every((run) => run.workspaceId === "vbj-services"), true);
   assert.equal(

@@ -1,13 +1,14 @@
 import { nodes, sectionNodes, uiState } from "./app/context.js";
-import { nextPaint, setFeedRailWidth, wait } from "./app/lib.js";
+import { initializeFeedRailResize, nextPaint, wait } from "./app/lib.js";
 import { showScopeLoaders, showSectionLoader } from "./app/loaders.js";
 import { ensureSelectedRun, selectedAgentContext, selectedWorkflowContext } from "./app/model.js";
 import { renderControlBar, renderWorkspaceSwitcher } from "./app/renderers/controls.js";
+import { renderAnalyticsView } from "./app/renderers/analytics.js";
 import { renderAiTeam } from "./app/renderers/dashboard.js";
 import { renderNavigation } from "./app/renderers/navigation.js";
 import { renderMetrics } from "./app/renderers/overview.js";
-import { renderPerformanceDashboard } from "./app/renderers/performance.js";
 import { renderContentPipeline } from "./app/renderers/pipeline.js";
+import { renderContentResearch } from "./app/renderers/research.js";
 import { renderAgentTasks } from "./app/renderers/tasks.js";
 import {
   renderAgentInstances,
@@ -47,33 +48,18 @@ function closeModals() {
   nodes.workflowModal.hidden = true;
 }
 
-function initializeFeedWidthControl() {
-  const width = setFeedRailWidth(uiState.feedRailWidth);
-
-  if (nodes.feedWidthRange) {
-    nodes.feedWidthRange.value = String(width);
-    nodes.feedWidthRange.addEventListener("input", (event) => {
-      uiState.feedRailWidth = setFeedRailWidth(event.target.value);
-      if (nodes.feedWidthValue) {
-        nodes.feedWidthValue.textContent = `${uiState.feedRailWidth}px`;
-      }
-    });
-  }
-
-  if (nodes.feedWidthValue) {
-    nodes.feedWidthValue.textContent = `${width}px`;
-  }
-}
-
 async function renderPrimarySections() {
   showSectionLoader("controlBar", "Priming operator controls");
   showSectionLoader("workspaceSwitcher", "Loading workspace scopes", true);
   showSectionLoader("searchSummary", "Loading search summary");
-  showSectionLoader("pipelineSummary", "Loading content pipeline counts");
+  showSectionLoader("researchTopics", "Loading research topics");
+  showSectionLoader("researchCompetitors", "Loading competitor pulse");
+  showSectionLoader("researchIdeaBank", "Loading idea bank");
   showSectionLoader("pipelineBoard", "Loading content roadmap");
   showSectionLoader("performanceSummary", "Loading performance summary");
   showSectionLoader("performanceTable", "Loading content performance");
   showSectionLoader("performanceInsights", "Loading performance insights");
+  showSectionLoader("kpiSurface", "Loading KPI board");
   showSectionLoader("taskAgentGrid", "Loading agent workload");
   showSectionLoader("taskQueue", "Loading task queue");
   showSectionLoader("taskActivity", "Loading task activity");
@@ -99,8 +85,9 @@ async function renderPrimarySections() {
   renderWorkspaceSwitcher({ renderScopedSections });
   renderControlBar({ renderScopedSections });
   renderSearchSummary();
+  renderContentResearch({ renderWorkflowModal, renderRunList: renderRunListSection, renderRunDetail });
   renderContentPipeline({ renderWorkflowModal, renderRunList: renderRunListSection, renderRunDetail });
-  renderPerformanceDashboard();
+  renderAnalyticsView();
   renderAgentTasks({ renderAgentModal });
   renderMetrics();
   renderAiTeam({ renderAgentModal });
@@ -127,8 +114,9 @@ async function renderScopedSections() {
   renderWorkspaceSwitcher({ renderScopedSections });
   renderControlBar({ renderScopedSections });
   renderSearchSummary();
+  renderContentResearch({ renderWorkflowModal, renderRunList: renderRunListSection, renderRunDetail });
   renderContentPipeline({ renderWorkflowModal, renderRunList: renderRunListSection, renderRunDetail });
-  renderPerformanceDashboard();
+  renderAnalyticsView();
   renderAgentTasks({ renderAgentModal });
   renderMetrics();
   renderAiTeam({ renderAgentModal });
@@ -168,7 +156,12 @@ async function bootstrap() {
   try {
     initializeAgentModal({ renderAgentModal });
     initializeWorkflowModal({ renderWorkflowModal, renderRunList: renderRunListSection, renderRunDetail });
-    initializeFeedWidthControl();
+    uiState.feedRailWidth = initializeFeedRailResize({
+      handle: nodes.dashboardRailResize,
+      onWidthChange: (width) => {
+        uiState.feedRailWidth = width;
+      }
+    });
     await wait(80);
     await renderPrimarySections();
     await renderScopedSections();

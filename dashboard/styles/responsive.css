@@ -148,14 +148,11 @@
   }
 
   .shell-topbar__left,
-  .shell-topbar__right,
-  .shell-topbar__crumb {
+  .shell-topbar__right {
     width: 100%;
   }
 
-  .shell-topbar__eyebrow,
-  .shell-topbar__chip--mode,
-  .shell-topbar__chip--feed {
+  .shell-topbar__chip--mode {
     display: none;
   }
 

@@ -70,8 +70,8 @@
   gap: 12px;
   padding: 16px;
   border-radius: 14px;
-  border: 1px solid rgba(143, 154, 168, 0.1);
-  background: linear-gradient(180deg, rgba(31, 36, 45, 0.98), rgba(22, 26, 33, 0.96));
+  border: 1px solid rgba(122, 152, 227, 0.12);
+  background: linear-gradient(180deg, rgba(11, 18, 35, 0.98), rgba(8, 13, 25, 0.96));
   color: var(--ink);
   text-align: left;
   cursor: pointer;
@@ -160,8 +160,8 @@
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, rgba(140, 232, 247, 0.9), rgba(240, 188, 99, 0.92));
-  box-shadow: 0 0 12px rgba(140, 232, 247, 0.18);
+  background: linear-gradient(90deg, rgba(97, 214, 255, 0.96), rgba(138, 125, 255, 0.9), rgba(255, 95, 177, 0.84));
+  box-shadow: 0 0 12px rgba(97, 214, 255, 0.18);
 }
 
 .team-card__meta {
@@ -340,46 +340,114 @@
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
-  border-radius: 999px;
   border: 1px solid rgba(146, 164, 185, 0.14);
-  background:
-    linear-gradient(180deg, rgba(16, 27, 45, 0.98), rgba(10, 18, 31, 0.96));
-  color: var(--accent);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  background: linear-gradient(180deg, rgba(16, 24, 36, 0.98), rgba(11, 17, 27, 0.96));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 8px 18px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
 }
 
-.agent-avatar svg {
+.agent-avatar img {
   display: block;
+  width: 62%;
+  height: 62%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.05));
+}
+
+.agent-avatar--agent {
+  border-radius: 14px;
+}
+
+.agent-avatar--user {
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(22, 31, 48, 0.98), rgba(13, 18, 31, 0.96));
+}
+
+.agent-avatar--agent[data-agent-tone="research"] {
+  border-color: rgba(127, 231, 255, 0.26);
+  background: linear-gradient(180deg, rgba(17, 32, 42, 0.98), rgba(11, 21, 31, 0.96));
+}
+
+.agent-avatar--agent[data-agent-tone="idea"] {
+  border-color: rgba(207, 155, 255, 0.26);
+  background: linear-gradient(180deg, rgba(29, 22, 45, 0.98), rgba(18, 15, 31, 0.96));
+}
+
+.agent-avatar--agent[data-agent-tone="script"] {
+  border-color: rgba(255, 204, 114, 0.26);
+  background: linear-gradient(180deg, rgba(40, 29, 19, 0.98), rgba(24, 18, 12, 0.96));
+}
+
+.agent-avatar--agent[data-agent-tone="editor"] {
+  border-color: rgba(255, 156, 120, 0.26);
+  background: linear-gradient(180deg, rgba(42, 25, 20, 0.98), rgba(27, 18, 14, 0.96));
+}
+
+.agent-avatar--agent[data-agent-tone="scheduler"] {
+  border-color: rgba(140, 232, 247, 0.24);
+  background: linear-gradient(180deg, rgba(16, 34, 38, 0.98), rgba(11, 22, 24, 0.96));
+}
+
+.agent-avatar--agent[data-agent-tone="analytics"] {
+  border-color: rgba(122, 184, 255, 0.24);
+  background: linear-gradient(180deg, rgba(18, 28, 46, 0.98), rgba(12, 19, 29, 0.96));
+}
+
+.agent-avatar--agent[data-agent-tone="lead"] {
+  border-color: rgba(142, 224, 139, 0.24);
+  background: linear-gradient(180deg, rgba(18, 34, 23, 0.98), rgba(12, 22, 17, 0.96));
+}
+
+.agent-avatar--agent[data-agent-tone="dm"] {
+  border-color: rgba(255, 152, 203, 0.24);
+  background: linear-gradient(180deg, rgba(39, 20, 33, 0.98), rgba(24, 14, 20, 0.96));
+}
+
+.agent-avatar--agent[data-agent-tone="default"] {
+  border-color: rgba(223, 231, 242, 0.16);
+  background: linear-gradient(180deg, rgba(22, 26, 34, 0.98), rgba(14, 17, 23, 0.96));
 }
 
 .agent-avatar--xs {
-  width: 22px;
-  height: 22px;
-}
-
-.agent-avatar--xs svg {
-  width: 12px;
-  height: 12px;
-}
-
-.agent-avatar--sm {
   width: 28px;
   height: 28px;
 }
 
-.agent-avatar--sm svg {
-  width: 15px;
-  height: 15px;
+.agent-avatar--xs img {
+  width: 56%;
+  height: 56%;
+}
+
+.agent-avatar--sm {
+  width: 38px;
+  height: 38px;
+}
+
+.agent-avatar--sm img {
+  width: 58%;
+  height: 58%;
+}
+
+.agent-avatar--md {
+  width: 50px;
+  height: 50px;
+}
+
+.agent-avatar--md img {
+  width: 60%;
+  height: 60%;
 }
 
 .agent-avatar--lg {
-  width: 42px;
-  height: 42px;
+  width: 64px;
+  height: 64px;
 }
 
-.agent-avatar--lg svg {
-  width: 22px;
-  height: 22px;
+.agent-avatar--lg img {
+  width: 64%;
+  height: 64%;
 }
 
 .live-state--running {
@@ -393,9 +461,9 @@
 }
 
 .live-state--stopped {
-  color: #8fb2ff;
-  border-color: rgba(143, 178, 255, 0.22);
-  background: rgba(143, 178, 255, 0.08);
+  color: var(--accent-alt);
+  border-color: rgba(138, 125, 255, 0.24);
+  background: rgba(138, 125, 255, 0.08);
 }
 
 .live-state--stopped .live-state__orb {
@@ -436,8 +504,8 @@
   width: 100%;
   padding: 13px 15px;
   border-radius: 12px;
-  border: 1px solid rgba(143, 154, 168, 0.14);
-  background: rgba(13, 16, 21, 0.92);
+  border: 1px solid rgba(122, 152, 227, 0.16);
+  background: rgba(6, 11, 22, 0.92);
   color: var(--ink);
   font: inherit;
   outline: none;
@@ -450,7 +518,7 @@
 
 .search-field input:focus {
   border-color: var(--border-strong);
-  box-shadow: 0 0 0 3px rgba(87, 207, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(97, 214, 255, 0.08);
 }
 
 .filter-strip {
@@ -466,8 +534,8 @@
   width: 100%;
   padding: 9px 11px;
   border-radius: 12px;
-  border: 1px solid rgba(143, 154, 168, 0.12);
-  background: linear-gradient(180deg, rgba(32, 37, 46, 0.96), rgba(22, 26, 33, 0.96));
+  border: 1px solid rgba(122, 152, 227, 0.12);
+  background: linear-gradient(180deg, rgba(12, 19, 37, 0.96), rgba(8, 13, 25, 0.96));
   color: var(--ink);
   text-align: left;
   cursor: pointer;
@@ -506,8 +574,8 @@
   width: 100%;
   padding: 12px 14px;
   border-radius: 12px;
-  border: 1px solid rgba(143, 154, 168, 0.12);
-  background: linear-gradient(180deg, rgba(31, 36, 45, 0.96), rgba(22, 26, 33, 0.96));
+  border: 1px solid rgba(122, 152, 227, 0.12);
+  background: linear-gradient(180deg, rgba(12, 19, 37, 0.96), rgba(8, 13, 25, 0.96));
   color: var(--ink);
   display: grid;
   gap: 4px;
@@ -529,7 +597,7 @@
   transform: translateY(-2px);
   border-color: var(--border-strong);
   box-shadow: var(--shadow-soft);
-  background: linear-gradient(180deg, rgba(36, 42, 51, 0.98), rgba(24, 29, 36, 0.98));
+  background: linear-gradient(180deg, rgba(16, 25, 47, 0.98), rgba(9, 15, 29, 0.98));
 }
 
 .metrics {
@@ -572,15 +640,15 @@
 }
 
 .metric-card--outreach .metric-card__value {
-  color: var(--warning);
+  color: var(--accent-violet);
 }
 
 .metric-card--runs .metric-card__value {
-  color: var(--accent-alt);
+  color: var(--accent);
 }
 
 .metric-card--content .metric-card__value {
-  color: #ffd993;
+  color: var(--accent-pink);
 }
 
 .metric-card--success .metric-card__value {

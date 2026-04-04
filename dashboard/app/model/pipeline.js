@@ -153,6 +153,7 @@ export function contentPipelineBoard() {
     counts,
     lanes: pipelineStages.map((stage) => ({
       ...stage,
+      count: stageItems[stage.id].length,
       items: stageItems[stage.id]
     }))
   };

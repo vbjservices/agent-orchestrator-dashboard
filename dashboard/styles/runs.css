@@ -52,9 +52,9 @@
 }
 
 .status-chip--running {
-  color: var(--warning);
-  background: rgba(255, 200, 87, 0.12);
-  border-color: rgba(255, 200, 87, 0.22);
+  color: var(--accent);
+  background: rgba(97, 214, 255, 0.12);
+  border-color: rgba(97, 214, 255, 0.22);
 }
 
 .ledger {
@@ -79,10 +79,10 @@
   width: 100%;
   padding: 14px;
   border-radius: 12px;
-  border: 1px solid rgba(143, 154, 168, 0.12);
+  border: 1px solid rgba(122, 152, 227, 0.12);
   text-align: left;
   cursor: pointer;
-  background: linear-gradient(180deg, rgba(31, 36, 45, 0.96), rgba(22, 26, 33, 0.96));
+  background: linear-gradient(180deg, rgba(11, 18, 35, 0.96), rgba(8, 13, 25, 0.96));
   transition:
     transform 180ms ease,
     border-color 180ms ease,
@@ -120,7 +120,7 @@
   transform: translateX(4px);
   border-color: var(--border-strong);
   box-shadow: var(--shadow-soft);
-  background: linear-gradient(180deg, rgba(37, 43, 52, 0.98), rgba(25, 30, 37, 0.98));
+  background: linear-gradient(180deg, rgba(16, 25, 47, 0.98), rgba(10, 16, 30, 0.98));
 }
 
 .run-summary {

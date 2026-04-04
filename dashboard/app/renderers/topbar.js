@@ -16,7 +16,7 @@ function topbarTimestamp(value) {
     hour12: false
   })
     .format(new Date(value))
-    .replace(",", " ·")
+    .replace(",", " -")
     .toUpperCase();
 }
 
@@ -26,21 +26,6 @@ function topbarStatus() {
   }
 
   return { label: "Synced", state: "synced" };
-}
-
-function contextLabelForView(viewId) {
-  const labels = {
-    dashboard: "Activity Feed",
-    search: "Search Scope",
-    pipeline: "Roadmap",
-    performance: "Insights",
-    tasks: "Live Activity",
-    workflows: "Workflow Surface",
-    agents: "Agent Surface",
-    orchestrators: "Runtime Surface"
-  };
-
-  return labels[viewId] ?? "Context";
 }
 
 export function renderTopbar() {
@@ -68,9 +53,5 @@ export function renderTopbar() {
 
   if (nodes.topbarOperator) {
     nodes.topbarOperator.setAttribute("aria-label", "Current operator LK");
-  }
-
-  if (nodes.topbarContextLabel) {
-    nodes.topbarContextLabel.textContent = contextLabelForView(uiState.activeView);
   }
 }
